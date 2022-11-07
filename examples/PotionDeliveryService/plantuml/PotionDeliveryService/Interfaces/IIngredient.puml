@@ -1,0 +1,5 @@
+@startuml
+interface IIngredient {
+    Name : string <<get>>
+}
+@enduml

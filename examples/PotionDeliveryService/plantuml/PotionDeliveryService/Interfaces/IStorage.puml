@@ -1,0 +1,7 @@
+@startuml
+interface IStorage {
+    Store(ingredient:IIngredient) : void
+    Take(ingredientName:string) : IIngredient
+    CheckAvailable(ingredientName:string) : bool
+}
+@enduml

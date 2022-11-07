@@ -1,0 +1,6 @@
+@startuml
+class Ingredient <<record>> {
+    + Name : string <<get>> <<init>>
+}
+IIngredient <|-- Ingredient
+@enduml

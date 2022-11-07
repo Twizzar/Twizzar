@@ -1,0 +1,5 @@
+@startuml
+interface IDestination {
+    + Receive(package:IPackage<T>) : void
+}
+@enduml

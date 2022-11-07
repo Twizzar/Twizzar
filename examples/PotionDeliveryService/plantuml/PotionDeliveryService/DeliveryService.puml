@@ -1,0 +1,11 @@
+@startuml
+class DeliveryService {
+    + DeliveryService(storage:IStorage, cauldron:ICauldron, potionRecipes:IPotionRecipes)
+    + Deliver(potionName:string, destination:IDestination) : void
+    - {static} Send(potion:IPotion, destination:IDestination) : void
+}
+IDeliveryService <|-- DeliveryService
+DeliveryService --> "_storage" IStorage
+DeliveryService --> "_cauldron" ICauldron
+DeliveryService --> "_potionRecipes" IPotionRecipes
+@enduml

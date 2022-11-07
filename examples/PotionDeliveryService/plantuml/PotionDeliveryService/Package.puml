@@ -1,0 +1,19 @@
+@startuml
+enum PackageState {
+    Open,
+    Wrapped,
+    UnWrapped,
+}
+class "Package`1"<T> {
+    + Package()
+    + Package(items:T[])
+    + Add(item:T) : void
+    + UnWrap() : IEnumerable<T>
+    + Wrap() : void
+    - GuardIsOpen() : void
+}
+class "IPackage`1"<T> {
+}
+"IPackage`1" "<T>" <|-- "Package`1"
+"Package`1" o-> "_state" PackageState
+@enduml

@@ -1,0 +1,22 @@
+@startuml ClassDiagram
+hide empty members
+
+!include .\\PotionDeliveryService\Cauldron.puml
+!include .\\PotionDeliveryService\DeliveryService.puml
+!include .\\PotionDeliveryService\Effects.puml
+!include .\\PotionDeliveryService\Ingredients.puml
+!include .\\PotionDeliveryService\Package.puml
+!include .\\PotionDeliveryService\PotionRecipes.puml
+!include .\\PotionDeliveryService\Potions.puml
+!include .\\PotionDeliveryService\Storage.puml
+!include .\\PotionDeliveryService\Interfaces\ICauldron.puml
+!include .\\PotionDeliveryService\Interfaces\IDeliveryService.puml
+!include .\\PotionDeliveryService\Interfaces\IDestination.puml
+!include .\\PotionDeliveryService\Interfaces\IEffect.puml
+!include .\\PotionDeliveryService\Interfaces\IIngredient.puml
+!include .\\PotionDeliveryService\Interfaces\IPackage.puml
+!include .\\PotionDeliveryService\Interfaces\IPotion.puml
+!include .\\PotionDeliveryService\Interfaces\IPotionRecipes.puml
+!include .\\PotionDeliveryService\Interfaces\IStorage.puml
+!include .\\PotionDeliveryService\Interfaces\PotionColor.puml
+@enduml

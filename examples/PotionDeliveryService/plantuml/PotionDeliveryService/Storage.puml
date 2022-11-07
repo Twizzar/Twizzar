@@ -1,0 +1,9 @@
+@startuml
+class Storage {
+    + Store(ingredient:IIngredient) : void
+    + Take(ingredientName:string) : IIngredient
+    + CheckAvailable(ingredientName:string) : bool
+}
+
+IStorage <|-- Storage
+@enduml

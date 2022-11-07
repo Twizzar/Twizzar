@@ -1,0 +1,8 @@
+@startuml
+interface IPotionRecipes {
+    GetPotionRecipe(potionName:string) : (IIngredient ingredient1, IIngredient ingredient2)
+    GetPotionName(ingredient1:IIngredient, ingredient2:IIngredient) : string
+    GetPotionEffect(potionName:string) : IEffect
+    GetPotionColor(potionName:string) : PotionColor
+}
+@enduml

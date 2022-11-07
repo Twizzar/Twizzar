@@ -1,0 +1,10 @@
+@startuml
+class Cauldron {
+    + Cauldron(recipes:IPotionRecipes)
+    + Brew(ingredient1:IIngredient, ingredient2:IIngredient) : IPotion
+    - {static} PrintCauldron(ingredient1:string, ingredient2:string) : void
+    - {static} PrintPotion(potion:IPotion) : void
+}
+ICauldron <|-- Cauldron
+Cauldron --> "_recipes" IPotionRecipes
+@enduml

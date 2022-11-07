@@ -1,0 +1,5 @@
+@startuml
+interface IDeliveryService {
+    Deliver(potionName:string, destination:IDestination) : void
+}
+@enduml

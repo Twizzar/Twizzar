@@ -1,0 +1,10 @@
+@startuml
+class Potion <<record>> {
+    + Name : string <<get>> <<init>>
+}
+IPotion <|-- Potion
+Potion --> "Ingredient1" IIngredient
+Potion --> "Ingredient2" IIngredient
+Potion --> "Effect" IEffect
+Potion --> "Color" PotionColor
+@enduml

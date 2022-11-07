@@ -1,0 +1,11 @@
+@startuml
+class PotionRecipes {
+    <<internal>> PotionRecipes(potions:ImmutableDictionary<string, IPotion>, ingredientsToPotions:ImmutableDictionary<(IIngredient, IIngredient), IPotion>)
+    + {static} Create(potions:IPotion[]) : PotionRecipes
+    + GetPotionColor(potionName:string) : PotionColor
+    + GetPotionEffect(potionName:string) : IEffect
+    + GetPotionName(ingredient1:IIngredient, ingredient2:IIngredient) : string
+    + GetPotionRecipe(potionName:string) : (IIngredient ingredient1, IIngredient ingredient2)
+}
+IPotionRecipes <|-- PotionRecipes
+@enduml

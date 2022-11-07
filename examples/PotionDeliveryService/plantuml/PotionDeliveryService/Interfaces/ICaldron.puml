@@ -1,0 +1,5 @@
+@startuml
+interface ICaldron {
+    Brew(ingredient1:IIngredient, ingredient2:IIngredient) : IPotion
+}
+@enduml

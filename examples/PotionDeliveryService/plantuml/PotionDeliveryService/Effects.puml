@@ -1,0 +1,6 @@
+@startuml
+class Effect <<record>> {
+    + Name : string <<get>> <<init>>
+}
+IEffect <|-- Effect
+@enduml
