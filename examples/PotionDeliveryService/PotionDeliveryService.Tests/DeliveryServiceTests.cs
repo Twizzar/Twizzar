@@ -76,8 +76,8 @@ public partial class DeliveryServiceTests
 
         var deliveryService= new ItemBuilder<DeliveryService>()
             .With(p => p.Ctor.storage.Value(storage))
-            .With(p => p.Ctor.caldron.Brew_IPotion.Stub<IPotion>())
-            .With(p => p.Ctor.caldron.Brew_IPotion.Name.Value("MyPotion"))
+            .With(p => p.Ctor.cauldron.Brew_IPotion.Stub<IPotion>())
+            .With(p => p.Ctor.cauldron.Brew_IPotion.Name.Value("MyPotion"))
             .With(p => p.Ctor.potionRecipes.GetPotionRecipe_ValueTupleIIngredientIIngredient.Value((ingredients[0], ingredients[1])))
             .Build();
 
