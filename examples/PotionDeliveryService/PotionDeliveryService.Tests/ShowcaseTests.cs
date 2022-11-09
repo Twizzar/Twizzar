@@ -2,9 +2,49 @@
 
 namespace PotionDeliveryService.Tests;
 
+/// <summary>
+/// Test to showcase some key features of Twizzar:
+///
+/// ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+/// ┃ Automatically detects and resolves dependencies of a class or interface.┃
+/// ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+/// Twizzar automatically detects dependencies and can pull up classes, structs and interfaces.Instead of writing tests in the traditional way,
+/// Twizzar also resolves dependencies automatically.However, if desired, they can be configured manually.
+/// 
+/// ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+/// ┃ Intuitive UI for dependency configuration ┃
+/// ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+/// If needed, dependencies can be easily configured via a user-friendly UI or a provided API.
+/// 
+/// ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+/// ┃ Access to non-public members ┃
+/// ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+/// Easily access and modify all members of a class in your project, regardless of their access modifier.
+///
+/// ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+/// ┃ Cleaner automated testing thanks to lean arrange section ┃
+/// ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+/// Write clear and maintainable unit tests by automatically outsourcing the generation of the SUT and DoCs to a builder.
+///
+/// ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+/// ┃ Works with every testing framework ┃
+/// ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+/// 
+/// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+/// Twizzar runs on all popular testing frameworks such as NUnit, xUnit, MS Test or Resharper Test Runner.
+/// Simultaneous use of other testing power tools such as NCrunch also works smoothly.
+///
+/// ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+/// ┃ Reusable test configurations ┃
+/// ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+/// Save time by reusing your own test configurations.
+
+/// </summary>
 [TestFixture]
 public partial class ShowcaseTests
 {
+    #region members
+
     [Test]
     public void Showcase_automatically_detects_and_resolves_dependencies_of_a_class_or_interface()
     {
@@ -27,6 +67,7 @@ public partial class ShowcaseTests
         });
 
         var potion1 = (Potion)vitalityPotion.Ingredient1;
+
         Assert.Multiple(() =>
         {
             Assert.That(potion1.Name, Is.EqualTo("Mana Potion"));
@@ -36,6 +77,7 @@ public partial class ShowcaseTests
         });
 
         var potion2 = (Potion)vitalityPotion.Ingredient2;
+
         Assert.Multiple(() =>
         {
             Assert.That(potion2.Name, Is.EqualTo("Health Potion"));
@@ -65,4 +107,6 @@ public partial class ShowcaseTests
 
         Assert.Throws<InvalidOperationException>(() => package.Add(new ItemBuilder<IPotion>().Build()));
     }
+
+    #endregion
 }

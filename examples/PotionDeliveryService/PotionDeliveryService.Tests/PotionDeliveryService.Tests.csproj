@@ -22,6 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="BaseFeaturesTests.viTest.cs">
+      <DependentUpon>BaseFeaturesTests.cs</DependentUpon>
+    </Compile>
     <Compile Update="CauldronTests.viTest.cs">
       <DependentUpon>CauldronTests.cs</DependentUpon>
     </Compile>

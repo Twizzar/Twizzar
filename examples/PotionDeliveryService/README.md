@@ -13,4 +13,6 @@
          .'` .'```'. `-.        ███████▌█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▌
         ().'`       `'.()       ▀(⊙)▀▀▀▀▀▀▀(⊙)(⊙)▀▀▀▀▀▀▀(⊙)
 ```
+To get familiar with Twizzar look at the [BaseFeatureTests](PotionDeliveryService.Tests/BaseFeaturesTests.cs).
+
 ![](plantuml/ClassDiagram.png)

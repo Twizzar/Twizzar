@@ -2,7 +2,10 @@
 
 namespace PotionDeliveryService;
 
-public record Ingredient(string Name) : IIngredient;
+public record Ingredient(string Name) : IIngredient
+{
+    public double Price { get; } = 0;
+}
 
 public static class Ingredients
 {

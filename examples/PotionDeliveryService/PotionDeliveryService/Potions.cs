@@ -2,7 +2,27 @@
 
 namespace PotionDeliveryService;
 
-public record Potion(string Name, IIngredient Ingredient1, IIngredient Ingredient2, IEffect Effect, PotionColor Color) : IPotion;
+public record Potion(
+    string Name,
+    IIngredient Ingredient1,
+    IIngredient Ingredient2,
+    IEffect Effect,
+    PotionColor Color) : IPotion
+{
+    /// <summary>
+    /// Constructor for building a Potion where the name is the color + Potion.
+    /// </summary>
+    /// <param name="color"></param>
+    /// <param name="ingredient1"></param>
+    /// <param name="ingredient2"></param>
+    /// <param name="effect"></param>
+    public Potion(PotionColor color, IIngredient ingredient1, IIngredient ingredient2, IEffect effect)
+        : this($"{color}Potion", ingredient1, ingredient2, effect, color)
+    {
+    }
+
+    public double Price { get; set; }
+}
 
 public static class Potions
 {

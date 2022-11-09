@@ -8,6 +8,8 @@ public partial class StorageTests
     {
         // arrange
         var storage = new Storage();
+
+        // create an ingredient with an unique name
         var ingredient = new UniqueIngredienBuilder().Build();
 
         // act

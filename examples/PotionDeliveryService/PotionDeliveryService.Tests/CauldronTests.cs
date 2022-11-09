@@ -9,11 +9,15 @@ public partial class CauldronTests
     public void Potion_gets_brewed_correctly()
     {
         // arrange
+
+        // For brewing two ingredients are needed. Two are created with a unique name.
         var ingredients = new ItemBuilder<IIngredient>()
-            .With(p => p.Name.Value("Test Ingredient"))
+            .With(p => p.Name.Unique())
             .BuildMany(2);
 
-        var (cauldron, scope) = new TestCaldronBuilder()
+        // setup the cauldron:
+        // the potionRecipes service should return a name, an effect and a color when asked.
+        var (cauldron, scope) = new TestCauldronBuilder()
             .BuildWithScope();
 
         // act
@@ -22,8 +26,14 @@ public partial class CauldronTests
         // assert
         Assert.Multiple(() =>
         {
+            // check that the ingredients where used. 
+            Assert.That(potion.Ingredient1, Is.EqualTo(ingredients[0]));
+            Assert.That(potion.Ingredient2, Is.EqualTo(ingredients[1]));
+
+            // check that the returned values form the potionRecipes where used for creating the potion
             Assert.That(potion.Color, Is.EqualTo(scope.Get(p => p.Ctor.recipes.GetPotionColor_PotionColor)));
             Assert.That(potion.Name, Is.EqualTo(scope.Get(p => p.Ctor.recipes.GetPotionName_String)));
+            Assert.That(potion.Effect, Is.EqualTo(scope.Get(p => p.Ctor.recipes.GetPotionEffect_IEffect)));
         });
     }
 }

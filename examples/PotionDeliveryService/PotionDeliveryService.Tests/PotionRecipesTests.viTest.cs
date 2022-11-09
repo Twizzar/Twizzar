@@ -1,6 +1,5 @@
 ﻿using System.Collections.Immutable;
-using ViTest.Fixture;
-using PotionDeliveryService;
+
 using PotionDeliveryService.Interfaces;
 
 namespace PotionDeliveryService.Tests
