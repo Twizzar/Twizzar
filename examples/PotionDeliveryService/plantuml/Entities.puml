@@ -1,0 +1,12 @@
+@startuml Entities
+hide empty members
+!include .\\PotionDeliveryService\Effects.puml
+!include .\\PotionDeliveryService\Ingredients.puml
+!include .\\PotionDeliveryService\Package.puml
+!include .\\PotionDeliveryService\Potions.puml
+!include .\\PotionDeliveryService\Interfaces\IEffect.puml
+!include .\\PotionDeliveryService\Interfaces\IIngredient.puml
+!include .\\PotionDeliveryService\Interfaces\IPackage.puml
+!include .\\PotionDeliveryService\Interfaces\IPotion.puml
+!include .\\PotionDeliveryService\Interfaces\PotionColor.puml
+@enduml

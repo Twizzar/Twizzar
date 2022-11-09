@@ -1,0 +1,13 @@
+@startuml Services
+hide empty members
+
+!include .\\PotionDeliveryService\Cauldron.puml
+!include .\\PotionDeliveryService\DeliveryService.puml
+!include .\\PotionDeliveryService\PotionRecipes.puml
+!include .\\PotionDeliveryService\Storage.puml
+!include .\\PotionDeliveryService\Interfaces\ICauldron.puml
+!include .\\PotionDeliveryService\Interfaces\IDeliveryService.puml
+!include .\\PotionDeliveryService\Interfaces\IPotionRecipes.puml
+!include .\\PotionDeliveryService\Interfaces\IStorage.puml
+!include .\\PotionDeliveryService\Interfaces\IDestination.puml
+@enduml
