@@ -13,8 +13,8 @@
     <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
     <PackageReference Include="NUnit.Analyzers" Version="3.3.0" />
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
-    <PackageReference Include="ViTest.Analyzer2022" Version="0.20.0-pullrequest0887-0045" />
-    <PackageReference Include="ViTest.Api" Version="0.20.0-pullrequest0887-0045" />
+    <PackageReference Include="ViTest.Analyzer2022" Version="0.21.0-pullrequest0906-0015" />
+    <PackageReference Include="ViTest.Api" Version="0.21.0-pullrequest0906-0015" />
   </ItemGroup>
 
   <ItemGroup>

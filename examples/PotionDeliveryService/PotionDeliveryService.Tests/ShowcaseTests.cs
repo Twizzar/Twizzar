@@ -50,6 +50,14 @@ public partial class ShowcaseTests
     {
         var myPotion = new ItemBuilder<Potion>()
             .Build();
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(myPotion.Name, Is.Not.Null);
+            Assert.That(myPotion.Ingredient1, Is.InstanceOf<IIngredient>());
+            Assert.That(myPotion.Ingredient2, Is.InstanceOf<IIngredient>());
+            Assert.That(myPotion.Effect, Is.InstanceOf<IEffect>());
+        });
     }
 
     [Test]
@@ -98,6 +106,8 @@ public partial class ShowcaseTests
         package.Wrap();
 
         destination.Receive(package);
+
+        Assert.Pass();
     }
 
     [Test]

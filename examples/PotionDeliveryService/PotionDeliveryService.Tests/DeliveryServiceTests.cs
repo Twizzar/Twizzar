@@ -63,12 +63,7 @@ public partial class DeliveryServiceTests
         var destinationMock = new Mock<IDestination>();
 
         // the scope can be used to retrieve the unique values generated for the potionRecipes service.
-        var expectedPotion = new Potion(
-            scope.Get(p => p.Ctor.potionRecipes.GetPotionName_String),
-            scope.Get(p => p.Ctor.potionRecipes.GetPotionRecipe_ValueTupleIIngredientIIngredient).Item1,
-            scope.Get(p => p.Ctor.potionRecipes.GetPotionRecipe_ValueTupleIIngredientIIngredient).Item2,
-            scope.Get(p => p.Ctor.potionRecipes.GetPotionEffect_IEffect),
-            scope.Get(p => p.Ctor.potionRecipes.GetPotionColor_PotionColor));
+        var expectedPotionName = scope.Get(p => p.Ctor.potionRecipes.GetPotionName_String);
 
         // act
         deliveryService.Deliver("MyPotion", destinationMock.Object);
@@ -76,7 +71,7 @@ public partial class DeliveryServiceTests
         // assert
 
         // check that the destination has received a package which only contains the expectedPotion.
-        destinationMock.Verify(destination => destination.Receive(It.Is<IPackage<IPotion>>(package => package.UnWrap().Single().Equals(expectedPotion))));
+        destinationMock.Verify(destination => destination.Receive(It.Is<IPackage<IPotion>>(package => package.UnWrap().Single().Name.Equals(expectedPotionName))));
     }
 
     [Test]

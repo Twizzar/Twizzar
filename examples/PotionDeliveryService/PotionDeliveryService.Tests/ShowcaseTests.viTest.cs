@@ -1,6 +1,4 @@
-﻿using ViTest.Fixture;
-using PotionDeliveryService;
-using PotionDeliveryService.Interfaces;
+﻿using PotionDeliveryService.Interfaces;
 
 namespace PotionDeliveryService.Tests
 {
@@ -30,11 +28,11 @@ namespace PotionDeliveryService.Tests
             }
         }
 
-        private class WrappedPackageBuilder : ItemBuilder<PotionDeliveryService.Package<PotionDeliveryService.Interfaces.IPotion>, Package11356BuilderPaths>
+        private class WrappedPackageBuilder : ItemBuilder<PotionDeliveryService.Package<PotionDeliveryService.Interfaces.IPotion>, MyPackageBuilderPaths>
         {
             public WrappedPackageBuilder()
             {
-            //this.With(p => p._state.Value(PackageState.Wrapped));
+                //this.With(p => p._state.Value(PackageState.Wrapped));
             }
         }
     }

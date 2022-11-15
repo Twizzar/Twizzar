@@ -2,7 +2,7 @@
 
 namespace PotionDeliveryService;
 
-internal enum PackageState
+public enum PackageState
 {
     Open,
     Wrapped,
