@@ -31,3 +31,6 @@ If applicable, add screenshots to help explain your problem.
 Add any other context about the problem here.
 
 Visual Studio Info (Help -> About Microsoft Visual Studio -> Copy Info):
+```
+Copy Info Here
+```
