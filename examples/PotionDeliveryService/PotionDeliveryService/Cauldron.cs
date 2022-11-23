@@ -60,7 +60,7 @@ public class Cauldron : ICauldron
  \░░░░░░░░░/
 
   {potion.Name}
-  {potion.Effect.Name}
+  {potion?.Effect?.Name}
 ");
 
         Console.ForegroundColor = oldColor;

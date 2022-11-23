@@ -1,4 +1,4 @@
-﻿using ViTest.Fixture;
+﻿using Twizzar.Fixture;
 using PotionDeliveryService;
 using PotionDeliveryService.Interfaces;
 

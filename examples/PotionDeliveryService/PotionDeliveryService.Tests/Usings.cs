@@ -1,2 +1,2 @@
 global using NUnit.Framework;
-global using ViTest.Fixture;
+global using Twizzar.Fixture;
