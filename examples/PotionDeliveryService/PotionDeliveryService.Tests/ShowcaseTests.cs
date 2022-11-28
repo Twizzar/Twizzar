@@ -1,7 +1,4 @@
-﻿using Moq;
-using PotionDeliveryService.Interfaces;
-
-namespace PotionDeliveryService.Tests;
+﻿namespace PotionDeliveryService.Tests;
 
 /// <summary>
 /// Test to showcase some key features of Twizzar:

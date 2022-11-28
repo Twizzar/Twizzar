@@ -16,6 +16,13 @@ public class DeliveryService : IDeliveryService
         this._potionRecipes = potionRecipes;
     }
 
+    /// <summary>
+    /// Deliver a potion by its name to a <see cref="IDestination"/>.
+    /// </summary>
+    /// <param name="potionName"></param>
+    /// <param name="destination"></param>
+    /// <exception cref="InvalidOperationException"></exception>
+    /// <exception cref="PotionNotAvailableException"></exception>
     public void Deliver(string potionName, IDestination destination)
     {
         if (this._storage.CheckAvailable(potionName))

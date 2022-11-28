@@ -1,7 +1,4 @@
-﻿using Moq;
-using PotionDeliveryService.Interfaces;
-
-namespace PotionDeliveryService.Tests;
+﻿namespace PotionDeliveryService.Tests;
 
 [TestFixture]
 public partial class BaseFeaturesTests
