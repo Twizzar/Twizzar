@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
     <EnforceCodeStyleInBuild>False</EnforceCodeStyleInBuild>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,7 +15,7 @@
     <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
     <PackageReference Include="NUnit.Analyzers" Version="3.3.0" />
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
-    <PackageReference Include="Twizzar.Analyzer2022" Version="0.22.0" />
+    <PackageReference Include="Twizzar.Analyzer2022" Version="1.0.0" />
     <PackageReference Include="Twizzar.Api" Version="0.22.0" />
   </ItemGroup>
 
