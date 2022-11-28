@@ -1,13 +1,10 @@
-﻿using ViTest.Fixture;
-using PotionDeliveryService.Interfaces;
-
-namespace PotionDeliveryService.Tests
+﻿namespace PotionDeliveryService.Tests
 {
     partial class StorageTests
     {
-        private class UniqueIngredienBuilder : ItemBuilder<PotionDeliveryService.Interfaces.IIngredient, IIngredient8febBuilderPaths>
+        private class UniqueIngredientBuilder : ItemBuilder<PotionDeliveryService.Interfaces.IIngredient, IIngredient8febBuilderPaths>
         {
-            public UniqueIngredienBuilder()
+            public UniqueIngredientBuilder()
             {
                 this.With(p => p.Name.Unique());
             }

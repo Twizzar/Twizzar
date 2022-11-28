@@ -10,7 +10,7 @@ public partial class StorageTests
         var storage = new Storage();
 
         // create an ingredient with an unique name
-        var ingredient = new UniqueIngredienBuilder().Build();
+        var ingredient = new UniqueIngredientBuilder().Build();
 
         // act
         storage.Store(ingredient);
@@ -25,7 +25,7 @@ public partial class StorageTests
     {
         // arrange
         var storage = new Storage();
-        var ingredient = new UniqueIngredienBuilder().Build();
+        var ingredient = new UniqueIngredientBuilder().Build();
 
         // act
         storage.Store(ingredient);
@@ -40,7 +40,7 @@ public partial class StorageTests
     {
         // arrange
         var storage = new Storage();
-        var ingredient = new UniqueIngredienBuilder().Build();
+        var ingredient = new UniqueIngredientBuilder().Build();
 
         // act
         for (int i = 0; i < 5; i++)

@@ -24,16 +24,14 @@ public partial class CauldronTests
         var potion = cauldron.Brew(ingredients[0], ingredients[1]);
         
         // assert
-        Assert.Multiple(() =>
-        {
-            // check that the ingredients where used. 
-            Assert.That(potion.Ingredient1, Is.EqualTo(ingredients[0]));
-            Assert.That(potion.Ingredient2, Is.EqualTo(ingredients[1]));
 
-            // check that the returned values form the potionRecipes where used for creating the potion
-            Assert.That(potion.Color, Is.EqualTo(scope.Get(p => p.Ctor.recipes.GetPotionColor_PotionColor)));
-            Assert.That(potion.Name, Is.EqualTo(scope.Get(p => p.Ctor.recipes.GetPotionName_String)));
-            Assert.That(potion.Effect, Is.EqualTo(scope.Get(p => p.Ctor.recipes.GetPotionEffect_IEffect)));
-        });
+        // check that the ingredients where used. 
+        Assert.That(potion.Ingredient1, Is.EqualTo(ingredients[0]));
+        Assert.That(potion.Ingredient2, Is.EqualTo(ingredients[1]));
+
+        // check that the returned values form the potionRecipes where used for creating the potion
+        Assert.That(potion.Color, Is.EqualTo(scope.Get(p => p.Ctor.recipes.GetPotionColor_PotionColor)));
+        Assert.That(potion.Name, Is.EqualTo(scope.Get(p => p.Ctor.recipes.GetPotionName_String)));
+        Assert.That(potion.Effect, Is.EqualTo(scope.Get(p => p.Ctor.recipes.GetPotionEffect_IEffect)));
     }
 }
