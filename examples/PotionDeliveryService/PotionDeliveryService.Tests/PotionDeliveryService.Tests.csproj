@@ -24,22 +24,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="BaseFeaturesTests.viTest.cs">
+    <Compile Update="BaseFeaturesTests.twizzar.cs">
       <DependentUpon>BaseFeaturesTests.cs</DependentUpon>
     </Compile>
-    <Compile Update="CauldronTests.viTest.cs">
+    <Compile Update="CauldronTests.twizzar.cs">
       <DependentUpon>CauldronTests.cs</DependentUpon>
     </Compile>
-    <Compile Update="DeliveryServiceTests.viTest.cs">
+    <Compile Update="DeliveryServiceTests.twizzar.cs">
       <DependentUpon>DeliveryServiceTests.cs</DependentUpon>
     </Compile>
-    <Compile Update="PotionRecipesTests.viTest.cs">
+    <Compile Update="PotionRecipesTests.twizzar.cs">
       <DependentUpon>PotionRecipesTests.cs</DependentUpon>
     </Compile>
-    <Compile Update="ShowcaseTests.viTest.cs">
+    <Compile Update="ShowcaseTests.twizzar.cs">
       <DependentUpon>ShowcaseTests.cs</DependentUpon>
     </Compile>
-    <Compile Update="StorageTests.viTest.cs">
+    <Compile Update="StorageTests.twizzar.cs">
       <DependentUpon>StorageTests.cs</DependentUpon>
     </Compile>
   </ItemGroup>
