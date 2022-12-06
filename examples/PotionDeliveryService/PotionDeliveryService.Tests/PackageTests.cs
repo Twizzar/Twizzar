@@ -30,14 +30,13 @@ public class PackageTests
     }
 
     [Test]
-    [Ignore("Fails on build due to a bug, see https://github.com/Twizzar/Twizzar/issues/21.")]
     public void Content_cannot_be_added_to_a_wrapped_packages()
     {
         // arrange
 
         // create a package with the state Wrapped
         var wrappedPackages = new ItemBuilder<Package<Potion>>()
-            //.With(p => p._state.Value(PackageState.Wrapped))
+            .With(p => p._state.Value(PackageState.Wrapped))
             .Build();
 
         var package = new ItemBuilder<Potion>().Build();
@@ -49,14 +48,13 @@ public class PackageTests
 
     [TestCase(PackageState.Open)]
     [TestCase(PackageState.UnWrapped)]
-    [Ignore("Fails on build due to a bug, see https://github.com/Twizzar/Twizzar/issues/21.")]
     public void Not_wrapped_package_cannot_be_unwrapped(PackageState packageState)
     {
         // arrange
 
         // set the private field _state to the test case packageState.
         var package = new ItemBuilder<Package<Potion>>()
-            //.With(p => p._state.Value(packageState))
+            .With(p => p._state.Value(packageState))
             .Build();
 
         // act & assert

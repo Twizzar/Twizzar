@@ -1,6 +1,4 @@
-﻿using PotionDeliveryService.Interfaces;
-
-namespace PotionDeliveryService.Tests
+﻿namespace PotionDeliveryService.Tests
 {
     partial class ShowcaseTests
     {
@@ -12,11 +10,7 @@ namespace PotionDeliveryService.Tests
                 this.With(p => p.Ctor.Color.Value(PotionColor.Purple));
                 this.With(p => p.Ctor.Ingredient1.InstanceOf<Potion>());
                 this.With(p => p.Ctor.Ingredient1.Ctor.Name.Value("Mana Potion"));
-                this.With(p => p.Ctor.Ingredient1.Ctor.Color.Value(PotionColor.Blue));
                 this.With(p => p.Ctor.Ingredient1.Ctor.Ingredient1.Name.Value("Water"));
-                this.With(p => p.Ctor.Ingredient1.Ctor.Ingredient1.Stub<IIngredient>());
-                this.With(p => p.Ctor.Ingredient1.Ctor.Ingredient2.Stub<IIngredient>());
-                this.With(p => p.Ctor.Ingredient1.Ctor.Effect.Stub<IEffect>());
             }
         }
 
@@ -24,8 +18,7 @@ namespace PotionDeliveryService.Tests
         {
             public WrappedPackageBuilder()
             {
-                // BUG: https://github.com/Twizzar/Twizzar/issues/21
-                //this.With(p => p._state.Value(PackageState.Wrapped));
+                this.With(p => p._state.Value(PackageState.Wrapped));
             }
         }
     }

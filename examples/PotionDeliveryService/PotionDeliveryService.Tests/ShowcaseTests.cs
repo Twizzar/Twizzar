@@ -68,7 +68,6 @@ public partial class ShowcaseTests
         var potion1 = (Potion)vitalityPotion.Ingredient1;
 
         Assert.That(potion1.Name, Is.EqualTo("Mana Potion"));
-        Assert.That(potion1.Color, Is.EqualTo(PotionColor.Blue));
         Assert.That(potion1.Ingredient1.Name, Is.EqualTo("Water"));
     }
 
@@ -99,7 +98,6 @@ public partial class ShowcaseTests
         var twizzarVitalityPotion = new VitalityPotionBuilder()
             .Build();
 
-
         Assert.That(moqVitalityPotion.Color, Is.EqualTo(twizzarVitalityPotion.Color));
         Assert.That(moqVitalityPotion.Name, Is.EqualTo(twizzarVitalityPotion.Name));
         Assert.That(moqVitalityPotion.Ingredient1.Name, Is.EqualTo(twizzarVitalityPotion.Ingredient1.Name));
@@ -126,7 +124,6 @@ public partial class ShowcaseTests
     }
 
     [Test]
-    [Ignore("Fails on build due to a bug, see https://github.com/Twizzar/Twizzar/issues/21.")]
     public void Showcase_Access_to_non_public_members()
     {
         var package = new WrappedPackageBuilder().Build();
