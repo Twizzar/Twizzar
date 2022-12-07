@@ -6,11 +6,11 @@
         {
             public VitalityPotionBuilder()
             {
-                this.With(p => p.Ctor.Name.Value("Vitality Potion"));
-                this.With(p => p.Ctor.Color.Value(PotionColor.Purple));
-                this.With(p => p.Ctor.Ingredient1.InstanceOf<Potion>());
-                this.With(p => p.Ctor.Ingredient1.Ctor.Name.Value("Mana Potion"));
-                this.With(p => p.Ctor.Ingredient1.Ctor.Ingredient1.Name.Value("Water"));
+                this.With(p => p.Ctor.name.Value("Vitality Potion"));
+                this.With(p => p.Ctor.color.Value(PotionColor.Purple));
+                this.With(p => p.Ctor.ingredient1.InstanceOf<Potion>());
+                this.With(p => p.Ctor.ingredient1.Ctor.name.Value("Mana Potion"));
+                this.With(p => p.Ctor.ingredient1.Ctor.ingredient1.Name.Value("Water"));
             }
         }
 

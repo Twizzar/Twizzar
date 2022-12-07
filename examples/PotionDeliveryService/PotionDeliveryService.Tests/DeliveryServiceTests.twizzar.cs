@@ -19,7 +19,7 @@ namespace PotionDeliveryService.Tests
                 this.With(p => p.Ctor.storage.Stub<IStorage>());
                 this.With(p => p.Ctor.storage.CheckAvailable_Boolean.Value(true));
                 this.With(p => p.Ctor.storage.Take_IIngredient.InstanceOf<Potion>());
-                this.With(p => p.Ctor.storage.Take_IIngredient.Ctor.Name.Value("MyPotion"));
+                this.With(p => p.Ctor.storage.Take_IIngredient.Ctor.name.Value("MyPotion"));
             }
         }
     }

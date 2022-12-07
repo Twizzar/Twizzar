@@ -15,7 +15,7 @@ public partial class BaseFeaturesTests
         // asking for a new instance.
         var potion2 = new ItemBuilder<Potion>().Build();
         Assert.That(potion2, Is.Not.EqualTo(potion));
-
+        
         // same valid for build with custom builder:
         var bluePotion = new BluePotionBuilder();
         var bluePotion2 = new BluePotionBuilder();
@@ -133,11 +133,11 @@ public partial class BaseFeaturesTests
         var (potion, scope) = new BluePotionBuilder().BuildWithScope();
 
         // The scope can be used to get dependencies which are resolved and set by the ItemBuilder.
-        var potionColor = scope.Get(p => p.Color);
+        var potionColor = scope.Get(p => p.Ctor.color);
         Assert.That(potionColor, Is.EqualTo(potion.Color));
 
         // It is also possible to get a dependency as an mock
-        var ingredientMock = scope.GetAsMoq(p => p.Ingredient1);
+        var ingredientMock = scope.GetAsMoq(p => p.Ctor.ingredient1);
         ingredientMock
             .Setup(ingredient => ingredient.Price)
             .Returns(5);
@@ -154,7 +154,7 @@ public partial class BaseFeaturesTests
 
         foreach (var (instance, itemScope) in potionsAndScope)
         {
-            var ingredientMock2 = itemScope.GetAsMoq(p => p.Ingredient1);
+            var ingredientMock2 = itemScope.GetAsMoq(p => p.Ctor.ingredient1);
             ingredientMock2.VerifyNoOtherCalls();
         }
     }
@@ -164,7 +164,7 @@ public partial class BaseFeaturesTests
     {
         // it is possible to directly configure members.
         var bluePotion = new ItemBuilder<Potion>()
-            .With(p => p.Color.Value(PotionColor.Blue))
+            .With(p => p.Ctor.color.Value(PotionColor.Blue))
             .Build();
 
         Assert.That(bluePotion.Color, Is.EqualTo(PotionColor.Blue));
@@ -174,7 +174,7 @@ public partial class BaseFeaturesTests
 
         // It is possible to directly configure dependencies of dependencies.
         bluePotion = new ItemBuilder<Potion>()
-            .With(p => p.Ingredient1.Name.Value("Water"))
+            .With(p => p.Ctor.ingredient1.Name.Value("Water"))
             .Build();
 
         Assert.That(bluePotion.Ingredient1.Name, Is.EqualTo("Water"));
@@ -187,8 +187,8 @@ public partial class BaseFeaturesTests
         // InstanceOf:  Change the type of the member (A instance of a class or struct will be resolved with a constructor)
         var potions = new ItemBuilder<Potion>()
             .With(p => p.Price.Unique())
-            .With(p => p.Ingredient1.Stub<IPotion>())
-            .With(p => p.Ingredient2.InstanceOf<Potion>())
+            .With(p => p.Ctor.ingredient1.Stub<IPotion>())
+            .With(p => p.Ctor.ingredient2.InstanceOf<Potion>())
             .BuildMany(2);
 
         Assert.That(potions.Select(potion => potion.Price), Is.Unique);
@@ -203,7 +203,7 @@ public partial class BaseFeaturesTests
 
         // It is also possible to extend a custom builder
         var manaPotion = new BluePotionBuilder()
-            .With(p => p.Effect.Name.Value("Restores Mana"))
+            .With(p => p.Ctor.effect.Name.Value("Restores Mana"))
             .Build();
 
         Assert.That(manaPotion.Color, Is.EqualTo(PotionColor.Blue));

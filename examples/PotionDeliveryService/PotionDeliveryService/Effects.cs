@@ -2,7 +2,15 @@
 
 namespace PotionDeliveryService;
 
-public record Effect(string Name) : IEffect;
+public class Effect : IEffect
+{
+    public Effect(string name)
+    {
+        Name = name;
+    }
+
+    public string Name { get; }
+}
 
 public static class Effects
 {

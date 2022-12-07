@@ -10,9 +10,9 @@ namespace PotionDeliveryService.Tests
         {
             public BluePotionBuilder()
             {
-                this.With(p => p.Color.Value(PotionColor.Blue));
+                this.With(p => p.Ctor.color.Value(PotionColor.Blue));
                 this.With(p => p.Price.Value(42));
-                this.With(p => p.Ingredient1.Stub<IIngredient>());
+                this.With(p => p.Ctor.ingredient1.Stub<IIngredient>());
             }
         }
     }
