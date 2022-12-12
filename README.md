@@ -1,6 +1,5 @@
 # Twizzar
 [![NuGet Badge](https://buildstats.info/nuget/Twizzar.Api)](https://www.nuget.org/packages/Twizzar.Api/)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=viTest&metric=coverage&token=6cafdab8634aa67d96790aa2ac2749f6827ef50e)](https://sonarcloud.io/dashboard?id=viTest)
 [![GitHub issues](https://img.shields.io/github/issues/Twizzar/Twizzar)](https://github.com/Twizzar/Twizzar//issues?q=is%3Aopen+is%3Aissue)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/Twizzar/Twizzar)](https://github.com/Twizzar/Twizzar/issues?q=is%3Aclosed)
 
