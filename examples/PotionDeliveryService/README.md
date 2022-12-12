@@ -28,25 +28,22 @@ For every Test file exist a Twizzard files with the postfix .twizzar. When confi
 In Visual Studio the .twizzar file will be nested under the unit test.  
 ![Vs Code Behinde](Images/CodeBehine.png)
 
-A good starting point is the [BaseFeatureTests](PotionDeliveryService.Tests/BaseFeaturesTests.cs).
+A good starting point is the [BaseFeatureTests](PotionDeliveryService.Tests/BaseFeaturesTests.cs) or the [ShowcaseTests](PotionDeliveryService.Tests/ShowcaseTests.cs).
 ```csharp
     [Test]
     public void Build_Items()
     {
+        // arrange
+
         // Builder class for building any type.
         // Helpful for accessing sut and input values for method under test.
         var potion = new ItemBuilder<Potion>().Build();
 
-        Assert.That(potion, Is.AssignableTo<Potion>());
+        // act
+        ... your act code
 
-        // asking for a new instance.
-        var potion2 = new ItemBuilder<Potion>().Build();
-        Assert.That(potion2, Is.Not.EqualTo(potion));
-
-        // same valid for build with custom builder:
-        var bluePotion = new BluePotionBuilder();
-        var bluePotion2 = new BluePotionBuilder();
-        Assert.That(bluePotion, Is.Not.EqualTo(bluePotion2));
+        // assert
+        ... your arrange code
     }
 
     ...

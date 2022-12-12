@@ -399,3 +399,5 @@ FodyWeavers.xsd
 # NCrunch
 *.ncrunchsolution
 *.ncrunchsolution.user
+
+nuget.config

@@ -17,8 +17,8 @@ public partial class BaseFeaturesTests
         Assert.That(potion2, Is.Not.EqualTo(potion));
         
         // same valid for build with custom builder:
-        var bluePotion = new BluePotionBuilder();
-        var bluePotion2 = new BluePotionBuilder();
+        var bluePotion = new BluePotionBuilder().Build();
+        var bluePotion2 = new BluePotionBuilder().Build();
         Assert.That(bluePotion, Is.Not.EqualTo(bluePotion2));
     }
 
