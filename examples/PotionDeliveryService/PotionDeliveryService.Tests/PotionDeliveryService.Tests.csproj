@@ -19,8 +19,8 @@
     <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
     <PackageReference Include="NUnit.Analyzers" Version="3.3.0" />
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
-    <PackageReference Include="Twizzar.Analyzer2022" Version="0.22.3" />
-    <PackageReference Include="Twizzar.Api" Version="0.22.3" />
+    <PackageReference Include="Twizzar.Analyzer2022" Version="0.23.0" />
+    <PackageReference Include="Twizzar.Api" Version="0.23.0" />
   </ItemGroup>
 
     <ItemGroup>
