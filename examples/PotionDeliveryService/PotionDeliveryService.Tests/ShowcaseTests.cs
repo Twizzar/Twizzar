@@ -46,7 +46,7 @@ public partial class ShowcaseTests
     public void Showcase_automatically_detects_and_resolves_dependencies_of_a_class_or_interface()
     {
         // arrange
-        var myPotion = new Potion6ba2Builder()
+        var myPotion = new ItemBuilder<Potion>()
             .Build();
 
         // act - noting to be acted on this is a showcase for the arrangement with Twizzar
