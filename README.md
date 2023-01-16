@@ -1,6 +1,7 @@
 ![Logo Twizzar](LogoTwizzar-500.png)
 
 [![NuGet Badge](https://buildstats.info/nuget/Twizzar.Api)](https://www.nuget.org/packages/Twizzar.Api/)
+![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/vi-sit.twizzar-vs22?label=Marketplace%20downloads)
 [![GitHub issues](https://img.shields.io/github/issues/Twizzar/Twizzar)](https://github.com/Twizzar/Twizzar//issues?q=is%3Aopen+is%3Aissue)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/Twizzar/Twizzar)](https://github.com/Twizzar/Twizzar/issues?q=is%3Aclosed)
 
