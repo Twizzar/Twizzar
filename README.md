@@ -9,6 +9,11 @@ Twizzar is a testing toolkit for .NET (C#) that helps you write high quality tes
 
 Check out the [Quickstart](https://github.com/Twizzar/Twizzar/wiki/Quickstart)!
 
+## Download Twizzar
+To use Twizzar, you need the Visual Studio Extension and Nuget packages
+- Download the Extension from the Visual Studio Marketplace: https://marketplace.visualstudio.com/items?itemName=vi-sit.twizzar-vs22
+- The NuGet package is available at: https://www.nuget.org/packages/Twizzar.Api/
+
 ## Examples
 To see Twizzar in action, a example is provided under [./examples/PotionDeliveryService/](./examples/PotionDeliveryService/).
 
