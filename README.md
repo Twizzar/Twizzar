@@ -10,7 +10,7 @@ Twizzar is a testing toolkit for .NET (C#) that helps you write high quality tes
 Check out the [Quickstart](https://github.com/Twizzar/Twizzar/wiki/Quickstart)!
 
 ## Download Twizzar
-To use Twizzar, you need the Visual Studio Extension and two NuGet packages
+To use Twizzar, you need the Visual Studio Extension and two NuGet packages, which must be installed in your unit test projects.
 - Download the Extension from the Visual Studio Marketplace: [Twizzar Visual Studio Extension](https://marketplace.visualstudio.com/items?itemName=vi-sit.twizzar-vs22)
 - The NuGet package is available at: https://www.nuget.org/packages/Twizzar.Api/  
 (The second Twizzar NuGet package gets installed automatically as a dependency.)
