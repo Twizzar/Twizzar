@@ -13,15 +13,15 @@
         ().'`       `'.()       ▀(⊙)▀▀▀▀▀▀▀(⊙)(⊙)▀▀▀▀▀▀▀(⊙)
 ```
 
-Welcome to the Potion Delivery Service Example. This Solution contains the following folder structure:
-```
-┣━ PotionDeliveryService/ Code of the Potion Delivery Service Library
-┣━ PotionDeliveryService.Tests/ Unit Tests written with Twizzar
-┃  ┣━ BaseFeaturesTests.cs Test which explains the base functionality of Twizzar
-┃  ┣━ ShowcaseTests.cs Tests used to showcase our best Features
-┃  ┗━ Unit Test for testing the Potion Delivery Service
-┣━ PotionDeliveryService.sln The Visual Studio solution for running the Example.
-┗━ README.md You are currently here
+Welcome to the Potion Delivery Service example. This solution contains the following folder structure:
+```csharp
+┣━ PotionDeliveryService/       //Code of the Potion Delivery Service Library
+┣━ PotionDeliveryService.Tests/ //Unit Tests written with Twizzar
+┃  ┣━ BaseFeaturesTests.cs      //Test which explains the base functionality of Twizzar
+┃  ┣━ ShowcaseTests.cs          //Tests used to showcase our best Features
+┃  ┗━ ...                       //unit test for testing the Potion Delivery Service
+┣━ PotionDeliveryService.sln    //The Visual Studio solution for running the example.
+┗━ README.md                    //You are currently here
 ```
 For every Test file exist a Twizzard files with the postfix .twizzar. When configuring a type over the Twizzard UI the configurations will be saved in a partial class which resides in the .twizzar file.
 
@@ -49,4 +49,4 @@ A good starting point is the [BaseFeatureTests](PotionDeliveryService.Tests/Base
     ...
 ```
 
-Fore more Information about the Scenarion and Class Diagramms see [PotionDeliveryService](PotionDeliveryService/).
+Fore more information about the scenarion and class diagramms see [PotionDeliveryService](PotionDeliveryService/).
