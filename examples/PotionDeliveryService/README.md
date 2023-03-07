@@ -23,7 +23,7 @@ Welcome to the Potion Delivery Service example. This solution contains the follo
 ┣━ PotionDeliveryService.sln    //The Visual Studio solution for running the example.
 ┗━ README.md                    //You are currently here
 ```
-For every Test file exist a Twizzard files with the postfix .twizzar. When configuring a type over the Twizzard UI the configurations will be saved in a partial class which resides in the .twizzar file.
+For every Test file exist a Twizzard files with the postfix .twizzar. When configuring a type over the Twizzar UI the configurations will be saved in a partial class which resides in the .twizzar file.
 
 In Visual Studio the .twizzar file will be nested under the unit test.  
 ![Vs Code Behinde](Images/CodeBehine.png)
