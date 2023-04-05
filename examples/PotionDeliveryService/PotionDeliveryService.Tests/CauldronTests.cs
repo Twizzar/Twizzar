@@ -15,8 +15,8 @@ public partial class CauldronTests
 
         // setup the cauldron:
         // the potionRecipes service should return a name, an effect and a color when asked.
-        var (cauldron, scope) = new TestCauldronBuilder()
-            .BuildWithScope();
+        var cauldron = new TestCauldronBuilder()
+            .Build(out var scope);
 
         // act
         var potion = cauldron.Brew(ingredients[0], ingredients[1]);
@@ -28,8 +28,8 @@ public partial class CauldronTests
         Assert.That(potion.Ingredient2, Is.EqualTo(ingredients[1]));
 
         // check that the returned values form the potionRecipes where used for creating the potion
-        Assert.That(potion.Color, Is.EqualTo(scope.Get(p => p.Ctor.recipes.GetPotionColor_PotionColor)));
-        Assert.That(potion.Name, Is.EqualTo(scope.Get(p => p.Ctor.recipes.GetPotionName_String)));
-        Assert.That(potion.Effect, Is.EqualTo(scope.Get(p => p.Ctor.recipes.GetPotionEffect_IEffect)));
+        Assert.That(potion.Color, Is.EqualTo(scope.Get(p => p.Ctor.recipes.GetPotionColor)));
+        Assert.That(potion.Name, Is.EqualTo(scope.Get(p => p.Ctor.recipes.GetPotionName)));
+        Assert.That(potion.Effect, Is.EqualTo(scope.Get(p => p.Ctor.recipes.GetPotionEffect)));
     }
 }

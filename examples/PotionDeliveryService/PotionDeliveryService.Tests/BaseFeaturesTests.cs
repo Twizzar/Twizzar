@@ -130,7 +130,7 @@ public partial class BaseFeaturesTests
     public void Build_with_scope()
     {
         // When BuildWithScope is used a tuple with the built item and the scope is returned.
-        var (potion, scope) = new BluePotionBuilder().BuildWithScope();
+        var potion = new BluePotionBuilder().Build(out var scope);
 
         // The scope can be used to get dependencies which are resolved and set by the ItemBuilder.
         var potionColor = scope.Get(p => p.Ctor.color);
@@ -147,12 +147,12 @@ public partial class BaseFeaturesTests
         // It is planned to support other mocking frameworks in the future.
 
         // WithScope also works with Many
-        var potionsAndScope = new BluePotionBuilder().BuildManyWithScope(5);
+        var potions = new BluePotionBuilder().BuildMany(5, out var scopes);
 
         // A list of tuples is returned
-        Assert.That(potionsAndScope[0].Instance, Is.Not.EqualTo(potionsAndScope[^1].Instance));
+        Assert.That(potions[0], Is.Not.EqualTo(potions[^1]));
 
-        foreach (var (instance, itemScope) in potionsAndScope)
+        foreach (var itemScope in scopes)
         {
             var ingredientMock2 = itemScope.GetAsMoq(p => p.Ctor.ingredient1);
             ingredientMock2.VerifyNoOtherCalls();

@@ -9,10 +9,10 @@ namespace PotionDeliveryService.Tests
             public TestCauldronBuilder()
             {
                 this.With(p => p.Ctor.recipes.Stub<IPotionRecipes>());
-                this.With(p => p.Ctor.recipes.GetPotionColor_PotionColor.Value(PotionColor.Purple));
-                this.With(p => p.Ctor.recipes.GetPotionName_String.Value("Test Name"));
-                this.With(p => p.Ctor.recipes.GetPotionEffect_IEffect.Stub<IEffect>());
-                this.With(p => p.Ctor.recipes.GetPotionEffect_IEffect.Name.Value("Test Effect"));
+                this.With(p => p.Ctor.recipes.GetPotionColor.Value(PotionColor.Purple));
+                this.With(p => p.Ctor.recipes.GetPotionName.Value("Test Name"));
+                this.With(p => p.Ctor.recipes.GetPotionEffect.Stub<IEffect>());
+                this.With(p => p.Ctor.recipes.GetPotionEffect.Name.Value("Test Effect"));
             }
         }
     }
