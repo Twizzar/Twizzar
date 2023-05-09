@@ -209,6 +209,41 @@ public partial class BaseFeaturesTests
         Assert.That(manaPotion.Color, Is.EqualTo(PotionColor.Blue));
         Assert.That(manaPotion.Effect.Name, Is.EqualTo("Restores Mana"));
     }
+
+    [Test]
+    public void Configure_method_with_a_delegate()
+    {
+        // This local function should be used by the ICauldron.Brew method.
+        static IPotion Brew(IIngredient ingredient1, IIngredient ingredient2) =>
+            new ItemBuilder<IPotion>()
+                .With(p => p.Name.Value(ingredient1.Name + ingredient2.Name))
+                .Build();
+
+        var cauldron = new ItemBuilder<ICauldron>()
+            // We could also define it as a lambda instead p.Bew.Value(i1, i2 => ...)
+            .With(p => p.Brew.Value(Brew))
+            .Build();
+
+        var ingredients = new ItemBuilder<IIngredient>()
+            .BuildMany(2);
+
+        var potion = cauldron.Brew(ingredients[0], ingredients[1]);
+
+        Assert.AreEqual(ingredients[0].Name + ingredients[1].Name, potion.Name);
+    }
+
+    [Test]
+    public void Add_callbacks_to_a_method()
+    {
+        var deliveryService = new ItemBuilder<DeliveryService>()
+            .With(p => p.Ctor.storage.Take.Stub<IPotion>())
+            .With(p => p._potionRecipes.GetPotionRecipe.InstanceOf<(IIngredient, IIngredient)>())
+            .With(p => p.Ctor.storage.CheckAvailable.Value(true))
+            .With(p => p.Ctor.storage.CheckAvailable.Callback(name => Console.WriteLine($"Storage: checked for: {name}")))
+            .Build();
+
+        deliveryService.Deliver("ManaPotion", new ItemBuilder<IDestination>().Build());
+    }
 }
 
 
