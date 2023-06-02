@@ -78,20 +78,16 @@ public partial class DeliveryServiceTests
             .With(p => p.Name.Unique())
             .BuildMany(2);
 
-        // setup the storage so only MyPotion is no available.
-        var storage = Mock.Of<IStorage>(s =>
-            s.CheckAvailable(It.IsAny<string>()) == true &&
-            s.CheckAvailable("MyPotion") == false);
-
         // setup the delivery service. Use out storage mock, make use we use a cauldron stub so we can verify on it later.
         // Setup the PotionRecipes service to return the two ingredients created. 
         var deliveryService = new DeliveryServiceBuilder()
-            .With(p => p.Ctor.storage.Value(storage))
+            // setup the storage so only MyPotion is no available.
+            .With(p => p.Ctor.storage.CheckAvailable.Value(s => s != "MyPotion"))
             .With(p => p.Ctor.cauldron.Stub<ICauldron>())
             .With(p => p.Ctor.cauldron.Brew.Stub<IPotion>())
             .With(p => p.Ctor.cauldron.Brew.Name.Value("MyPotion"))
             .With(p => p.Ctor.potionRecipes.GetPotionRecipe.Value((ingredients[0], ingredients[1])))
-            .Build(out var scope);
+            .Build(out var context);
 
         var destinationMock = new Mock<IDestination>();
 
@@ -104,7 +100,7 @@ public partial class DeliveryServiceTests
         destinationMock.Verify(destination => destination.Receive(It.Is<IPackage<IPotion>>(package => package.UnWrap().Single().Name == "MyPotion")));
 
         // get the cauldron mock over the scope and verify that the potion was brewed.
-        scope.Verify(p => p.Ctor.cauldron.Brew)
+        context.Verify(p => p.Ctor.cauldron.Brew)
             .WhereIngredient1Is(ingredients[0])
             .WhereIngredient2Is(ingredients[1])
             .Called();
