@@ -53,7 +53,7 @@ public partial class DeliveryServiceTests
         // create a delivery service where the potion is available
         // and the potionRecipes is setuped to return unique value for ingredients, effect and color
         // the name is setuped to return MyPotion.
-        var deliveryService= new DeliveryServiceaa96Builder()
+        var deliveryService = new DeliveryServiceaa96Builder()
             .Build(out var scope);
 
         var destinationMock = new Mock<IDestination>();
@@ -79,7 +79,7 @@ public partial class DeliveryServiceTests
             .BuildMany(2);
 
         // setup the delivery service. Use out storage mock, make use we use a cauldron stub so we can verify on it later.
-        // Setup the PotionRecipes service to return the two ingredients created. 
+        // Setup the PotionRecipes service to return the two ingredients created.
         var deliveryService = new DeliveryServiceBuilder()
             // setup the storage so only MyPotion is no available.
             .With(p => p.Ctor.storage.CheckAvailable.Value(s => s != "MyPotion"))

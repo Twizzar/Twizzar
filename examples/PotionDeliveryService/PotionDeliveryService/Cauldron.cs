@@ -2,6 +2,9 @@
 
 namespace PotionDeliveryService;
 
+/// <summary>
+/// Service for brewing potions.
+/// </summary>
 public class Cauldron : ICauldron
 {
     private readonly IPotionRecipes _recipes;

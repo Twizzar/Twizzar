@@ -20,10 +20,10 @@ public partial class CauldronTests
 
         // act
         var potion = cauldron.Brew(ingredients[0], ingredients[1]);
-        
+
         // assert
 
-        // check that the ingredients where used. 
+        // check that the ingredients where used.
         Assert.That(potion.Ingredient1, Is.EqualTo(ingredients[0]));
         Assert.That(potion.Ingredient2, Is.EqualTo(ingredients[1]));
 

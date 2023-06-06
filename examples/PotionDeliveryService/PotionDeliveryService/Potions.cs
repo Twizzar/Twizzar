@@ -6,14 +6,15 @@ public class Potion : IPotion
 {
     public Potion(string name, IIngredient ingredient1, IIngredient ingredient2, IEffect effect, PotionColor color)
     {
-        Name = name;
-        Ingredient1 = ingredient1;
-        Ingredient2 = ingredient2;
-        Effect = effect;
-        Color = color;
+        this.Name = name;
+        this.Ingredient1 = ingredient1;
+        this.Ingredient2 = ingredient2;
+        this.Effect = effect;
+        this.Color = color;
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="Potion"/> class.
     /// Constructor for building a Potion where the name is the color + Potion.
     /// </summary>
     /// <param name="color"></param>
@@ -26,9 +27,13 @@ public class Potion : IPotion
     }
 
     public string Name { get; }
+
     public IIngredient Ingredient1 { get; }
+
     public IIngredient Ingredient2 { get; }
+
     public IEffect Effect { get; }
+
     public PotionColor Color { get; }
 
     public double Price { get; set; }

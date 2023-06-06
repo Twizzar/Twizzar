@@ -42,7 +42,7 @@ public class PackageTests
         var package = new ItemBuilder<Potion>().Build();
 
         // act & assert
-        Assert.Throws<InvalidOperationException>(() => 
+        Assert.Throws<InvalidOperationException>(() =>
             wrappedPackages.Add(package));
     }
 

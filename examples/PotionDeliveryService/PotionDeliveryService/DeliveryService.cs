@@ -3,6 +3,11 @@ using PotionDeliveryService.Interfaces;
 
 namespace PotionDeliveryService;
 
+/// <summary>
+/// Service for delivering a potion.
+/// This service checks if the potion is available in the storage,
+/// when not it will brew a new one in the cauldron when the ingredients are available in the storage.
+/// </summary>
 public class DeliveryService : IDeliveryService
 {
     private readonly IStorage _storage;
@@ -21,8 +26,8 @@ public class DeliveryService : IDeliveryService
     /// </summary>
     /// <param name="potionName"></param>
     /// <param name="destination"></param>
-    /// <exception cref="InvalidOperationException"></exception>
-    /// <exception cref="PotionNotAvailableException"></exception>
+    /// <exception cref="InvalidOperationException">The name is not a potion.</exception>
+    /// <exception cref="PotionNotAvailableException">The potion is not available in the storage.</exception>
     public void Deliver(string potionName, IDestination destination)
     {
         if (this._storage.CheckAvailable(potionName))

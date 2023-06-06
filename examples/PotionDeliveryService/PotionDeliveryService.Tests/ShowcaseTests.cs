@@ -10,12 +10,12 @@ namespace PotionDeliveryService.Tests;
 /// ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 /// Twizzar automatically detects dependencies and can pull up classes, structs and interfaces.Instead of writing tests in the traditional way,
 /// Twizzar also resolves dependencies automatically.However, if desired, they can be configured manually.
-/// 
+///
 /// ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 /// ┃ Intuitive UI for dependency configuration ┃
 /// ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 /// If needed, dependencies can be easily configured via a user-friendly UI or a provided API.
-/// 
+///
 /// ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 /// ┃ Access to non-public members ┃
 /// ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
@@ -29,21 +29,18 @@ namespace PotionDeliveryService.Tests;
 /// ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 /// ┃ Works with every testing framework ┃
 /// ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-/// 
+///
 /// Twizzar runs on all popular testing frameworks such as NUnit, xUnit, MS Test or Resharper Test Runner.
 /// Simultaneous use of other testing power tools such as NCrunch also works smoothly.
 ///
 /// ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-/// ┃ Reusable test configurations ┃ 
+/// ┃ Reusable test configurations ┃
 /// ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 /// Save time by reusing your own test configurations.
-
 /// </summary>
 [TestFixture]
 public partial class ShowcaseTests
 {
-    #region members
-
     [Test]
     public void Showcase_automatically_detects_and_resolves_dependencies_of_a_class_or_interface()
     {
@@ -152,6 +149,4 @@ public partial class ShowcaseTests
         // assert
         Assert.Throws<InvalidOperationException>(() => package.Add(new ItemBuilder<IPotion>().Build()));
     }
-
-    #endregion
 }
