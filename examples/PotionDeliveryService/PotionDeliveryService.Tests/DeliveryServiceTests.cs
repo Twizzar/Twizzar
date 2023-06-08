@@ -103,6 +103,6 @@ public partial class DeliveryServiceTests
         context.Verify(p => p.Ctor.cauldron.Brew)
             .WhereIngredient1Is(ingredients[0])
             .WhereIngredient2Is(ingredients[1])
-            .Called();
+            .CalledAtLeastOnce();
     }
 }
