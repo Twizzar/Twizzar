@@ -13,12 +13,14 @@ public class DeliveryService : IDeliveryService
     private readonly IStorage _storage;
     private readonly ICauldron _cauldron;
     private readonly IPotionRecipes _potionRecipes;
+    private readonly IParcelService _parcelService;
 
-    public DeliveryService(IStorage storage, ICauldron cauldron, IPotionRecipes potionRecipes)
+    public DeliveryService(IStorage storage, ICauldron cauldron, IPotionRecipes potionRecipes, IParcelService parcelService)
     {
         this._storage = storage;
         this._cauldron = cauldron;
         this._potionRecipes = potionRecipes;
+        this._parcelService = parcelService;
     }
 
     /// <summary>
@@ -36,7 +38,7 @@ public class DeliveryService : IDeliveryService
 
             if (ingredient is IPotion potion)
             {
-                Send(potion, destination);
+                this.Send(potion, destination);
             }
             else
             {
@@ -55,14 +57,14 @@ public class DeliveryService : IDeliveryService
             }
 
             var potion = this._cauldron.Brew(ingredient1, ingredient2);
-            Send(potion, destination);
+            this.Send(potion, destination);
         }
     }
 
-    private static void Send(IPotion potion, IDestination destination)
+    private void Send(IPotion potion, IDestination destination)
     {
         var package = new Package<IPotion>(potion);
         package.Wrap();
-        destination.Receive(package);
+        this._parcelService.Send(package, destination);
     }
 }
