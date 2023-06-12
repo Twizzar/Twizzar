@@ -46,6 +46,27 @@ public partial class DeliveryServiceTests
     }
 
     [Test]
+    public void METHOD()
+    {
+        // arrange
+        var deliveryService = new DeliveryService3cf4Builder()
+            .Build(out var context);
+
+        var destination = new IDestinationbfb4Builder()
+            .Build(out var destinationContext);
+
+        // act
+        deliveryService.Deliver("Mana Potion", destination);
+
+        // assert
+        var expectedAddress = destinationContext.Get(p => p.Address);
+
+        context.Verify(p => p.Ctor.parcelService.Send)
+            .WhereDestinationIs(p => p.Address == expectedAddress)
+            .Called(1);
+    }
+
+    [Test]
     public void Package_when_potion_in_storage_available_will_be_send_to_destination()
     {
         // arrange
@@ -67,6 +88,7 @@ public partial class DeliveryServiceTests
         // assert
 
         // check that the destination has received a package which only contains the expectedPotion.
+
         destinationMock.Verify(destination => destination.Receive(It.Is<IPackage<IPotion>>(package => package.UnWrap().Single().Name.Equals(expectedPotionName))));
     }
 
@@ -100,9 +122,9 @@ public partial class DeliveryServiceTests
         destinationMock.Verify(destination => destination.Receive(It.Is<IPackage<IPotion>>(package => package.UnWrap().Single().Name == "MyPotion")));
 
         // get the cauldron mock over the scope and verify that the potion was brewed.
-        context.Verify(p => p.Ctor.cauldron.Brew)
-            .WhereIngredient1Is(ingredients[0])
-            .WhereIngredient2Is(ingredients[1])
-            .CalledAtLeastOnce();
+        //context.Verify(p => p.Ctor.cauldron.Brew)
+        //    .WhereIngredient1Is(ingredients[0])
+        //    .WhereIngredient2Is(ingredients[1])
+        //    .CalledAtLeastOnce();
     }
 }

@@ -29,5 +29,23 @@ namespace PotionDeliveryService.Tests
         private class DeliveryServiceBuilder : ItemBuilder<PotionDeliveryService.DeliveryService, DeliveryServiceb88bBuilderPaths>
         {
         }
+
+        private class IDestinationbfb4Builder : ItemBuilder<PotionDeliveryService.Interfaces.IDestination, IDestinationbfb4BuilderPaths>
+        {
+            public IDestinationbfb4Builder()
+            {
+                this.With(p => p.Address.Value("MyAddress"));
+                this.With(p => p.Country.Unique());
+            }
+        }
+
+        private class DeliveryService3cf4Builder : ItemBuilder<PotionDeliveryService.DeliveryService, DeliveryService3cf4BuilderPaths>
+        {
+            public DeliveryService3cf4Builder()
+            {
+                this.With(p => p.Ctor.storage.CheckAvailable__String.Value(true));
+                this.With(p => p.Ctor.storage.Take__String.Stub<IPotion>());
+            }
+        }
     }
 }
