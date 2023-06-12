@@ -67,7 +67,7 @@ public partial class DeliveryServiceTests
         // assert
 
         // check that the package was send to the parcel service an it only contains the expectedPotion.
-        context.Verify(p => p._parcelService.Send)
+        context.Verify(p => p.Ctor.parcelService.Send)
             .WherePackageIs(package => package.UnWrap().Single().Name.Equals(expectedPotionName))
             .Called(1);
     }
@@ -99,7 +99,7 @@ public partial class DeliveryServiceTests
         // assert
 
         // The send package should contain only one potion with the name MyPotion
-        context.Verify(p => p._parcelService.Send)
+        context.Verify(p => p.Ctor.parcelService.Send)
             .WherePackageIs(p => p.UnWrap().Single().Name == "MyPotion")
             .Called(1);
 
