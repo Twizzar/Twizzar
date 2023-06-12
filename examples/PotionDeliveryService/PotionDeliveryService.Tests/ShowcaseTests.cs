@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace PotionDeliveryService.Tests;
+﻿namespace PotionDeliveryService.Tests;
 
 /// <summary>
 /// Test to showcase some key features of Twizzar:
@@ -134,10 +132,11 @@ public partial class ShowcaseTests
         var potion = new VitalityPotionBuilder().Build();
 
         var destination = new ItemBuilder<IDestination>().Build();
+        var parcelService = new ItemBuilder<IParcelService>().Build();
         var package = new Package<IPotion>(potion);
 
         // act
-        destination.Receive(package);
+        parcelService.Send(package, destination);
     }
 
     [Test]
