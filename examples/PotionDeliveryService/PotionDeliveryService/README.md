@@ -7,7 +7,7 @@ At the [DeliveryService](DeliveryService.cs) a potion can be delivered by its na
 2. When available:
    1. Take potion form [IStorage](IStorage.cs)
    2. When the potion is of the type [IPotion](Interfaces/IPotion.cs)
-      1. Send it to [IDestination](Interfaces/IDestination.cs) 🔚
+      1. Send it to [IDestination](Interfaces/IDestination.cs) over the [IParcelService](Interfaces/IParcelService.cs) 🔚
    3. Else
       1. Throw an InvalidOperationException 🔚
 3. When not available
@@ -15,7 +15,7 @@ At the [DeliveryService](DeliveryService.cs) a potion can be delivered by its na
    2. When the ingredients are not available in the [IStorage](IStorage.cs) then:
       1. Throw an PotionNotAvailableException 🔚
    3. Brew the potion in the [ICauldron](Interfaces/ICauldron.cs)
-   4. Send the brewed potion to [IDestination](Interfaces/IDestination.cs) 🔚
+   4. Send the brewed potion to [IDestination](Interfaces/IDestination.cs) over the [IParcelService](Interfaces/IParcelService.cs) 🔚
 
 
 ## Class Diagram for Services

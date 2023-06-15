@@ -10,4 +10,5 @@ hide empty members
 !include .\\PotionDeliveryService\Interfaces\IPotionRecipes.puml
 !include .\\PotionDeliveryService\Interfaces\IStorage.puml
 !include .\\PotionDeliveryService\Interfaces\IDestination.puml
+!include .\\PotionDeliveryService\Interfaces\IParcelService.puml
 @enduml

@@ -6,5 +6,5 @@ public enum CountryCode
     Sophutria,
     Kangavar,
     Khodour,
-    Perino
+    Perino,
 }

@@ -1,0 +1,5 @@
+@startuml
+interface IParcelService {
+    Send(package:IPackage<IPotion>, destination: IDestination) : void
+}
+@enduml

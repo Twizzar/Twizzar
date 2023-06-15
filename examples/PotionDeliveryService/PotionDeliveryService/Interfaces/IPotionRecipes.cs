@@ -2,6 +2,9 @@
 
 namespace PotionDeliveryService.Interfaces
 {
+    /// <summary>
+    /// Lookup for <see cref="IPotion"/> recipes.
+    /// </summary>
     public interface IPotionRecipes
     {
         /// <summary>

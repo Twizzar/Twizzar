@@ -1,5 +1,8 @@
 @startuml
 interface IDestination {
-    + Receive(package:IPackage<T>) : void
+    Recipient : string <<get>>
+    EMail : string <<get>>
+    Address : string <<get>>
+    Country : CountryCode <<get>>
 }
 @enduml

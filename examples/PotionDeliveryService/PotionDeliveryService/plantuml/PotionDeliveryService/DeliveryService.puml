@@ -8,4 +8,5 @@ IDeliveryService <|-- DeliveryService
 DeliveryService --> "_storage" IStorage
 DeliveryService --> "_cauldron" ICauldron
 DeliveryService --> "_potionRecipes" IPotionRecipes
+DeliveryService --> "_parcelService" IParcelService
 @enduml

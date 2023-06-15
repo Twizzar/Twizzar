@@ -16,9 +16,6 @@
 
 	<ItemGroup>
 		<None Include="..\.editorconfig" Link=".editorconfig" />
-		<AdditionalFiles Include="..\stylecop.json">
-			<Link>stylecop.json</Link>
-		</AdditionalFiles>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -27,11 +24,7 @@
 		<PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
 		<PackageReference Include="NUnit.Analyzers" Version="3.3.0" />
 		<PackageReference Include="coverlet.collector" Version="3.1.2" />
-		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="Twizzar.Api" Version="*" />
+		<PackageReference Include="Twizzar.Api" Version="1.4.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -39,20 +32,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="BaseFeaturesTests.twizzar.cs">
-			<DependentUpon>BaseFeaturesTests.cs</DependentUpon>
-		</Compile>
 		<Compile Update="CauldronTests.twizzar.cs">
 			<DependentUpon>CauldronTests.cs</DependentUpon>
 		</Compile>
 		<Compile Update="DeliveryServiceTests.twizzar.cs">
-			<DependentUpon>DeliveryServiceTests.cs</DependentUpon>
+		  <DependentUpon>DeliveryServiceTests.cs</DependentUpon>
 		</Compile>
 		<Compile Update="PotionRecipesTests.twizzar.cs">
 			<DependentUpon>PotionRecipesTests.cs</DependentUpon>
-		</Compile>
-		<Compile Update="ShowcaseTests.twizzar.cs">
-			<DependentUpon>ShowcaseTests.cs</DependentUpon>
 		</Compile>
 		<Compile Update="StorageTests.twizzar.cs">
 			<DependentUpon>StorageTests.cs</DependentUpon>
