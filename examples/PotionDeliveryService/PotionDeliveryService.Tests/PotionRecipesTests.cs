@@ -11,7 +11,7 @@ public partial class PotionRecipesTests
             .Build();
 
         // act & assert
-        Assert.Throws<PotionNotFoundException>(() => potionRecipes.GetPotionRecipe(""));
+        Assert.Throws<PotionNotFoundException>(() => potionRecipes.GetPotionRecipe(string.Empty));
     }
 
     [Test]
@@ -22,7 +22,7 @@ public partial class PotionRecipesTests
             .Build();
 
         // act & assert
-        Assert.Throws<PotionNotFoundException>(() => potionRecipes.GetPotionEffect(""));
+        Assert.Throws<PotionNotFoundException>(() => potionRecipes.GetPotionEffect(string.Empty));
     }
 
     [Test]
@@ -33,7 +33,7 @@ public partial class PotionRecipesTests
             .Build();
 
         // act & assert
-        Assert.Throws<PotionNotFoundException>(() => potionRecipes.GetPotionColor(""));
+        Assert.Throws<PotionNotFoundException>(() => potionRecipes.GetPotionColor(string.Empty));
     }
 
     [Test]

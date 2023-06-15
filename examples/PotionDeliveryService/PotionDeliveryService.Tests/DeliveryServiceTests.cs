@@ -53,21 +53,23 @@ public partial class DeliveryServiceTests
         // create a delivery service where the potion is available
         // and the potionRecipes is setuped to return unique value for ingredients, effect and color
         // the name is setuped to return MyPotion.
-        var deliveryService= new DeliveryServiceaa96Builder()
-            .Build(out var scope);
+        var deliveryService = new DeliveryServiceaa96Builder()
+            .Build(out var context);
 
         var destinationMock = new Mock<IDestination>();
 
         // the scope can be used to retrieve the unique values generated for the potionRecipes service.
-        var expectedPotionName = scope.Get(p => p.Ctor.potionRecipes.GetPotionName);
+        var expectedPotionName = context.Get(p => p.Ctor.potionRecipes.GetPotionName);
 
         // act
         deliveryService.Deliver("MyPotion", destinationMock.Object);
 
         // assert
 
-        // check that the destination has received a package which only contains the expectedPotion.
-        destinationMock.Verify(destination => destination.Receive(It.Is<IPackage<IPotion>>(package => package.UnWrap().Single().Name.Equals(expectedPotionName))));
+        // check that the package was send to the parcel service an it only contains the expectedPotion.
+        context.Verify(p => p.Ctor.parcelService.Send)
+            .WherePackageIs(package => package.UnWrap().Single().Name.Equals(expectedPotionName))
+            .Called(1);
     }
 
     [Test]
@@ -79,7 +81,7 @@ public partial class DeliveryServiceTests
             .BuildMany(2);
 
         // setup the delivery service. Use out storage mock, make use we use a cauldron stub so we can verify on it later.
-        // Setup the PotionRecipes service to return the two ingredients created. 
+        // Setup the PotionRecipes service to return the two ingredients created.
         var deliveryService = new DeliveryServiceBuilder()
             // setup the storage so only MyPotion is no available.
             .With(p => p.Ctor.storage.CheckAvailable.Value(s => s != "MyPotion"))
@@ -96,13 +98,15 @@ public partial class DeliveryServiceTests
 
         // assert
 
-        // The send package should contain only out potion with the name MyPotion
-        destinationMock.Verify(destination => destination.Receive(It.Is<IPackage<IPotion>>(package => package.UnWrap().Single().Name == "MyPotion")));
+        // The send package should contain only one potion with the name MyPotion
+        context.Verify(p => p.Ctor.parcelService.Send)
+            .WherePackageIs(p => p.UnWrap().Single().Name == "MyPotion")
+            .Called(1);
 
         // get the cauldron mock over the scope and verify that the potion was brewed.
         context.Verify(p => p.Ctor.cauldron.Brew)
             .WhereIngredient1Is(ingredients[0])
             .WhereIngredient2Is(ingredients[1])
-            .Called();
+            .Called(1);
     }
 }

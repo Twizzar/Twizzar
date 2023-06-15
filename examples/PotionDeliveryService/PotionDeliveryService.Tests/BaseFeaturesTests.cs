@@ -1,5 +1,8 @@
 ﻿namespace PotionDeliveryService.Tests;
 
+/// <summary>
+/// Tests for demonstrating the Base Features of TWIZZAR.
+/// </summary>
 [TestFixture]
 public partial class BaseFeaturesTests
 {
@@ -15,7 +18,7 @@ public partial class BaseFeaturesTests
         // asking for a new instance.
         var potion2 = new ItemBuilder<Potion>().Build();
         Assert.That(potion2, Is.Not.EqualTo(potion));
-        
+
         // same valid for build with custom builder:
         var bluePotion = new BluePotionBuilder().Build();
         var bluePotion2 = new BluePotionBuilder().Build();
@@ -85,7 +88,6 @@ public partial class BaseFeaturesTests
         Assert.That(potion.Price, Is.EqualTo(default(int)));
     }
 
-
     [Test]
     public void Enum_is_BaseType_as_well()
     {
@@ -95,7 +97,7 @@ public partial class BaseFeaturesTests
         var enum3 = new ItemBuilder<PotionColor>().Build();
         var enum1Again = new ItemBuilder<PotionColor>().Build();
 
-        Assert.That(new[] {enum1, enum2, enum3}, Is.Unique);
+        Assert.That(new[] { enum1, enum2, enum3 }, Is.Unique);
 
         // because the PotionColors has only 3 enum vales (Blue,Red,Purple) the fifth creation will be the same as the first.
         Assert.That(enum1, Is.EqualTo(enum1Again));
@@ -119,7 +121,7 @@ public partial class BaseFeaturesTests
         var potions = new ItemBuilder<Potion>().BuildMany(5);
         Assert.That(potions, Has.Count.EqualTo(5));
         Assert.That(potions, Is.Unique);
-        
+
         // same can be done with specific custom builder:
         var bluePotions = new BluePotionBuilder().BuildMany(50);
         Assert.That(bluePotions, Has.Count.EqualTo(50));
@@ -168,7 +170,7 @@ public partial class BaseFeaturesTests
             .Build();
 
         Assert.That(bluePotion.Color, Is.EqualTo(PotionColor.Blue));
-        
+
         // other members will still be resolved with the default behaviour.
         Assert.That(bluePotion.Ingredient1, Is.AssignableTo<IIngredient>());
 
@@ -246,7 +248,6 @@ public partial class BaseFeaturesTests
     }
 }
 
-
 public struct TestStruct
 {
     public TestStruct(double x, double y)
@@ -256,5 +257,6 @@ public struct TestStruct
     }
 
     public double X { get; }
+
     public double Y { get; private set; }
 }

@@ -3,17 +3,24 @@ using PotionDeliveryService.Interfaces;
 
 namespace PotionDeliveryService;
 
+/// <summary>
+/// Service for delivering a potion.
+/// This service checks if the potion is available in the storage,
+/// when not it will brew a new one in the cauldron when the ingredients are available in the storage.
+/// </summary>
 public class DeliveryService : IDeliveryService
 {
     private readonly IStorage _storage;
     private readonly ICauldron _cauldron;
     private readonly IPotionRecipes _potionRecipes;
+    private readonly IParcelService _parcelService;
 
-    public DeliveryService(IStorage storage, ICauldron cauldron, IPotionRecipes potionRecipes)
+    public DeliveryService(IStorage storage, ICauldron cauldron, IPotionRecipes potionRecipes, IParcelService parcelService)
     {
         this._storage = storage;
         this._cauldron = cauldron;
         this._potionRecipes = potionRecipes;
+        this._parcelService = parcelService;
     }
 
     /// <summary>
@@ -21,8 +28,8 @@ public class DeliveryService : IDeliveryService
     /// </summary>
     /// <param name="potionName"></param>
     /// <param name="destination"></param>
-    /// <exception cref="InvalidOperationException"></exception>
-    /// <exception cref="PotionNotAvailableException"></exception>
+    /// <exception cref="InvalidOperationException">The name is not a potion.</exception>
+    /// <exception cref="PotionNotAvailableException">The potion is not available in the storage.</exception>
     public void Deliver(string potionName, IDestination destination)
     {
         if (this._storage.CheckAvailable(potionName))
@@ -31,7 +38,7 @@ public class DeliveryService : IDeliveryService
 
             if (ingredient is IPotion potion)
             {
-                Send(potion, destination);
+                this.Send(potion, destination);
             }
             else
             {
@@ -50,14 +57,14 @@ public class DeliveryService : IDeliveryService
             }
 
             var potion = this._cauldron.Brew(ingredient1, ingredient2);
-            Send(potion, destination);
+            this.Send(potion, destination);
         }
     }
 
-    private static void Send(IPotion potion, IDestination destination)
+    private void Send(IPotion potion, IDestination destination)
     {
         var package = new Package<IPotion>(potion);
         package.Wrap();
-        destination.Receive(package);
+        this._parcelService.Send(package, destination);
     }
 }

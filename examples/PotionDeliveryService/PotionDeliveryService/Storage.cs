@@ -6,14 +6,12 @@ public class Storage : IStorage
 {
     private readonly Dictionary<string, Queue<IIngredient>> _storedIngredients = new();
 
-    #region Implementation of IStorage
-
     /// <inheritdoc />
     public void Store(IIngredient ingredient)
     {
-        if (this._storedIngredients.ContainsKey(ingredient.Name))
+        if (this._storedIngredients.TryGetValue(ingredient.Name, out var storedIngredient))
         {
-            this._storedIngredients[ingredient.Name].Enqueue(ingredient);
+            storedIngredient.Enqueue(ingredient);
         }
         else
         {
@@ -36,6 +34,4 @@ public class Storage : IStorage
     /// <inheritdoc />
     public bool CheckAvailable(string ingredientName) =>
         this._storedIngredients.ContainsKey(ingredientName) && this._storedIngredients[ingredientName].Count > 0;
-
-    #endregion
 }

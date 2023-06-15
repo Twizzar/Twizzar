@@ -2,5 +2,11 @@
 
 public interface IDestination
 {
-    public void Receive<T>(IPackage<T> package);
+    string Recipient { get; }
+
+    string EMail { get; }
+
+    string Address { get; }
+
+    CountryCode Country { get; }
 }
