@@ -56,19 +56,19 @@ public partial class DeliveryServiceTests
         var deliveryService = new DeliveryServiceaa96Builder()
             .Build(out var context);
 
-        var destinationMock = new Mock<IDestination>();
+        var destination = new ItemBuilder<IDestination>().Build();
 
         // the scope can be used to retrieve the unique values generated for the potionRecipes service.
         var expectedPotionName = context.Get(p => p.Ctor.potionRecipes.GetPotionName);
 
         // act
-        deliveryService.Deliver("MyPotion", destinationMock.Object);
+        deliveryService.Deliver("MyPotion", destination);
 
         // assert
 
         // check that the package was send to the parcel service an it only contains the expectedPotion.
-        context.Verify(p => p.Ctor.parcelService.Send)
-            .WherePackageIs(package => package.UnWrap().Single().Name.Equals(expectedPotionName))
+        context.Verify(p => p.Ctor.parcelService.SendT)
+            .WherePackageIs<IPotion>(package => package.UnWrap().Single().Name.Equals(expectedPotionName))
             .Called(1);
     }
 
@@ -91,16 +91,16 @@ public partial class DeliveryServiceTests
             .With(p => p.Ctor.potionRecipes.GetPotionRecipe.Value((ingredients[0], ingredients[1])))
             .Build(out var context);
 
-        var destinationMock = new Mock<IDestination>();
+        var destination = new ItemBuilder<IDestination>().Build();
 
         // act
-        deliveryService.Deliver("MyPotion", destinationMock.Object);
+        deliveryService.Deliver("MyPotion", destination);
 
         // assert
 
         // The send package should contain only one potion with the name MyPotion
-        context.Verify(p => p.Ctor.parcelService.Send)
-            .WherePackageIs(p => p.UnWrap().Single().Name == "MyPotion")
+        context.Verify(p => p.Ctor.parcelService.SendT)
+            .WherePackageIs<IPotion>(p => p.UnWrap().Single().Name == "MyPotion")
             .Called(1);
 
         // get the cauldron mock over the scope and verify that the potion was brewed.

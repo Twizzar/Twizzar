@@ -31,7 +31,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Twizzar.Api" Version="*" />
+		<PackageReference Include="Twizzar.Api" Version="1.5.0-pullrequest1051-0038" />
 	</ItemGroup>
 
 	<ItemGroup>

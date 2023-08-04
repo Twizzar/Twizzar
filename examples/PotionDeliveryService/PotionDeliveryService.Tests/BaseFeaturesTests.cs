@@ -1,4 +1,6 @@
-﻿namespace PotionDeliveryService.Tests;
+﻿using Moq;
+
+namespace PotionDeliveryService.Tests;
 
 /// <summary>
 /// Tests for demonstrating the Base Features of TWIZZAR.
