@@ -23,6 +23,8 @@ namespace PotionDeliveryService.Tests
                 this.With(p => p.Ctor.storage.CheckAvailable.Value(true));
                 this.With(p => p.Ctor.storage.Take.InstanceOf<Potion>());
                 this.With(p => p.Ctor.storage.Take.Ctor.name.Value("MyPotion"));
+                this.With(p =>
+                    p.Ctor.packageFactory.CreatePackageT.Value<IPotion>(potions => new Package<IPotion>(potions)));
             }
         }
 

@@ -243,6 +243,7 @@ public partial class BaseFeaturesTests
             .With(p => p.Ctor.storage.Take.Stub<IPotion>())
             .With(p => p._potionRecipes.GetPotionRecipe.InstanceOf<(IIngredient, IIngredient)>())
             .With(p => p.Ctor.storage.CheckAvailable.Value(true))
+            .With(p => p.Ctor.packageFactory.CreatePackageT.Value(new Package<IPotion>()))
             .With(p => p.Ctor.storage.CheckAvailable.Callback(name => Console.WriteLine($"Storage: checked for: {name}")))
             .Build();
 

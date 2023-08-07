@@ -70,6 +70,11 @@ public partial class DeliveryServiceTests
         context.Verify(p => p.Ctor.parcelService.SendT)
             .WherePackageIs<IPotion>(package => package.UnWrap().Single().Name.Equals(expectedPotionName))
             .Called(1);
+
+        // check if the package factory was used to create the package.
+        context.Verify(p => p.Ctor.packageFactory.CreatePackageT)
+            .WhereItemsIs<IPotion>(potions => potions.Single().Name == "MyPotion")
+            .Called(1);
     }
 
     [Test]
@@ -89,6 +94,7 @@ public partial class DeliveryServiceTests
             .With(p => p.Ctor.cauldron.Brew.Stub<IPotion>())
             .With(p => p.Ctor.cauldron.Brew.Name.Value("MyPotion"))
             .With(p => p.Ctor.potionRecipes.GetPotionRecipe.Value((ingredients[0], ingredients[1])))
+            .With(p => p.Ctor.packageFactory.CreatePackageT.Value<IPotion>(potions => new Package<IPotion>(potions)))
             .Build(out var context);
 
         var destination = new ItemBuilder<IDestination>().Build();
