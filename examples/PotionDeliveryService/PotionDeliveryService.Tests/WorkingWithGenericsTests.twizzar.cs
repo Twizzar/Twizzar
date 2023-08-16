@@ -16,7 +16,11 @@ namespace PotionDeliveryService.Tests
         {
             public IGenericExample3067Builder()
             {
-                this.With(p => p.MyMethodT.Value(5));
+                this.With(p => p.SimpleGenericMethodT.Stub<IPotion>());
+                this.With(p => p.SimpleGenericMethodT.Name.Value("Test"));
+                this.With(p => p.MyMethodTItem1TItem2.InstanceOf<ValueTuple<Int32, Single>>());
+                this.With(p => p.MyMethodTItem1TItem2.Ctor.item1.Value(1));
+                this.With(p => p.MyMethodTItem1TItem2.Ctor.item2.Value(2f));
             }
         }
     }

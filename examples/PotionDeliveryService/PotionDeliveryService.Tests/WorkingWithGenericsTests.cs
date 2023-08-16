@@ -1,13 +1,11 @@
-﻿using NUnit.Framework.Internal;
-
-namespace PotionDeliveryService.Tests;
+﻿namespace PotionDeliveryService.Tests;
 
 public partial class WorkingWithGenericsTests
 {
     [Test]
     public void Setup_method_with_a_typeParameter_as_return_type()
     {
-        // if the method T SimpleGenericMethod<T>() is setuped with Twizzar
+        // If the method T SimpleGenericMethod<T>() is configured with Twizzar
         // the Value expects a object as parameter because every type is assignable to T.
         var sut = new ItemBuilder<IGenericExample>()
             .With(p => p.SimpleGenericMethodT.Value(5))
@@ -29,7 +27,7 @@ public partial class WorkingWithGenericsTests
         var sut = new ItemBuilder<IGenericExample>()
             .With(p => p.MyMethod.Value(5))
             .With(p => p.MyMethodT.Value("test"))
-            .With(p => p.MyMethodTK.Value((3, 4f)))
+            .With(p => p.MyMethodTItem1TItem2.Value((3, 4f)))
             .Build();
 
         Assert.AreEqual(5, sut.MyMethod());
@@ -78,23 +76,37 @@ public partial class WorkingWithGenericsTests
     }
 
     [Test]
-    public void Playground()
+    public void Generic_methods_with_constrains()
+    {
+        var sut = new ItemBuilder<IGenericExample>()
+            .With(p => p.StructConstrainT.Value(5))
+            .With(p => p.ClassConstrainT.Value(new Ingredient("Water")))
+            .With(p => p.InterfaceConstrainT.InstanceOf<Potion>())
+            .Build();
+
+        Assert.AreEqual(5, sut.StructConstrain(0));
+        Assert.AreEqual("Water", sut.ClassConstrain(new Ingredient("")).Name);
+
+        Assert.IsInstanceOf<Potion>(sut.InterfaceConstrain<IIngredient>(null));
+        Assert.IsInstanceOf<Potion>(sut.InterfaceConstrain<IPotion>(null));
+        Assert.IsInstanceOf<Potion>(sut.InterfaceConstrain<Potion>(null));
+    }
+
+    [Test]
+    public void Multi_constrains_are_not_supported()
+    {
+        var sut = new ItemBuilder<IGenericExample>()
+            .With(p => p.MultiConstrainsT.Value(null))
+            .Build();
+    }
+
+    [Test]
+    public void UI_demo()
     {
         var sut = new IGenericExample3067Builder()
             .Build();
+
+        Assert.AreEqual("Test", sut.SimpleGenericMethod<IPotion>().Name);
+        Assert.AreEqual((1, 2f), sut.MyMethod<int, float>());
     }
-}
-
-public interface IGenericExample
-{
-
-    int MyMethod();
-
-    T MyMethod<T>();
-
-    (T, K) MyMethod<T, K>();
-
-    T SimpleGenericMethod<T>();
-
-    IList<T> CreateList<T>(params T[] items);
 }
