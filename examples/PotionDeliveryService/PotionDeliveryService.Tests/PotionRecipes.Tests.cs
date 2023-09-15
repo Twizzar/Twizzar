@@ -4,6 +4,7 @@
 public partial class PotionRecipesTests
 {
     [Test]
+    [TestSource(nameof(PotionRecipes.GetPotionRecipe))]
     public void When_name_not_in_the_dictionary_GetPotionRecipe_throws_PotionNotFoundException()
     {
         // arrange
@@ -15,6 +16,7 @@ public partial class PotionRecipesTests
     }
 
     [Test]
+    [TestSource(nameof(PotionRecipes.GetPotionEffect))]
     public void When_name_not_in_the_dictionary_GetPotionEffect_throws_PotionNotFoundException()
     {
         // arrange
@@ -26,6 +28,7 @@ public partial class PotionRecipesTests
     }
 
     [Test]
+    [TestSource(nameof(PotionRecipes.GetPotionColor))]
     public void When_name_not_in_the_dictionary_GetPotionColor_throws_PotionNotFoundException()
     {
         // arrange
@@ -37,6 +40,7 @@ public partial class PotionRecipesTests
     }
 
     [Test]
+    [TestSource(nameof(PotionRecipes.GetPotionName))]
     public void When_name_not_in_the_dictionary_GetPotionName_throws_RecipeNotFoundException()
     {
         // arrange

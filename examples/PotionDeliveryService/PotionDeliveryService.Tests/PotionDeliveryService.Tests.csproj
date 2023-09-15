@@ -31,7 +31,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Twizzar.Api" Version="1.6.0-pullrequest1051-0008" />
+		<PackageReference Include="Twizzar.Api" Version="1.5.0-pullrequest1073-0057" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -39,29 +39,29 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="BaseFeaturesTests.twizzar.cs">
-			<DependentUpon>BaseFeaturesTests.cs</DependentUpon>
+		<Compile Update="BaseFeatures.Tests.twizzar.cs">
+			<DependentUpon>BaseFeatures.Tests.cs</DependentUpon>
 		</Compile>
-		<Compile Update="CauldronTests.twizzar.cs">
-			<DependentUpon>CauldronTests.cs</DependentUpon>
+		<Compile Update="Cauldron.Tests.twizzar.cs">
+			<DependentUpon>Cauldron.Tests.cs</DependentUpon>
 		</Compile>
-		<Compile Update="DeliveryServiceTests.twizzar.cs">
-			<DependentUpon>DeliveryServiceTests.cs</DependentUpon>
+		<Compile Update="DeliveryService.Tests.twizzar.cs">
+			<DependentUpon>DeliveryService.Tests.cs</DependentUpon>
 		</Compile>
-		<Compile Update="PotionRecipesTests.twizzar.cs">
-			<DependentUpon>PotionRecipesTests.cs</DependentUpon>
+		<Compile Update="PotionRecipes.Tests.twizzar.cs">
+			<DependentUpon>PotionRecipes.Tests.cs</DependentUpon>
 		</Compile>
-		<Compile Update="ShowcaseTests.twizzar.cs">
-			<DependentUpon>ShowcaseTests.cs</DependentUpon>
+		<Compile Update="Showcase.Tests.twizzar.cs">
+			<DependentUpon>Showcase.Tests.cs</DependentUpon>
 		</Compile>
-		<Compile Update="StorageTests.twizzar.cs">
-			<DependentUpon>StorageTests.cs</DependentUpon>
+		<Compile Update="Storage.Tests.twizzar.cs">
+			<DependentUpon>Storage.Tests.cs</DependentUpon>
 		</Compile>
 		<Compile Update="Test.twizzar.cs">
 			<DependentUpon>Test.cs</DependentUpon>
 		</Compile>
-		<Compile Update="WorkingWithGenericsTests.twizzar.cs">
-		  <DependentUpon>WorkingWithGenericsTests.cs</DependentUpon>
+		<Compile Update="WorkingWithGenerics.Tests.twizzar.cs">
+		  <DependentUpon>WorkingWithGenerics.Tests.cs</DependentUpon>
 		</Compile>
 	</ItemGroup>
 </Project>

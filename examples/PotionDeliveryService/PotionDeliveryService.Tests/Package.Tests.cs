@@ -1,9 +1,12 @@
-﻿namespace PotionDeliveryService.Tests;
+﻿using PotionDeliveryService;
+using System;
+namespace PotionDeliveryService.Tests;
 
 [TestFixture]
 public class PackageTests
 {
     [Test]
+    [TestSource(nameof(Package<Potion>.UnWrap))]
     public void Unwrap_package_returns_all_added_items()
     {
         // arrange
@@ -30,6 +33,7 @@ public class PackageTests
     }
 
     [Test]
+    [TestSource(nameof(Package<Potion>.Add))]
     public void Content_cannot_be_added_to_a_wrapped_packages()
     {
         // arrange
@@ -48,6 +52,7 @@ public class PackageTests
 
     [TestCase(PackageState.Open)]
     [TestCase(PackageState.UnWrapped)]
+    [TestSource(nameof(Package<Potion>.Add))]
     public void Not_wrapped_package_cannot_be_unwrapped(PackageState packageState)
     {
         // arrange

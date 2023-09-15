@@ -4,6 +4,7 @@
 public partial class DeliveryServiceTests
 {
     [Test]
+    [TestSource(nameof(DeliveryService.Deliver))]
     public void When_trying_to_send_non_potion_throw_InvalidOperationException()
     {
         // arrange
@@ -25,6 +26,7 @@ public partial class DeliveryServiceTests
     }
 
     [Test]
+    [TestSource(nameof(DeliveryService.Deliver))]
     public void When_potion_and_its_ingredients_are_not_available_throw_PotionNotAvailableException()
     {
         // arrange
@@ -46,6 +48,7 @@ public partial class DeliveryServiceTests
     }
 
     [Test]
+    [TestSource(nameof(DeliveryService.Deliver))]
     public void Package_when_potion_in_storage_available_will_be_send_to_destination()
     {
         // arrange
@@ -78,6 +81,7 @@ public partial class DeliveryServiceTests
     }
 
     [Test]
+    [TestSource(nameof(DeliveryService.Deliver))]
     public void Package_when_potion_not_available_in_storage_a_brewed_will_be_send_to_destination()
     {
         // arrange

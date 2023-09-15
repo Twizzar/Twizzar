@@ -4,6 +4,7 @@
 public partial class StorageTests
 {
     [Test]
+    [TestSource(nameof(Storage.CheckAvailable))]
     public void Stored_ingredient_is_available()
     {
         // arrange
@@ -21,6 +22,7 @@ public partial class StorageTests
     }
 
     [Test]
+    [TestSource(nameof(Storage.Take))]
     public void When_stored_one_and_taken_twice_throw_InvalidOperationException()
     {
         // arrange
@@ -36,6 +38,7 @@ public partial class StorageTests
     }
 
     [Test]
+    [TestSource(nameof(Storage.CheckAvailable))]
     public void When_all_ingredient_are_taken_out_then_their_are_no_longer_available()
     {
         // arrange
