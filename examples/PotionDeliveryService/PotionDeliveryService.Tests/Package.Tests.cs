@@ -1,6 +1,4 @@
-﻿using PotionDeliveryService;
-using System;
-namespace PotionDeliveryService.Tests;
+﻿namespace PotionDeliveryService.Tests;
 
 [TestFixture]
 public class PackageTests

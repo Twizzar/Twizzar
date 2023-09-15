@@ -220,8 +220,8 @@ public partial class BaseFeaturesTests
         // This local function should be used by the ICauldron.Brew method.
         static IPotion Brew(IIngredient ingredient1, IIngredient ingredient2) =>
             new ItemBuilder<IPotion>()
-                .With(p => p.Name.Value(ingredient1.Name + ingredient2.Name))
-                .Build();
+            .With(p => p.Name.Value(ingredient1.Name + ingredient2.Name))
+            .Build();
 
         var cauldron = new ItemBuilder<ICauldron>()
             // We could also define it as a lambda instead p.Bew.Value(i1, i2 => ...)

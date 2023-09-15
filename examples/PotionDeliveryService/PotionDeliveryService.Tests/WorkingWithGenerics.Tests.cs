@@ -95,9 +95,11 @@ public partial class WorkingWithGenericsTests
     [Test]
     public void Multi_constrains_are_not_supported()
     {
-        var sut = new ItemBuilder<IGenericExample>()
-            .With(p => p.MultiConstrainsT.Value(null))
-            .Build();
+        void TestDelegate() =>
+            new ItemBuilder<IGenericExample>().With(p => p.MultiConstrainsT.Value(null))
+                .Build();
+
+        Assert.Catch(TestDelegate);
     }
 
     [Test]

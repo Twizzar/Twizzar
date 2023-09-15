@@ -107,8 +107,6 @@ public partial class DeliveryServiceTests
         deliveryService.Deliver("MyPotion", destination);
 
         // assert
-
-        // The send package should contain only one potion with the name MyPotion
         context.Verify(p => p.Ctor.parcelService.SendT)
             .WherePackageIs<IPotion>(p => p.UnWrap().Single().Name == "MyPotion")
             .Called(1);

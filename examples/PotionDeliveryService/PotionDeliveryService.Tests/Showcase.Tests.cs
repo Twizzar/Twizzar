@@ -1,5 +1,3 @@
-﻿using Moq;
-
 namespace PotionDeliveryService.Tests;
 
 /// <summary>
