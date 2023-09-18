@@ -12,19 +12,19 @@ namespace PotionDeliveryService.Tests
             public DeliveryServiceaa96Builder()
             {
                 this.With(p => p.Ctor.potionRecipes.Stub<IPotionRecipes>());
-                this.With(p => p.Ctor.potionRecipes.GetPotionRecipe.InstanceOf<ValueTuple<IIngredient, IIngredient>>());
-                this.With(p => p.Ctor.potionRecipes.GetPotionRecipe.Ctor.item1.Name.Unique());
-                this.With(p => p.Ctor.potionRecipes.GetPotionRecipe.Ctor.item2.Name.Unique());
-                this.With(p => p.Ctor.potionRecipes.GetPotionColor.Unique());
-                this.With(p => p.Ctor.potionRecipes.GetPotionEffect.Stub<IEffect>());
-                this.With(p => p.Ctor.potionRecipes.GetPotionEffect.Name.Unique());
-                this.With(p => p.Ctor.potionRecipes.GetPotionName.Value("MyPotion"));
+                this.With(p => p.Ctor.potionRecipes.GetPotionRecipe__String.InstanceOf<ValueTuple<IIngredient, IIngredient>>());
+                this.With(p => p.Ctor.potionRecipes.GetPotionRecipe__String.Ctor.item1.Name.Unique());
+                this.With(p => p.Ctor.potionRecipes.GetPotionRecipe__String.Ctor.item2.Name.Unique());
+                this.With(p => p.Ctor.potionRecipes.GetPotionColor__String.Unique());
+                this.With(p => p.Ctor.potionRecipes.GetPotionEffect__String.Stub<IEffect>());
+                this.With(p => p.Ctor.potionRecipes.GetPotionEffect__String.Name.Unique());
+                this.With(p => p.Ctor.potionRecipes.GetPotionName__IIngredient_IIngredient.Value("MyPotion"));
                 this.With(p => p.Ctor.storage.Stub<IStorage>());
-                this.With(p => p.Ctor.storage.CheckAvailable.Value(true));
-                this.With(p => p.Ctor.storage.Take.InstanceOf<Potion>());
-                this.With(p => p.Ctor.storage.Take.Ctor.name.Value("MyPotion"));
+                this.With(p => p.Ctor.storage.CheckAvailable__String.Value(true));
+                this.With(p => p.Ctor.storage.Take__String.InstanceOf<Potion>());
+                this.With(p => p.Ctor.storage.Take__String.Ctor.name.Value("MyPotion"));
                 this.With(p =>
-                    p.Ctor.packageFactory.CreatePackageT.Value<IPotion>(potions => new Package<IPotion>(potions)));
+                    p.Ctor.packageFactory.CreatePackageT__TIndex.Value<IPotion>(potions => new Package<IPotion>(potions)));
             }
         }
 

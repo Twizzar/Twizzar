@@ -34,7 +34,7 @@ public partial class DeliveryServiceTests
 
         // create a delivery service where the nothing is available in the storage.
         var deliveryService = new DeliveryServiceaa96Builder()
-            .With(p => p.Ctor.storage.CheckAvailable.Value(false))
+            .With(p => p.Ctor.storage.CheckAvailable__String.Value(false))
             .Build();
 
         // create a stub for the destination
@@ -93,12 +93,12 @@ public partial class DeliveryServiceTests
         // Setup the PotionRecipes service to return the two ingredients created.
         var deliveryService = new DeliveryServiceBuilder()
             // setup the storage so only MyPotion is no available.
-            .With(p => p.Ctor.storage.CheckAvailable.Value(s => s != "MyPotion"))
+            .With(p => p.Ctor.storage.CheckAvailable__String.Value(s => s != "MyPotion"))
             .With(p => p.Ctor.cauldron.Stub<ICauldron>())
-            .With(p => p.Ctor.cauldron.Brew.Stub<IPotion>())
-            .With(p => p.Ctor.cauldron.Brew.Name.Value("MyPotion"))
-            .With(p => p.Ctor.potionRecipes.GetPotionRecipe.Value((ingredients[0], ingredients[1])))
-            .With(p => p.Ctor.packageFactory.CreatePackageT.Value<IPotion>(potions => new Package<IPotion>(potions)))
+            .With(p => p.Ctor.cauldron.Brew__IIngredient_IIngredient.Stub<IPotion>())
+            .With(p => p.Ctor.cauldron.Brew__IIngredient_IIngredient.Name.Value("MyPotion"))
+            .With(p => p.Ctor.potionRecipes.GetPotionRecipe__String.Value((ingredients[0], ingredients[1])))
+            .With(p => p.Ctor.packageFactory.CreatePackageT__TIndex.Value<IPotion>(potions => new Package<IPotion>(potions)))
             .Build(out var context);
 
         var destination = new ItemBuilder<IDestination>().Build();

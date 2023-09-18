@@ -1,6 +1,4 @@
-﻿using Moq;
-
-namespace PotionDeliveryService.Tests;
+﻿namespace PotionDeliveryService.Tests;
 
 /// <summary>
 /// Tests for demonstrating the Base Features of TWIZZAR.
@@ -239,10 +237,7 @@ public partial class BaseFeaturesTests
     [Test]
     public void Add_callbacks_to_a_method()
     {
-        var deliveryService = new ItemBuilder<DeliveryService>()
-            .With(p => p.Ctor.storage.Take.Stub<IPotion>())
-            .With(p => p._potionRecipes.GetPotionRecipe.InstanceOf<(IIngredient, IIngredient)>())
-            .With(p => p.Ctor.storage.CheckAvailable.Value(true))
+        var deliveryService = new DeliveryService4865Builder()
             .With(p => p.Ctor.packageFactory.CreatePackageT.Value(new Package<IPotion>()))
             .With(p => p.Ctor.storage.CheckAvailable.Callback(name => Console.WriteLine($"Storage: checked for: {name}")))
             .Build();
