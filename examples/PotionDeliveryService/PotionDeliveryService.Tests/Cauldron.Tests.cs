@@ -4,6 +4,7 @@
 public partial class CauldronTests
 {
     [Test]
+    [TestSource(nameof(Cauldron.Brew))]
     public void Potion_gets_brewed_correctly()
     {
         // arrange
