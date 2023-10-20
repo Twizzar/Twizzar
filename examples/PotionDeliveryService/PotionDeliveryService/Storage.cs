@@ -4,34 +4,54 @@ namespace PotionDeliveryService;
 
 public class Storage : IStorage
 {
-    private readonly Dictionary<string, Queue<IIngredient>> _storedIngredients = new();
+    private readonly Dictionary<string, Stock> _stocks = new();
 
     /// <inheritdoc />
     public void Store(IIngredient ingredient)
     {
-        if (this._storedIngredients.TryGetValue(ingredient.Name, out var storedIngredient))
+        if (this._stocks.TryGetValue(ingredient.Name, out var stock))
         {
-            storedIngredient.Enqueue(ingredient);
+            stock.Amount++;
         }
         else
         {
-            this._storedIngredients.Add(ingredient.Name, new Queue<IIngredient>());
-            this._storedIngredients[ingredient.Name].Enqueue(ingredient);
+            this._stocks.Add(ingredient.Name, new Stock(ingredient));
         }
     }
 
     /// <inheritdoc />
     public IIngredient Take(string ingredientName)
     {
-        if (!this._storedIngredients.ContainsKey(ingredientName) || this._storedIngredients[ingredientName].Count <= 0)
+        if (!this._stocks.ContainsKey(ingredientName))
         {
-            throw new InvalidOperationException($"Cannot take out {ingredientName} because none is stored");
+            throw new ArgumentException($"Ingredient with name {ingredientName} does not exist in storage.");
         }
 
-        return this._storedIngredients[ingredientName].Dequeue();
+        var stock = this._stocks[ingredientName];
+
+        if (stock.Amount == 0)
+        {
+            throw new ArgumentException($"Ingredient with name {ingredientName} is out of stock.");
+        }
+
+        stock.Amount--;
+        return stock.Ingredient;
     }
 
     /// <inheritdoc />
     public bool CheckAvailable(string ingredientName) =>
-        this._storedIngredients.ContainsKey(ingredientName) && this._storedIngredients[ingredientName].Count > 0;
+        this._stocks.ContainsKey(ingredientName) && this._stocks[ingredientName].Amount > 0;
+
+    private class Stock
+    {
+        public Stock(IIngredient ingredient)
+        {
+            this.Ingredient = ingredient;
+            this.Amount = 1;
+        }
+
+        public int Amount { get; set; }
+
+        public IIngredient Ingredient { get; init; }
+    }
 }
