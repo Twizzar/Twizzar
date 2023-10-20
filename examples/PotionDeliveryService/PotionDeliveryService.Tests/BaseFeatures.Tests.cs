@@ -218,8 +218,8 @@ public partial class BaseFeaturesTests
         // This local function should be used by the ICauldron.Brew method.
         static IPotion Brew(IIngredient ingredient1, IIngredient ingredient2) =>
             new ItemBuilder<IPotion>()
-                .With(p => p.Name.Value(ingredient1.Name + ingredient2.Name))
-                .Build();
+            .With(p => p.Name.Value(ingredient1.Name + ingredient2.Name))
+            .Build();
 
         var cauldron = new ItemBuilder<ICauldron>()
             // We could also define it as a lambda instead p.Bew.Value(i1, i2 => ...)
@@ -237,10 +237,8 @@ public partial class BaseFeaturesTests
     [Test]
     public void Add_callbacks_to_a_method()
     {
-        var deliveryService = new ItemBuilder<DeliveryService>()
-            .With(p => p.Ctor.storage.Take.Stub<IPotion>())
-            .With(p => p._potionRecipes.GetPotionRecipe.InstanceOf<(IIngredient, IIngredient)>())
-            .With(p => p.Ctor.storage.CheckAvailable.Value(true))
+        var deliveryService = new DeliveryService4865Builder()
+            .With(p => p.Ctor.packageFactory.CreatePackageT.Value(new Package<IPotion>()))
             .With(p => p.Ctor.storage.CheckAvailable.Callback(name => Console.WriteLine($"Storage: checked for: {name}")))
             .Build();
 

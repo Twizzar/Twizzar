@@ -2,5 +2,5 @@
 
 public interface IParcelService
 {
-    void Send(IPackage<IPotion> package, IDestination destination);
+    void Send<T>(IPackage<T> package, IDestination destination);
 }

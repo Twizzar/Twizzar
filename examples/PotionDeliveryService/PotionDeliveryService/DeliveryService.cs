@@ -14,13 +14,20 @@ public class DeliveryService : IDeliveryService
     private readonly ICauldron _cauldron;
     private readonly IPotionRecipes _potionRecipes;
     private readonly IParcelService _parcelService;
+    private readonly IPackageFactory _packageFactory;
 
-    public DeliveryService(IStorage storage, ICauldron cauldron, IPotionRecipes potionRecipes, IParcelService parcelService)
+    public DeliveryService(
+        IStorage storage,
+        ICauldron cauldron,
+        IPotionRecipes potionRecipes,
+        IParcelService parcelService,
+        IPackageFactory packageFactory)
     {
         this._storage = storage;
         this._cauldron = cauldron;
         this._potionRecipes = potionRecipes;
         this._parcelService = parcelService;
+        this._packageFactory = packageFactory;
     }
 
     /// <summary>
@@ -63,7 +70,7 @@ public class DeliveryService : IDeliveryService
 
     private void Send(IPotion potion, IDestination destination)
     {
-        var package = new Package<IPotion>(potion);
+        var package = this._packageFactory.CreatePackage(potion);
         package.Wrap();
         this._parcelService.Send(package, destination);
     }

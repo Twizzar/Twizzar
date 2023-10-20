@@ -2,6 +2,7 @@
 using Twizzar.Fixture;
 using PotionDeliveryService;
 using PotionDeliveryService.Interfaces;
+using System;
 
 namespace PotionDeliveryService.Tests
 {
@@ -14,6 +15,16 @@ namespace PotionDeliveryService.Tests
                 this.With(p => p.Ctor.color.Value(PotionColor.Blue));
                 this.With(p => p.Price.Value(42));
                 this.With(p => p.Ctor.ingredient1.Stub<IIngredient>());
+            }
+        }
+
+        private class DeliveryService4865Builder : ItemBuilder<PotionDeliveryService.DeliveryService, DeliveryService4865BuilderPaths>
+        {
+            public DeliveryService4865Builder()
+            {
+                this.With(p => p.Ctor.storage.Take__String.Stub<IPotion>());
+                this.With(p => p.Ctor.potionRecipes.GetPotionRecipe__String.InstanceOf<ValueTuple<IIngredient, IIngredient>>());
+                this.With(p => p.Ctor.storage.CheckAvailable__String.Value(true));
             }
         }
     }
