@@ -7,15 +7,9 @@
 
 Twizzar is a testing toolkit for .NET (C#) that helps you write high quality tests. Twizzar can automatically detect and generate dependencies of a class or interface. Thanks to its lean API and intuitive UI, which is seamlessly integrated in Visual Studio, it is easy to use and will speed up your work progress even in complex test setups. Twizzar will help you write clear and maintainable code tests, such as unit tests or integration tests.
 
-Check out the [Quickstart](https://github.com/Twizzar/Twizzar/wiki/Quickstart)!
+## Purpose
 
-## Download Twizzar
-To use Twizzar, you need the Visual Studio Extension and two NuGet packages, which must be installed in your unit test projects.
-- Download the Extension from the Visual Studio Marketplace: [Twizzar Visual Studio Extension](https://marketplace.visualstudio.com/items?itemName=vi-sit.twizzar-vs22)
-- The NuGet package is available at: https://www.nuget.org/packages/Twizzar.Api/  
-(The second Twizzar NuGet package gets installed automatically as a dependency.)
+The purpose of this project is to provide examples for the usage of Twizzar. For more information visit 🌐[twizzar.com](https://www.twizzar.com/). The user documentation is available under 📚[docs.twizzar.com](https://docs.twizzar.com/).
 
 ## Examples
 To see Twizzar in action, a example is provided under [./examples/PotionDeliveryService/](./examples/PotionDeliveryService/).
-
-For more information visit [https://www.twizzar.com/](https://www.twizzar.com/).
