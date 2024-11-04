@@ -45,5 +45,8 @@ jobs:
             - name: Pack
               run: dotnet pack --configuration Internal --no-build --output nupkgs /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }}
 
-            - name: Push to NuGet
-              run: dotnet nuget push ./**/nupkgs/*.nupkg --source "https://nuget.pkg.github.com/Twizzar/index.json" --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
+            - name: Push TwizzarInternal.Api to NuGet
+              run: dotnet nuget push ./nupkgs/TwizzarInternal.Api*.nupkg --source "https://nuget.pkg.github.com/Twizzar/index.json" --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
+
+            - name: Push TwizzarInternal.Analyzer2022 to NuGet
+              run: dotnet nuget push ./nupkgs/TwizzarInternal.Analyzer2022*.nupkg --source "https://nuget.pkg.github.com/Twizzar/index.json" --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
