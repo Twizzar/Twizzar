@@ -8,6 +8,9 @@ on:
 jobs:
     build-and-test:
         runs-on: windows-2022
+        defaults:
+            run:
+                working-directory: ./Source
 
         steps:
             - uses: actions/checkout@v4
