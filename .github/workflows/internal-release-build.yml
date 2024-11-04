@@ -43,7 +43,7 @@ jobs:
               run: dotnet build --configuration Internal --no-restore /p:Version=${{ steps.gitversion.outputs.assemblySemVer }}
 
             - name: Pack
-              run: dotnet pack --configuration Internal --no-build --output nupkgs /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }}
+              run: dotnet pack --configuration Internal --no-build --output nupkgs /p:PackageVersion=${{ steps.gitversion.outputs.assemblySemVer }}
 
             - name: Push TwizzarInternal.Api to NuGet
               run: dotnet nuget push ./nupkgs/TwizzarInternal.Api.${{ steps.gitversion.outputs.nuGetVersionV2 }}.nupkg --source "https://nuget.pkg.github.com/Twizzar/index.json" --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
