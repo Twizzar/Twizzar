@@ -83,12 +83,9 @@ namespace Twizzar.Design.Infrastructure.VisualStudio.Roslyn
         /// <inheritdoc />
         public Task<IEnumerable<IConfigurationItem>> GetAllAsync(Maybe<string> rootItemPath, CancellationToken cancellationToken)
         {
-            using (ViMonitor.StartOperation($"{nameof(RoslynConfigReader)}{nameof(this.GetAllAsync)}"))
-            {
-                return this.ReadConfigAsync(rootItemPath, cancellationToken)
-                    .MapAsync(items => items.Values)
-                    .SomeOrProvidedAsync(Enumerable.Empty<IConfigurationItem>);
-            }
+            return this.ReadConfigAsync(rootItemPath, cancellationToken)
+                .MapAsync(items => items.Values)
+                .SomeOrProvidedAsync(Enumerable.Empty<IConfigurationItem>);
         }
 
         private Task<Maybe<IImmutableDictionary<FixtureItemId, IConfigurationItem>>> ReadConfigAsync(

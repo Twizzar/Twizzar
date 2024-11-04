@@ -20,6 +20,7 @@ using Twizzar.SharedKernel.CoreInterfaces.Exceptions;
 using Twizzar.SharedKernel.CoreInterfaces.Extensions;
 using Twizzar.SharedKernel.CoreInterfaces.Util;
 using Twizzar.SharedKernel.NLog.Interfaces;
+
 using ViCommon.EnsureHelper;
 using ViCommon.EnsureHelper.ArgumentHelpers.Extensions;
 using ViCommon.EnsureHelper.Extensions;
@@ -185,7 +186,6 @@ namespace Twizzar.Design.Infrastructure.VisualStudio.Services.VsEvents
         /// <inheritdoc />
         public int OnBeforeCloseSolution(object pUnkReserved)
         {
-            ViMonitor.Flush();
             this.Dispose();
             return S_OK;
         }

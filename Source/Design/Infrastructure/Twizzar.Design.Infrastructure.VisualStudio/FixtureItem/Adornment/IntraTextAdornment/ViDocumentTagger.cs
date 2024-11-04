@@ -22,7 +22,6 @@ using Twizzar.Design.Infrastructure.VisualStudio.Roslyn;
 using Twizzar.Design.Ui.Interfaces.Messaging.VsEvents;
 using Twizzar.Design.Ui.Interfaces.VisualStudio;
 using Twizzar.SharedKernel.CoreInterfaces.Extensions;
-using Twizzar.SharedKernel.CoreInterfaces.Util;
 using Twizzar.SharedKernel.NLog.Interfaces;
 using Twizzar.SharedKernel.NLog.Logging;
 
@@ -243,9 +242,6 @@ namespace Twizzar.Design.Infrastructure.VisualStudio.FixtureItem.Adornment.Intra
                 yield break;
             }
 
-            using var methodOperation = ViMonitor.StartOperation(nameof(this.GetTagsUnsafe));
-            methodOperation.Telemetry.Properties["spans"] = spans.ToString();
-
             this._cancellationTokenGetTagsSource?.Cancel();
             this._cancellationTokenGetTagsSource = new CancellationTokenSource();
 
@@ -386,8 +382,6 @@ namespace Twizzar.Design.Infrastructure.VisualStudio.FixtureItem.Adornment.Intra
             {
                 return false;
             }
-
-            using var _ = ViMonitor.StartOperation($"{nameof(ViDocumentTagger)}.{nameof(this.UpdateCacheAsync)}");
 
             var document = snapshot.GetOpenDocumentInCurrentContextWithChanges();
 

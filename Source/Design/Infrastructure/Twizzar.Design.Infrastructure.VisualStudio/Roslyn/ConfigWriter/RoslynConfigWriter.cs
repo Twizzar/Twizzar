@@ -20,6 +20,7 @@ using Twizzar.SharedKernel.CoreInterfaces.FixtureItem.Configuration.MemberConfig
 using Twizzar.SharedKernel.CoreInterfaces.Util;
 using Twizzar.SharedKernel.NLog.Interfaces;
 using Twizzar.SharedKernel.NLog.Logging;
+
 using ViCommon.EnsureHelper;
 using ViCommon.EnsureHelper.ArgumentHelpers.Extensions;
 using ViCommon.EnsureHelper.Extensions;
@@ -102,13 +103,6 @@ namespace Twizzar.Design.Infrastructure.VisualStudio.Roslyn.ConfigWriter
         /// <inheritdoc />
         public async Task UpdateConfigAsync(FixtureItemId id, IMemberConfiguration memberConfiguration)
         {
-            using var operation =
-                ViMonitor.StartOperation($"{nameof(RoslynConfigWriter)}.{nameof(this.UpdateConfigAsync)}");
-
-            operation.Telemetry.Properties["FixtureItemIdHash"] = id.GetHashCode().ToString();
-            operation.Telemetry.Properties["memberName"] = memberConfiguration.Name;
-            operation.Telemetry.Properties["memberConfigurationType"] = memberConfiguration.GetType().Name;
-
             await this.GetContextAsync(id.RootItemPath)
                 .MapSuccessAsync(context => (context, GetOrCreateCtor(context)))
                 .DoAsync(

@@ -12,6 +12,7 @@ using Twizzar.SharedKernel.CoreInterfaces;
 using Twizzar.SharedKernel.CoreInterfaces.FixtureItem;
 using Twizzar.SharedKernel.CoreInterfaces.Util;
 using Twizzar.SharedKernel.NLog.Interfaces;
+
 using ViCommon.EnsureHelper;
 using ViCommon.EnsureHelper.ArgumentHelpers.Extensions;
 using ViCommon.EnsureHelper.Extensions;
@@ -75,8 +76,6 @@ namespace Twizzar.Design.Infrastructure.VisualStudio.Roslyn
             IRoslynContext context,
             CancellationToken cancellationToken = default)
         {
-            using var methodOperation = ViMonitor.StartOperation(nameof(this.GetAdornmentInformation));
-
             cancellationToken.ThrowIfCancellationRequested();
 
             var finder = this._itemBuilderFinderFactory.Create(context.SemanticModel);

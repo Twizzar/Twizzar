@@ -7,7 +7,6 @@
 
     <ItemGroup>
         <PackageReference Include="JetBrains.Annotations" Version="2020.3.0" PrivateAssets="All" />
-        <PackageReference Include="Microsoft.ApplicationInsights" Version="2.21.0" />
         <PackageReference Include="System.Collections.Immutable" Version="5.0.0" PrivateAssets="All" />
     </ItemGroup>
 

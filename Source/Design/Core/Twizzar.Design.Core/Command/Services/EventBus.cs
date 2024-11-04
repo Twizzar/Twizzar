@@ -57,7 +57,6 @@ namespace Twizzar.Design.Core.Command.Services
             {
                 await this._semaphore.WaitAsync();
 
-                ViMonitor.TrackEvent($"{typeof(TEvent).Name} triggered", new Dictionary<string, string>() { { "event", e.ToLogString() } });
                 var message = EventMessage.Create(e, typeof(TEvent));
                 await this._eventStore.Store(message);
 

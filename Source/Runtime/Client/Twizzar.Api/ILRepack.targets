@@ -12,7 +12,6 @@
             <InputAssemblies Include="**/NLog.dll" />
             <InputAssemblies Include="**/System.Collections.Immutable.dll" />
             <InputAssemblies Include="**/Microsoft.Bcl.AsyncInterfaces.dll" />
-            <InputAssemblies Include="**/Microsoft.ApplicationInsights*.dll" />
             <InputAssemblies Include="**/System.Security.Principal.Windows*.dll" />
         </ItemGroup>
 

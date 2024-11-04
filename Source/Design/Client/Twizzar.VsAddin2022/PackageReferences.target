@@ -2,15 +2,6 @@
     <ItemGroup>
         <PackageReference Include="Autofac" Version="5.0.0" />
 
-        <!--<PackageReference Include="Microsoft.VisualStudio.LanguageServices" Version="4.0.1" />
-        <PackageReference Include="Microsoft.VisualStudio.Threading" Version="17.0.64 "/>
-        <PackageReference Include="Nerdbank.Streams" Version="2.7.74"/>
-        <PackageReference Include="MvvmLight" Version="5.4.1.1"/>-->
-
-        <!-- ApplicationInsights -->
-        <PackageReference Include="Microsoft.ApplicationInsights" Version="2.21.0"/>
-        <PackageReference Include="Microsoft.ApplicationInsights.NLogTarget" Version="2.21.0"/>
-
         <!-- Visual Studio -->
         <PackageReference Include="Community.VisualStudio.Toolkit.17" Version="17.0.394"/>
 

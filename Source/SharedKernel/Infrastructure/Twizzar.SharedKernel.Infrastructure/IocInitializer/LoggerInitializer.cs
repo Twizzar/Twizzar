@@ -1,7 +1,10 @@
 ﻿using System;
+
 using Autofac;
+
 using NLog.Layouts;
 using NLog.Targets;
+
 using Twizzar.SharedKernel.Infrastructure.AutofacModules;
 using Twizzar.SharedKernel.NLog.Interfaces;
 using Twizzar.SharedKernel.NLog.Logging;

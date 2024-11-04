@@ -2,7 +2,6 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
-using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
 
@@ -284,8 +283,6 @@ namespace Twizzar.Design.Infrastructure.VisualStudio.FixtureItem.Adornment
         [ExcludeFromCodeCoverage]
         private void AdornmentExpandedOrCollapsed(AdornmentExpandedOrCollapsedEvent e)
         {
-            using var o = ViMonitor.StartOperation(nameof(this.AdornmentExpandedOrCollapsed));
-
             // When the event is not addressed to this adornment or the isExpanded state is already set correctly then do nothing.
             if (e.AdornmentId != this.Id || this._isExpanded == e.IsExpanded)
             {
@@ -296,34 +293,10 @@ namespace Twizzar.Design.Infrastructure.VisualStudio.FixtureItem.Adornment
 
             if (e.IsExpanded)
             {
-                var expandEvent = new EventTelemetry("adornmentExpanded")
-                {
-                    Properties =
-                    {
-                        ["AdornmentId"] = this.Id.ToString(),
-                        ["FixtureItemIdHash"] = this.AdornmentInformation.FixtureItemId.GetHashCode().ToString(),
-                        ["ProjectNameHash"] = this.AdornmentInformation.ProjectName.GetHashCode().ToString(),
-                    },
-                };
-
-                ViMonitor.TrackEvent(expandEvent);
                 this._documentAdornmentController.OpenAdornmentAsync(this, this.GetInvocationSnapshotSpan());
             }
             else
             {
-                var collapsedEvent = new EventTelemetry("adornmentCollapsed")
-                {
-                    Properties =
-                    {
-                        ["AdornmentId"] = this.Id.ToString(),
-                        ["FixtureItemIdHash"] = this.AdornmentInformation.FixtureItemId.GetHashCode().ToString(),
-                        ["ProjectNameHash"] = this.AdornmentInformation.ProjectName.GetHashCode().ToString(),
-                    },
-                };
-
-                ViMonitor.TrackEvent(collapsedEvent);
-                ViMonitor.Flush();
-
                 this._documentAdornmentController.CloseAdornmentAsync(this);
             }
         }

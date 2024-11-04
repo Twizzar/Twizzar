@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.LanguageServices;
 using Microsoft.VisualStudio.Text.Tagging;
 
 using NLog.Targets;
+
 using Twizzar.Design.CoreInterfaces.Common.VisualStudio;
 using Twizzar.Design.Infrastructure.VisualStudio.Common.Util;
 using Twizzar.Design.Infrastructure.VisualStudio.Services.Notification;
@@ -174,25 +175,6 @@ namespace Twizzar.VsAddin.CompositionRoot
             {
                 new ViNotificationTarget(notificationService),
             };
-
-#if !NCrunch && !DEBUG
-
-            try
-            {
-                var settingsQuery = new SettingsFileService(new FileService());
-                var monitorInstance = new AppInsightsMonitorInstance("Addin", settingsQuery.GetAnalyticsEnabled());
-                ViMonitor.SetInstance(monitorInstance);
-                loggerTargets.Add(new ViApplicationInsightsTarget(monitorInstance.Client));
-
-                builder.RegisterInstance(monitorInstance)
-                    .As<IEventListener<AnalyticsEnabledOrDisabledEvent>>()
-                    .SingleInstance();
-            }
-            catch (Exception)
-            {
-                // ingored
-            }
-#endif
 
             LoggerInitializer.Init(builder, @"\vi-sit\twizzar\twizzarAddin.log", "Addin", loggerTargets.ToArray());
             EnsureHelperInitializer.Init(builder);

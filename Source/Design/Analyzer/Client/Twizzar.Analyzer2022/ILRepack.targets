@@ -16,7 +16,6 @@
             <InputAssemblies Include="$(OutputPath)Autofac.dll" />
             <InputAssemblies Include="$(OutputPath)Microsoft.Bcl.*.dll" />
             <InputAssemblies Include="$(OutputPath)Microsoft.VisualStudio.*.dll" />
-            <InputAssemblies Include="$(OutputPath)Microsoft.ApplicationInsights*.dll" />
         </ItemGroup>
 
         <ItemGroup>
