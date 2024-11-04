@@ -37,13 +37,13 @@ jobs:
               uses: gittools/actions/gitversion/execute@v0.10.2
 
             - name: Restore dependencies
-              run: dotnet restore
+              run: dotnet restore -p:Configuration=Internal
 
             - name: Build
-              run: dotnet build --configuration Release --no-restore /p:Version=${{ steps.gitversion.outputs.assemblySemVer }}
+              run: dotnet build --configuration Internal --no-restore /p:Version=${{ steps.gitversion.outputs.assemblySemVer }}
 
             - name: Pack
-              run: dotnet pack --configuration Release --no-build --output nupkgs /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }}
+              run: dotnet pack --configuration Internal --no-build --output nupkgs /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }}
 
             - name: Push to NuGet
               run: dotnet nuget push ./nupkgs/*.nupkg --source "https://nuget.pkg.github.com/Twizzar/index.json" --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
