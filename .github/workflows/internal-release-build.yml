@@ -46,4 +46,4 @@ jobs:
               run: dotnet pack --configuration Internal --no-build --output nupkgs /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }}
 
             - name: Push to NuGet
-              run: dotnet nuget push ./nupkgs/*.nupkg --source "https://nuget.pkg.github.com/Twizzar/index.json" --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
+              run: dotnet nuget push ./**/nupkgs/*.nupkg --source "https://nuget.pkg.github.com/Twizzar/index.json" --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
