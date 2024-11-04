@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
+
 using Twizzar.Design.CoreInterfaces.Common.VisualStudio;
 using Twizzar.Design.Ui.Interfaces.Factories;
 

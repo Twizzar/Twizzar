@@ -25,7 +25,7 @@
 
     <!-- Project references -->
     <ItemGroup>
-      <ProjectReference Include="..\..\App\Twizzar.Analyzer2022.App\Twizzar.Analyzer2022.App.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\App\Twizzar.Analyzer2022.App\Twizzar.Analyzer2022.App.csproj" PrivateAssets="All" />
     </ItemGroup>
 
     <!-- Include the resulting dll in the analyzers/dotnet/cs nuget path -->

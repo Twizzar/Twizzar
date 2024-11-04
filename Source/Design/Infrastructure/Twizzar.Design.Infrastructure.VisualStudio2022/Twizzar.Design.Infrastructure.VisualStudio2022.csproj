@@ -7,18 +7,6 @@
         <NoWarn>MSB3884; CVSTBLD002</NoWarn>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-        <DefineConstants>VS22</DefineConstants>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <DefineConstants>VS22</DefineConstants>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Internal|AnyCPU'">
-        <DefineConstants>VS22</DefineConstants>
-    </PropertyGroup>
-
     <ItemGroup>
         <ProjectReference Include="..\..\Core\Twizzar.Design.CoreInterfaces\Twizzar.Design.CoreInterfaces.csproj" PrivateAssets="All" />
         <ProjectReference Include="..\..\Shared\Core\Twizzar.Design.Shared.CoreInterfaces\Twizzar.Design.Shared.CoreInterfaces.csproj" PrivateAssets="All" />
