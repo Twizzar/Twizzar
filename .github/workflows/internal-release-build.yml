@@ -6,7 +6,7 @@ on:
     workflow_dispatch:
 
 jobs:
-    build-and-test:
+    build-and-pack:
         runs-on: windows-2022
         defaults:
             run:
@@ -30,7 +30,7 @@ jobs:
             - name: Rename Namespace and Assebly to TwizzarInternal
               shell: pwsh
               run: |
-                  ./Source/BuildScripts/Ci/rename-namespace-for-internal.ps1
+                  ./BuildScripts/Ci/rename-namespace-for-internal.ps1
 
             - name: Determine Version
               id: gitversion

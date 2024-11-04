@@ -6,7 +6,7 @@ on:
     workflow_dispatch:
 
 jobs:
-    build-and-test:
+    build-test-and-pack:
         runs-on: windows-2022
         defaults:
             run:
