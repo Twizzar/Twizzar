@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Runtime\Core\Twizzar.Runtime.Core\Twizzar.Runtime.Core.csproj" />
+    <ProjectReference Include="..\..\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" />
+    <ProjectReference Include="..\..\Core\Twizzar.SharedKernel.Core\Twizzar.SharedKernel.Core.csproj" />
+    <ProjectReference Include="..\..\Factory\Twizzar.SharedKernel.Factories\Twizzar.SharedKernel.Factories.csproj" />
+    <ProjectReference Include="..\Twizzar.TestCommon\Twizzar.TestCommon.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="FixtureItem\Configuration\ConfigurationItemTests.twizzar.cs">
+      <DependentUpon>ConfigurationItemTests.cs</DependentUpon>
+    </Compile>
+    <Compile Update="FixtureItem\Configuration\Services\CtorSelectorTests.twizzar.cs">
+      <DependentUpon>CtorSelectorTests.cs</DependentUpon>
+    </Compile>
+    <Compile Update="FixtureItem\Configuration\Services\SystemDefaultServiceTests.twizzar.cs">
+      <DependentUpon>SystemDefaultServiceTests.cs</DependentUpon>
+    </Compile>
+    <Compile Update="FixtureItem\Description\Services\BaseTypeServiceTests.twizzar.cs">
+      <DependentUpon>BaseTypeServiceTests.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

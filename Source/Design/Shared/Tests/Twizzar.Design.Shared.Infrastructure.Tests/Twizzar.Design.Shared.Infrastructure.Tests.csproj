@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+      <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.0.1" />
+      <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.1" />
+      <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" PrivateAssets="All" />
+    <PackageReference Include="System.Collections.Immutable" Version="5.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" />
+    <ProjectReference Include="..\..\..\..\SharedKernel\Infrastructure\Twizzar.SharedKernel.NLog\Twizzar.SharedKernel.NLog.csproj" />
+    <ProjectReference Include="..\..\..\..\SharedKernel\Tests\Twizzar.TestCommon\Twizzar.TestCommon.csproj" />
+    <ProjectReference Include="..\..\Core\Twizzar.Design.Shared.CoreInterfaces\Twizzar.Design.Shared.CoreInterfaces.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Twizzar.Design.Shared.Infrastructure.VisualStudio2022\Twizzar.Design.Shared.Infrastructure.VisualStudio2022.csproj" />
+  </ItemGroup>
+</Project>

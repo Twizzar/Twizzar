@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <IncludeBuildOutput>false</IncludeBuildOutput>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <NoWarn>MSB3884;NU5128</NoWarn>
+        <Configurations>Debug;Release;Internal</Configurations>
+        <NuspecFile>$(MSBuildThisFileDirectory)$(MSBuildProjectName).nuspec</NuspecFile>
+        <Authors>vi:sit - Vetter IT solutions GmbH</Authors>
+        <Company>vi:sit - Vetter IT solutions GmbH</Company>
+    </PropertyGroup>
+
+    <!-- Twizzar.Analyzer Package Dependencies -->
+    <ItemGroup>
+        <PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.18.2" PrivateAssets="All" />
+
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.1" PrivateAssets="All" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.0.1" PrivateAssets="All" />
+
+        <PackageReference Include="Autofac" Version="5.0.0" PrivateAssets="All" />
+        <PackageReference Include="NLog" Version="4.6.8" PrivateAssets="All" />
+    </ItemGroup>
+
+    <!-- Project references -->
+    <ItemGroup>
+      <ProjectReference Include="..\..\App\Twizzar.Analyzer2022.App\Twizzar.Analyzer2022.App.csproj" PrivateAssets="All" />
+    </ItemGroup>
+
+    <!-- Include the resulting dll in the analyzers/dotnet/cs nuget path -->
+    <Target Name="GetDependencyTargetPaths" AfterTargets="AfterBuild">
+        <ItemGroup>
+            <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" IncludeRuntimeDependency="false" />
+        </ItemGroup>
+    </Target>
+
+    <Target Name="SetNuspecProperties" BeforeTargets="GenerateNuspec">
+        <PropertyGroup>
+            <NuspecProperties>$(NuspecProperties);id=$(AssemblyName)</NuspecProperties>
+            <NuspecProperties>$(NuspecProperties);config=$(Configuration)</NuspecProperties>
+            <NuspecProperties>$(NuspecProperties);version=$(PackageVersion)</NuspecProperties>
+            <NuspecProperties>$(NuspecProperties);authors=$(Authors)</NuspecProperties>
+            <NuspecProperties>$(NuspecProperties);OutputPath=$(OutputPath)</NuspecProperties>
+            <NuspecProperties>$(NuspecProperties);AssemblyName=$(AssemblyName)</NuspecProperties>
+        </PropertyGroup>
+    </Target>
+</Project>

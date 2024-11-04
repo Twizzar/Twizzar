@@ -1,0 +1,89 @@
+@startuml Design Boundend Context CQRS Components
+title Design Boundend Context CQRS Components
+hide empty members
+
+package Command {
+    interface ICommand<<ValueObject>>
+
+    interface IEvent<<IValueObject>> {
+    }
+
+    interface IFixtureItemEvent implements IEvent{
+        + FixtureItemId FixtureItemId
+    }
+
+    abstract class EventPublisher<<DomainService>> {
+        - IEventBus _eventBus
+        # Task PublishAsync(IEvent e)
+    }
+
+    class EventMessage{
+        Guid Id
+        DateTime TimeStamp
+        IFixtureItemEvent Event
+        Type EventType
+    }
+
+    EventMessage *-- IFixtureItemEvent
+
+    interface ICommandHanlder<TCommand: ICommand><<IDomainService>> {
+        + Task HandleAsync(TCommand command)
+    }
+    note bottom of ICommandHanlder: Registred with Dependency Injection
+
+    interface IEventListener<TEvent: IEvent><<IDomainService>>{
+        + bool IsListening
+        + Maybe<SynchronizationContext> SynchronizationContext
+        + void Handle(TEvent event)
+    }
+
+    interface IEventStoreToQueryCacheSynchronizer {
+        + void Synchronize(EventMessage event)
+        + void Clear()
+    }
+
+    interface IEventBus<<IDomainService>>{
+        + Task PublishAsync<TEvent>(TEvent event)
+    }
+
+    interface IEventStore<<IDomainService>>{
+        + IEventStream OpenSteam(string projectName)
+    }
+
+    interface IEventStream{
+        + Task Store(IFixtureItemEvent event)
+        + Task<Maybe<TEvent>> FindLast<TEvent>(FixturerItemId id)
+        + Task<IEnumerable<TEvent>> FindAll<TEvent>()
+        + Task<IEnumerable<TEvent>> FindAll<TEvent>(FixturerItemId id)
+        + Task<IEnumerable<IFixtureItemEvent>> FindAll(FixtureItemId id)
+        + Task<IEnumerable<IFixtureItemEvent>> FindAll()
+        + void Clear()
+    }
+    note bottom of IEventStream: Not implemented yet all methods are om the IEventStore without OpenStream
+
+    interface ICommandBus<<IDomainService>>{
+        + Task SendAsync<TCommand>(TCommand command)
+    }
+
+    interface IEventSourcingContainer{
+        + Maybe<ICommandHandler<TCommand>> GetCommandHandler<TCommand>()
+        + IEnumerable<IEventListener<TEvent>> GetEventListeners<TEvent>()
+        + Maybe<IEventStoreToQueryCacheSynchronizer> GetEventSynchronizer()
+    }
+}
+
+package Query{
+    interface IFixtureItemDefinitionNodeQuery<<Query>>{
+        + FixtureItemDefinitionNode GetFixtureItemDefinitionNode(FixtureItemId id)
+    }
+
+    interface IConfigItemQuery<<Query>>{
+        + IConfigItem GetConfigItem(FixtureItemId id, TypeDescription typeDescription)
+    }
+
+    interface IConfigItemCacheQuery<<Query>> implements IEventStoreToQueryCacheSynchronizer{
+        + IConfigItem GetCached(FixtureItemId id)
+    }
+}
+
+@enduml

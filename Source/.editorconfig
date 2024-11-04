@@ -1,0 +1,165 @@
+# Rules in this file were initially inferred by Visual Studio IntelliCode from the C:\Work\Intern\Twizzar\Source codebase based on best match to current usage at 16.03.2022
+# You can modify the rules from these initially generated values to suit your own policies
+# You can learn more about editorconfig here: https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference
+[*.cs]
+Twizzar_disable_caching = false
+
+# S3904: Assemblies should have version information
+dotnet_diagnostic.S3904.severity = none
+
+# S1172: Unused method parameters should be removed. Produces false positives. Probably a bug in sonarlint.
+dotnet_diagnostic.S1172.severity = none
+
+# S1128: Unused "using" should be removed. Buggy for Extention Methods.
+dotnet_diagnostic.S1128.severity = none
+
+# S107: Methods should not have too many parameters
+dotnet_diagnostic.S107.severity = none
+
+# SA1622: Generic type parameter documentation should have text
+dotnet_diagnostic.SA1622.severity = silent
+
+# SA1513: Closing brace should be followed by blank line
+dotnet_diagnostic.SA1513.severity = silent
+
+# SA1616: Element return value documentation should have text
+dotnet_diagnostic.SA1616.severity = silent
+
+# VSTHRD110: Observe the awaitable result of this method call by awaiting it, assigning to a variable, or passing it to another method
+dotnet_diagnostic.VSTHRD110.severity = silent
+
+# VSTHRD100: Avoid "async void" methods, because any exceptions not handled by the method will crash the process.
+dotnet_diagnostic.VSTHRD100.severity = silent
+
+# SA1118: The parameter spans multiple lines
+dotnet_diagnostic.SA1118.severity = silent
+csharp_using_directive_placement = outside_namespace:silent
+csharp_prefer_simple_using_statement = true:suggestion
+csharp_prefer_braces = true:silent
+csharp_style_namespace_declarations = block_scoped:silent
+csharp_style_prefer_method_group_conversion = true:silent
+csharp_style_prefer_top_level_statements = true:silent
+csharp_style_prefer_primary_constructors = true:suggestion
+csharp_style_expression_bodied_methods = false:silent
+csharp_style_expression_bodied_constructors = false:silent
+csharp_style_expression_bodied_operators = false:silent
+csharp_style_expression_bodied_properties = true:silent
+csharp_style_expression_bodied_indexers = true:silent
+csharp_style_expression_bodied_accessors = true:silent
+csharp_style_expression_bodied_lambdas = true:silent
+csharp_style_expression_bodied_local_functions = false:silent
+csharp_indent_labels = one_less_than_current
+dotnet_diagnostic.VSTHRD103.severity = none
+
+[**/Tests/**.cs]
+dotnet_diagnostic.VSTHRD200.severity = none
+
+# CS0252: Possible unintended reference comparison; left hand side needs cast
+dotnet_diagnostic.CS0252.severity = silent
+
+# IDE0058: Expression value is never used
+dotnet_diagnostic.IDE0058.severity = silent
+
+# S2699: Tests should include assertions
+dotnet_diagnostic.S2699.severity = none
+
+# S1125: Boolean literals should not be redundant
+dotnet_diagnostic.S1125.severity = silent
+
+# RS1024: Compare symbols correctly
+dotnet_diagnostic.RS1024.severity = silent
+
+# S1172: Unused method parameters should be removed
+dotnet_diagnostic.S1172.severity = silent
+
+# S1144: Unused private types or members should be removed
+dotnet_diagnostic.S1144.severity = silent
+
+# IDE0052: Remove unread private members
+dotnet_diagnostic.IDE0052.severity = silent
+
+# IDE1006: Naming Styles
+dotnet_diagnostic.IDE1006.severity = silent
+
+# IDE0044: Add readonly modifier
+dotnet_diagnostic.IDE0044.severity = silent
+
+# S2933: Fields that are only assigned in the constructor should be "readonly"
+dotnet_diagnostic.S2933.severity = silent
+
+# IDE0060: Remove unused parameter
+dotnet_diagnostic.IDE0060.severity = silent
+
+# IDE0079: Remove unnecessary suppression
+dotnet_diagnostic.IDE0079.severity = silent
+
+# S4487: Unread "private" fields should be removed
+dotnet_diagnostic.S4487.severity = silent
+
+# S2344: Enumeration type names should not have "Flags" or "Enum" suffixes
+dotnet_diagnostic.S2344.severity = silent
+
+# S3928: Parameter names used into ArgumentException constructors should match an existing one 
+dotnet_diagnostic.S3928.severity = silent
+
+# S2326: Unused type parameters should be removed
+dotnet_diagnostic.S2326.severity = silent
+
+[**.Designer.cs]
+# CS1591: Missing XML comment for publicly visible type or member
+dotnet_diagnostic.CS1591.severity = none
+
+[*.xaml]
+# MC3050: Cannot find the type 'ViColors'. Note that type names are case sensitive.
+dotnet_diagnostic.MC3050.severity = silent
+[*.{cs,vb}]
+#### Naming styles ####
+
+# Naming rules
+
+dotnet_naming_rule.interface_should_be_begins_with_i.severity = suggestion
+dotnet_naming_rule.interface_should_be_begins_with_i.symbols = interface
+dotnet_naming_rule.interface_should_be_begins_with_i.style = begins_with_i
+
+dotnet_naming_rule.types_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.types_should_be_pascal_case.symbols = types
+dotnet_naming_rule.types_should_be_pascal_case.style = pascal_case
+
+dotnet_naming_rule.non_field_members_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.non_field_members_should_be_pascal_case.symbols = non_field_members
+dotnet_naming_rule.non_field_members_should_be_pascal_case.style = pascal_case
+
+# Symbol specifications
+
+dotnet_naming_symbols.interface.applicable_kinds = interface
+dotnet_naming_symbols.interface.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+dotnet_naming_symbols.interface.required_modifiers = 
+
+dotnet_naming_symbols.types.applicable_kinds = class, struct, interface, enum
+dotnet_naming_symbols.types.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+dotnet_naming_symbols.types.required_modifiers = 
+
+dotnet_naming_symbols.non_field_members.applicable_kinds = property, event, method
+dotnet_naming_symbols.non_field_members.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+dotnet_naming_symbols.non_field_members.required_modifiers = 
+
+# Naming styles
+
+dotnet_naming_style.begins_with_i.required_prefix = I
+dotnet_naming_style.begins_with_i.required_suffix = 
+dotnet_naming_style.begins_with_i.word_separator = 
+dotnet_naming_style.begins_with_i.capitalization = pascal_case
+
+dotnet_naming_style.pascal_case.required_prefix = 
+dotnet_naming_style.pascal_case.required_suffix = 
+dotnet_naming_style.pascal_case.word_separator = 
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+
+dotnet_naming_style.pascal_case.required_prefix = 
+dotnet_naming_style.pascal_case.required_suffix = 
+dotnet_naming_style.pascal_case.word_separator = 
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+dotnet_style_operator_placement_when_wrapping = beginning_of_line
+tab_width = 4
+indent_size = 4
+end_of_line = crlf

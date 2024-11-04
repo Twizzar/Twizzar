@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Twizzar.SharedKernel.Infrastructure\Twizzar.SharedKernel.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

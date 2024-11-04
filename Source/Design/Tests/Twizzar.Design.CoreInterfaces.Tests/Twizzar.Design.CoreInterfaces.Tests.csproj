@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference
+            Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" />
+        <ProjectReference Include="..\..\..\SharedKernel\Tests\Twizzar.TestCommon\Twizzar.TestCommon.csproj" />
+        <ProjectReference Include="..\..\Core\Twizzar.Design.CoreInterfaces\Twizzar.Design.CoreInterfaces.csproj" />
+    </ItemGroup>
+
+</Project>

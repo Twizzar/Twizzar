@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!--  This is the file that defines the actual layout and type of the commands.
+        It is divided in different sections (e.g. command definition, command
+        placement, ...), with each defining a specific set of properties.
+        See the comment before each section for more details about how to
+        use it. -->
+
+  <!--  The VSCT compiler (the tool that translates this file into the binary
+        format that VisualStudio will consume) has the ability to run a preprocessor
+        on the vsct file; this preprocessor is (usually) the C++ preprocessor, so
+        it is possible to define includes and macros with the same syntax used
+        in C++ files. Using this ability of the compiler here, we include some files
+        defining some of the constants that we will use inside the file. -->
+
+  <!--This is the file that defines the IDs for all the commands exposed by VisualStudio. -->
+  <Extern href="stdidcmd.h" />
+
+  <!--This header contains the command ids for the menus provided by the shell. -->
+  <Extern href="vsshlids.h" />
+
+  <!--The Commands section is where commands, menus, and menu groups are defined.
+      This section uses a Guid to identify the package that provides the command defined inside it. -->
+  <Commands package="VsPackageGuid">
+    <!-- Inside this section we have different sub-sections: one for the menus, another
+    for the menu groups, one for the buttons (the actual commands), one for the combos
+    and the last one for the bitmaps used. Each element is identified by a command id that
+    is a unique pair of guid and numeric identifier; the guid part of the identifier is usually
+    called "command set" and is used to group different command inside a logically related
+    group; your package should define its own command set in order to avoid collisions
+    with command ids defined by other packages. -->
+
+    <!-- In this section you can define new menu groups. A menu group is a container for
+         other menus or buttons (commands); from a visual point of view you can see the
+         group as the part of a menu contained between two lines. The parent of a group
+         must be a menu. -->
+    <Groups>
+	  <Group guid="TwizzarGroupGuid" id="TwizzarGroupId" priority="0x0600">
+		<Parent guid="TwizzarMenuGuid" id="TwizzarMenuId" />
+	  </Group>
+      <Group guid="TwizzarCodeWindowContextMenuGroupGuid" id="TwizzarCodeWindowContextMenuGroupId" priority="0x0600">
+        <Parent guid="TwizzarMenuGuid" id="TwizzarMenuId" />
+      </Group>
+    </Groups>
+
+    <Menus>
+	    <Menu guid="TwizzarMenuGuid" id="TwizzarMenuId" priority="0x700" type="Menu">
+		    <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
+		    <Strings>
+			    <ButtonText>TWIZZAR</ButtonText>
+		    </Strings>
+	    </Menu>
+    </Menus>
+
+    <!--Buttons section. -->
+    <!--This section defines the elements the user can interact with, like a menu command or a button
+        or combo box in a toolbar. -->
+    <Buttons>
+      <!--To define a menu group you have to specify its ID, the parent menu and its display priority.
+          The command is visible and enabled by default. If you need to change the visibility, status, etc, you can use
+          the CommandFlag node.
+          You can add more than one CommandFlag node e.g.:
+              <CommandFlag>DefaultInvisible</CommandFlag>
+              <CommandFlag>DynamicVisibility</CommandFlag>
+          If you do not want an image next to your command, remove the Icon node /> -->
+      <Button guid="AboutWindowCommandGuid" id="AboutWindowCommandId" priority="0x0000" type="Button">
+	    <Parent guid="TwizzarGroupGuid" id="TwizzarGroupId" />
+        <Icon guid="ViImageGuid" id="ViImageId" />
+	    <Strings>
+	      <CommandName>AboutWindowCommand</CommandName>
+          <ButtonText>About</ButtonText>
+	    </Strings>
+      </Button>
+
+      <Button guid="OpenOrCloseShortcutCommandGuid" id="OpenOrCloseShortcutCommandId" priority="0x0100" type="Button">
+        <Parent guid="TwizzarGroupGuid" id="TwizzarGroupId" />
+        <CommandFlag>CommandWellOnly</CommandFlag>
+        <!-- 
+        Apply this flag if the command does not appear on the top-level menu and you want to make it available for additional s
+        hell customization, for example, for binding it to a keyboard shortcut. 
+        After the VSPackage is installed, you can customize these commands by opening the Options dialog box and then editing 
+        the command placement under the Keyboard Environment category. 
+        This flag does not affect placement on shortcut menus, toolbars, menu controllers, or submenus.
+        -->
+        <Strings>
+          <CommandName>OpenOrCloseShortcutCommand</CommandName>
+          <ButtonText>OpenOrClose</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="TwizzarCodeWindowContextMenuGroupGuid" id="TwizzarCreateUnitTestCommandId" priority="0x0100" type="Button">
+        <Parent guid="TwizzarCodeWindowContextMenuGroupGuid" id="TwizzarCodeWindowContextMenuGroupId" />
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <Icon guid="ViImageGuid" id="ViImageId" />
+        <Strings>
+          <ButtonText>Create UnitTest</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="TwizzarCodeWindowContextMenuGroupGuid" id="TwizzarUnitTestNavigationCommandId" priority="0x0100" type="Button">
+        <Parent guid="TwizzarCodeWindowContextMenuGroupGuid" id="TwizzarCodeWindowContextMenuGroupId" />
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <Icon guid="ViImageGuid" id="ViImageId" />
+        <Strings>
+          <ButtonText>UnitTest &lt;-&gt; Code Navigation</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+
+    <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
+    <Bitmaps>
+      <!--  The bitmap id is defined in a way that is a little bit different from the others:
+            the declaration starts with a guid for the bitmap strip, then there is the resource id of the
+            bitmap strip containing the bitmaps and then there are the numeric ids of the elements used
+            inside a button definition. An important aspect of this declaration is that the element id
+            must be the actual index (1-based) of the bitmap inside the bitmap strip. -->
+      <Bitmap guid="ViImageGuid" href="Resources\ViImage.png" usedList="ViImageId" />
+    </Bitmaps>
+  </Commands>
+
+  <CommandPlacements>
+	  <CommandPlacement guid="TwizzarCodeWindowContextMenuGroupGuid" id="TwizzarCodeWindowContextMenuGroupId" priority="0xF00">
+		  <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
+	  </CommandPlacement>
+  </CommandPlacements>
+
+  <KeyBindings>
+    <KeyBinding guid="OpenOrCloseShortcutCommandGuid" id="OpenOrCloseShortcutCommandId" editor="guidVSStd97" mod1="Control+Alt" key1="N" mod2="Control+Alt" key2="V" />
+    <KeyBinding guid="AboutWindowCommandGuid" id="AboutWindowCommandId" editor="guidVSStd97" mod1="Control+Alt" key1="N" mod2="Control+Alt" key2="A" />
+    <KeyBinding guid="TwizzarCodeWindowContextMenuGroupGuid" id="TwizzarCreateUnitTestCommandId" editor="guidVSStd97" mod1="Control+Alt" key1="N" mod2="Control+Alt" key2="N" />
+    <KeyBinding guid="TwizzarCodeWindowContextMenuGroupGuid" id="TwizzarUnitTestNavigationCommandId" editor="guidVSStd97" mod1="Control+Alt" key1="N" mod2="Control+Alt" key2="G" />
+  </KeyBindings>
+
+  <Symbols>
+    <!-- This is the package guid. -->
+    <GuidSymbol name="VsPackageGuid" value="{eaa3803d-1f6b-456d-99c0-df8b2a931a1e}" />
+
+    <!-- This is the menu guid. -->
+    <GuidSymbol name="TwizzarMenuGuid" value="{275c2730-58f3-4c7d-a8f1-a9c104807a1b}">
+      <IDSymbol name="TwizzarMenuId" value="0x700" />
+    </GuidSymbol>
+
+    <!-- This is the group guid. -->
+    <GuidSymbol name="TwizzarGroupGuid" value="{fa78825c-78c4-46d3-8b7e-e059d904c1d1}">
+      <IDSymbol name="TwizzarGroupId" value="0x0600" />
+      <IDSymbol name="AboutWindowCommandId" value="0x0600" />
+      <IDSymbol name="OpenOrCloseShortcutCommandId" value="0x0600" />
+    </GuidSymbol>
+
+    <!-- This is the guid used to group the menu commands together -->
+    <GuidSymbol name="AboutWindowCommandGuid" value="{aa52ddc3-4927-4f8d-b8d8-2909474f65bc}">
+      <IDSymbol name="AboutWindowCommandId" value="0x0100" />
+    </GuidSymbol>
+
+    <GuidSymbol value="{24a33dbb-e573-47fe-8108-8752fc738cf4}" name="OpenOrCloseShortcutCommandGuid">
+      <IDSymbol name="OpenOrCloseShortcutCommandId" value="0x0100" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{b3bec4bd-2b6c-4151-a1e7-0ea5a35a457a}" name="ViImageGuid">
+      <IDSymbol name="ViImageId" value="1" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{436f4875-b65a-41e7-8dd4-71e95bfd4038}" name="TwizzarCodeWindowContextMenuGroupGuid">
+      <IDSymbol value="4128" name="TwizzarCodeWindowContextMenuGroupId" />
+      <IDSymbol value="256" name="TwizzarCreateUnitTestCommandId" />
+      <IDSymbol value="0x0101" name="TwizzarUnitTestNavigationCommandId" />
+    </GuidSymbol>
+  
+  </Symbols>
+
+</CommandTable>

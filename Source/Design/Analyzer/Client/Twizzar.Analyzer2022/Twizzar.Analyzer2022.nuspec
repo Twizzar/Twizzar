@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>$id$</id>
+        <version>$version$</version>
+        <authors>$authors$</authors>
+        <description>Generates code at compile time to provide paths to configure members.</description>
+
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <repository type="git" url="https://github.com/Twizzar/Twizzar" branch="main" />
+        <license type="file">EULA_Twizzar-Library.md</license>
+        <copyright>© vi:sit - Vetter IT solutions Schweiz GmbH. All rights reserved.</copyright>
+        <projectUrl>https://www.twizzar.com</projectUrl>
+        <icon>TwizzarLogo128.png</icon>
+        <readme>docs\README.md</readme>
+
+        <developmentDependency>true</developmentDependency>
+        <dependencies>
+            <group targetFramework=".NETStandard2.0">
+                <dependency id="NETStandard.Library" version="2.0" exclude="Build,Analyzers" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="$OutputPath$$AssemblyName$.dll" target="analyzers\dotnet\cs" />
+        <file src="..\..\..\..\EULA_Twizzar-Library.md" target=""/>
+        <file src="..\..\..\..\TwizzarLogo128.png" target=""/>
+        <file src="README.md" target="docs\"/>
+        <file src="Twizzar.Analyzer2022.props" target="build" />
+    </files>
+</package>

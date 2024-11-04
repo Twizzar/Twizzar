@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net48</TargetFramework>
+        <OutputType>Library</OutputType>
+        <Configurations>Debug;Release;Internal</Configurations>
+        <NoWarn>MSB3884; CVSTBLD002</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Core\Twizzar.Design.CoreInterfaces\Twizzar.Design.CoreInterfaces.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\UI\Twizzar.Design.Ui.Interfaces\Twizzar.Design.Ui.Interfaces.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Twizzar.Design.Ui" />
+        <InternalsVisibleTo Include="Twizzar.Design.Test" />
+        <InternalsVisibleTo Include="Twizzar.VsAddin2019" />
+        <InternalsVisibleTo Include="Twizzar.VsAddin2022" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.VisualStudio.Shell.Framework" Version="17.0.*" />
+        <PackageReference Include="Microsoft.VisualStudio.Shell.15.0" Version="17.0.*" />
+        <PackageReference Include="Microsoft.VisualStudio.Editor" Version="17.0.*" />
+        <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
+        <PackageReference Include="Microsoft.VisualStudio.Threading" Version="17.0.*" />
+        <PackageReference Include="Nerdbank.Streams" Version="2.7.74" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Page Include="View\About\AboutWindow.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </Page>
+    </ItemGroup>
+</Project>

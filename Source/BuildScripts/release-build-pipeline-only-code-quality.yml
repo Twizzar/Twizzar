@@ -1,0 +1,34 @@
+trigger:
+  branches:
+    exclude:
+      - '*'
+jobs:
+- job: Release_Pipeline_only_code_quality
+  displayName: Release Pipeline only code quality
+  pool:
+    vmImage: 'windows-2022'
+
+  variables:
+    solutionFolder: 'Source'
+    solution: 'Source/Twizzar.sln'
+    buildPlatform: 'Any CPU'
+    buildConfiguration: 'Release'
+    ignoredWarnings: 'CS1702|CS1701|\bS[0-9]{3,}|GitVersionTask'
+    NUGET_PACKAGES: $(Pipeline.Workspace)/.nuget/packages
+    DeployExtensionVSIX19: 'false'
+    DeployExtensionVSIX22: 'false'
+
+  steps:
+  - checkout: self
+
+  - task: NuGetToolInstaller@1
+    inputs:
+      versionSpec: '6.1.0'
+
+  - template: Ci/nuget-restore.yml
+  - template: Ci/sonarqube.yml
+    parameters:
+      buildSteps:
+        # because this is executed in Ci/sonarqube.yml the wokring directory is Ci
+        - template: build.yml 
+        - template: test.yml

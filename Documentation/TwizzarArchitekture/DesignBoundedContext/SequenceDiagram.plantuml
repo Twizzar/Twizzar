@@ -1,0 +1,117 @@
+@startuml CQRSL Initialize
+title CQRSL Initialize
+
+autoactivate on
+
+actor UI
+participant CommandBus
+participant InitializeEventStoreCommandHandler
+participant UserConfiguarationQuery
+participant YamlParser
+participant EventBus
+participant EventStore
+participant ConfigItemCacheQuery
+
+UI -> CommandBus: SendAsync(new InitializeEventStoreCommand())
+    CommandBus -> InitializeEventStoreCommandHandler: HanldeAsync(command)
+        InitializeEventStoreCommandHandler -> UserConfiguarationQuery: GetConfigs(projectName)
+            UserConfiguarationQuery -> YamlParser: ReadAll(filePath)
+                return usersConfigs
+            return userConfigs
+        loop for all usersConfigs
+            InitializeEventStoreCommandHandler -> EventBus: PublishAsync(new FixtureItemCreatedEvent(fixtureItemId, configItemKind))
+                EventBus -> EventStore: Store(event)
+                    return
+                EventBus -> ConfigItemCacheQuery: Synchronize(event)
+                    return
+                return
+            loop for all Properties in configItem
+                InitializeEventStoreCommandHandler -> EventBus: PublishAsync(new FixtureItemMemberChangedEvent(fixtureItemId, memnberConfig))
+                    EventBus -> EventStore: Store(event)
+                        return
+                    EventBus -> ConfigItemCacheQuery: Synchronize(event)
+                        return
+                    return
+            end
+        end
+        return
+    return
+@enduml
+
+@startuml CQRSL Change Property
+title CQRSL Change Property
+
+autoactivate on
+
+actor UI
+participant CommandBus
+participant FixtureItemCommandHandler
+participant ConfigurationItemFactory
+participant FixtureItemDefinitionQuery
+participant TypeDescriptionQuery
+participant FixtureItemDefinitionNode
+participant SystemDefaultService
+participant FixtureItemDefinitionNodeFactory
+participant FixtureItemDefinitionNode
+participant EventBus
+participant EventStore
+participant EventListener
+participant ConfigItemCacheQuery
+
+UI -> CommandBus: SendAsync(new ChangeMemberConfigurationCommand(fixtuerItemId, memberConfiguration))
+    CommandBus -> FixtureItemCommandHandler: HandleAsync(command)
+        FixtureItemCommandHandler -> FixtureItemDefinitionQuery: GetDefinitionNode(fixtuerItemId)
+            FixtureItemDefinitionQuery -> TypeDescriptionQuery: GetTypeDescription(typename)
+                return typeDescription
+            FixtureItemDefinitionQuery -> FixtureItemDefinitionNode: new(fixtureItemId, typeDescription)
+                FixtureItemDefinitionNode -> SystemDefaultService: GetDefaultConfigurationItem(typeDescription, projectName)
+                    return defaultConfig
+                return definitionNode
+            return definitionNode
+        FixtureItemCommandHandler -> EventStore: FindAll(fixtureItemId)
+            return events
+        FixtureItemCommandHandler -> FixtureItemDefinitionNode: Replay(events)
+            return
+        FixtureItemCommandHandler -> FixtureItemDefinitionNode: ChangeMemberConfiguration(command.MemberConfguration)
+            FixtureItemDefinitionNode -> EventBus: PublishAsync(new FixtureItemMemberChangedEvent(fixtureItemId, memberConfiguration))
+                EventBus -> EventStore: Store(event)
+                    return
+                EventBus -> ConfigItemCacheQuery : Synchronize(event)
+                    return
+                loop for all listeners
+                    EventBus -> EventListener: listener.HandleAsync(event)
+                        return
+                end
+                return
+            return
+        return
+    return
+@enduml
+
+@startuml CQRSL Query a FixtureItem
+title CQRSL Query a FixtureItem
+
+autoactivate on
+
+actor UI
+participant FixtureItemReadModelQuery
+participant TypeDescriptionQuery
+participant ConfigItemQuery
+participant SystemDefaultService
+participant ConfigItemCacheQuery
+
+UI -> FixtureItemReadModelQuery: GetFixtureItem(fixtureItemId)
+    FixtureItemReadModelQuery -> TypeDescriptionQuery: GetTypeDescription(typename)
+        return typeDescription
+    FixtureItemReadModelQuery -> ConfigItemQuery: GetConfigItem(fixtureItemId, typeDescription)
+        ConfigItemQuery -> SystemDefaultService: GetDefaultConfigurationItem(typeDescription, projectName)
+            return defaultConfig
+        ConfigItemQuery -> ConfigItemCacheQuery: GetCached(fixtureItemId)
+            return userConfig
+        ConfigItemQuery -> ConfigItemQuery: Merge defaultConfig with userConfig
+            return configItem
+        return configItem
+    FixtureItemReadModelQuery -> FixtureItemReadModelQuery: CreateModel(id, description, config)
+        return readModel
+    return readModel
+@enduml

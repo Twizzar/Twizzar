@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Configurations>Debug;Release;Internal</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+      <InternalsVisibleTo Include="Twizzar.VsAddin2019" />
+      <InternalsVisibleTo Include="Twizzar.VsAddin2022" />
+      <InternalsVisibleTo Include="Twizzar.Design.Test" />
+      <InternalsVisibleTo Include="Twizzar.Design.Ui" />
+      <InternalsVisibleTo Include="Twizzar.Design.Ui.Tests" />
+      <InternalsVisibleTo Include="Twizzar.Design.Ui.DemoApplication" />
+      <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2019" />
+      <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2022" />
+      <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2019.Tests" />
+      <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2022.Tests" />
+      <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio" />
+      <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio.Ui" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Twizzar.Design.CoreInterfaces\Twizzar.Design.CoreInterfaces.csproj" />
+    <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" />
+    <ProjectReference Include="..\..\Shared\Core\Twizzar.Design.Shared.CoreInterfaces\Twizzar.Design.Shared.CoreInterfaces.csproj" />
+  </ItemGroup>
+
+</Project>

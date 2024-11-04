@@ -1,0 +1,8 @@
+@startuml
+class FixtureItemCreatedEvent implements IEvent {
+    + FixtureItemCreatedEvent(fixtureItemId:FixtureItemId, kind:ConfigurationKind)
+}
+
+FixtureItemCreatedEvent --> "FixtureItemId" FixtureItemId
+FixtureItemCreatedEvent --> "Kind" ConfigurationKind
+@enduml

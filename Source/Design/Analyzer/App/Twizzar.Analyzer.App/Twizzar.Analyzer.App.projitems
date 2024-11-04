@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>468a4e7a-1ea6-4c7c-bb0f-d5b120be30f4</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Twizzar.Analyzer.App</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CompositionRoot\Factory\RoslynDescriptionFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CompositionRoot\IocOrchestrator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\ItemConfigPathDiagnostics.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IBuilderExtensionMethodSourceTextGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IIocOrchestrator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPathSourceTextGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPathSourceTextMemberGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISourceCodeCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISymbolService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ItemConfigCodeFixProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OperationCanceledFailure.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SourceTextGenerators\BuilderExtensionMethodSourceTextGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SourceTextGenerators\MemberVerificationInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SourceTextGenerators\PathGenerationFailure.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SourceTextGenerators\PathRootNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SourceTextGenerators\PathSourceTextGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SourceTextGenerators\PathSourceTextMemberGenerator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SourceTextGenerators\MemberBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SourceTextGenerators\RoslynHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SourceTextGenerators\SourceCodeCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SourceTextGenerators\SymbolService.cs" />
+  </ItemGroup>
+</Project>

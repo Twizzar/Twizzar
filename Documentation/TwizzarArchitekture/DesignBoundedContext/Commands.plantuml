@@ -1,0 +1,22 @@
+@startuml Design Boundend Context Commands
+hide empty members
+
+title Design Boundend Context Commands
+
+package Commands{
+    class ChangeMemberConfigurationCommand implements ICommand{
+        + FixtureItemId FixtureItemId
+        + IMemberConfiguration MemberConfiguration
+    }
+
+    class CreateFixtureItemCommand implements ICommand{
+        + FixtureItemId Id
+        + ConfigurationKind Kind
+    }
+    
+    class InitializeEventStoreCommand implements ICommand{
+        + string ProjectName
+    }
+}
+
+@enduml

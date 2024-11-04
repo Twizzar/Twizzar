@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">    
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Autofac" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="5.0.0" PrivateAssets="All" />
+    </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" />
+    <ProjectReference Include="..\..\Client\Twizzar.Api\Twizzar.Api.csproj" />
+    <ProjectReference Include="..\..\Core\Twizzar.Runtime.CoreInterfaces\Twizzar.Runtime.CoreInterfaces.csproj" />
+  </ItemGroup>
+
+</Project>

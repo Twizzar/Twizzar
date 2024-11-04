@@ -1,0 +1,31 @@
+# the begin and end sonarqube commands
+# this template takes a buildSteps list to provide the pipeline steps for building the project. 
+
+parameters:
+  buildSteps: []
+  useSonarQube: '$True'
+
+steps:
+  - task: SonarQubePrepare@5
+    displayName: Prepare analysis on SonarCloud
+    condition: ${{ parameters.useSonarQube }}
+    inputs:
+      SonarQube: 'SonarCloud'
+      organization: vi-sit
+      projectKey: viTest
+      extraProperties: |
+        sonar.exclusions = **/Tests/**
+        sonar.tests.inclusions = **/Tests/**
+
+  - ${{ each stage in parameters.buildSteps }}:
+    - ${{ stage }}
+
+  - task: SonarQubeAnalyze@5
+    displayName: Run Code Analysis
+    condition: ${{ parameters.useSonarQube }}
+    inputs:
+      jdkversion: 'JAVA_HOME_17_X64'
+
+  - task: SonarQubePublish@5
+    displayName: Publish Quality Gate Result
+    condition: ${{ parameters.useSonarQube }}

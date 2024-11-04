@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <IsPackable>false</IsPackable>
+        <EnableNETAnalyzers>false</EnableNETAnalyzers>
+        <AnalysisLevel>None</AnalysisLevel>
+        <SonarQubeTestProject>True</SonarQubeTestProject>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="NLog" Version="4.6.8" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Infrastructure\Twizzar.SharedKernel.NLog\Twizzar.SharedKernel.NLog.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="NLog-invalid.config">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="NLog.config">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+</Project>

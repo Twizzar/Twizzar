@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" />
+    <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.Core\Twizzar.SharedKernel.Core.csproj" />
+    <ProjectReference Include="..\..\..\SharedKernel\Factory\Twizzar.SharedKernel.Factories\Twizzar.SharedKernel.Factories.csproj" />
+    <ProjectReference Include="..\..\..\SharedKernel\Tests\Twizzar.TestCommon\Twizzar.TestCommon.csproj" />
+    <ProjectReference Include="..\..\Client\Twizzar.Api\Twizzar.Api.csproj" />
+    <ProjectReference Include="..\..\Core\Twizzar.Runtime.CoreInterfaces\Twizzar.Runtime.CoreInterfaces.csproj" />
+    <ProjectReference Include="..\..\Core\Twizzar.Runtime.Core\Twizzar.Runtime.Core.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Twizzar.Runtime.Infrastructure\Twizzar.Runtime.Infrastructure.csproj" />
+
+    <!-- Needs to be reference because of a bug in the twizzar analyzer. -->
+    <PackageReference Include="Autofac" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="DomainService\MoqCreatorTests.twizzar.cs">
+      <DependentUpon>MoqCreatorTests.cs</DependentUpon>
+    </Compile>
+    <Compile Update="DomainService\UserConfigurationQueryTests.twizzar.cs">
+      <DependentUpon>UserConfigurationQueryTests.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

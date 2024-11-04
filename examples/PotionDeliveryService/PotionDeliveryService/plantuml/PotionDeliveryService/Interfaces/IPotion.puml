@@ -1,9 +1,0 @@
-@startuml
-interface IPotion {
-}
-IIngredient <|-- IPotion
-IPotion --> "Ingredient1" IIngredient
-IPotion --> "Ingredient2" IIngredient
-IPotion --> "Effect" IEffect
-IPotion --> "Color" PotionColor
-@enduml

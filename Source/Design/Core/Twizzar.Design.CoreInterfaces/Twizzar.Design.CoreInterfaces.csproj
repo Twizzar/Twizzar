@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <Configurations>Debug;Release;Internal</Configurations>
+        <RootNamespace>Twizzar.Design.CoreInterfaces</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\Shared\Core\Twizzar.Design.Shared.CoreInterfaces\Twizzar.Design.Shared.CoreInterfaces.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Twizzar.VsAddin2019" />
+        <InternalsVisibleTo Include="Twizzar.VsAddin2022" />
+        <InternalsVisibleTo Include="Twizzar.Design.Core" />
+        <InternalsVisibleTo Include="Twizzar.Design.Infrastructure" />
+        <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2019" />
+        <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2022" />
+        <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio.Ui" />
+        <InternalsVisibleTo Include="Twizzar.Design.Integration.Test" />
+        <InternalsVisibleTo Include="Twizzar.Design.Test" />
+        <InternalsVisibleTo Include="Twizzar.Design.TestCommon" />
+        <InternalsVisibleTo Include="Twizzar.Design.Ui" />
+        <InternalsVisibleTo Include="Twizzar.Design.Ui.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Design.Ui.Interfaces" />
+        <InternalsVisibleTo Include="Twizzar.Design.Ui.DemoApplication" />
+        <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2019.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2022.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Design.Core.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Design.CoreInterfaces.Tests" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="System.Collections.Immutable" Version="5.0.0" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="Resources\MessagesDesign.Designer.cs">
+            <DependentUpon>MessagesDesign.resx</DependentUpon>
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+        </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Update="Resources\MessagesDesign.resx">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <SubType>Designer</SubType>
+            <LastGenOutput>MessagesDesign.Designer.cs</LastGenOutput>
+            <Generator>PublicResXFileCodeGenerator</Generator>
+        </EmbeddedResource>
+    </ItemGroup>
+</Project>

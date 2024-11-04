@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>4bc18002-18fc-4ad7-bfe0-78e8a4b58919</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Twizzar.Design.Infrastructure.VisualStudio.Tests</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Builder\AdornmentInformationBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builder\MappingConfigBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builder\RoslynWorkspaceBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builder\RoslynWorkspaceWithExampleCodeBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builder\SnapshotHistoryBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builder\TextBufferBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builder\TextSnapshotBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builder\TextVersionBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Builder\NamedTypeSymbolBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Util\ViNotificationTargetTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configs\EmptyBuilders.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dummies\RoslynDescriptionFactoryDummy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExampleCode\ClassA.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExampleCode\ClassB.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExampleCode\ClassC.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FixtureItem\Adornment\AdornmentSessionTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FixtureItem\Adornment\DocumentAdornmentControllerTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FixtureItem\Adornment\IntraTextAdornment\ViDocumentTaggerTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FixtureItem\Adornment\IntraTextAdornment\VsTextViewTaggerTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FixtureItem\Adornment\ViAdornmentCacheCreatorTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FixtureItem\Adornment\ViAdornmentTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GlobalTestSetup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mocks\AsyncTaskRunnerMock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\CompilationTypeCacheTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\CompilationTypeQueryTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\ConfigFinder\RoslynConfigFinderTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\ConfigWriter\CtorUpdaterTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\ConfigWriter\RoslynConfigWriterTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\Description\RoslynFieldDescriptionTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\Description\RoslynTypeDescriptionTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\DocumentReader\ItemBuilderFinderTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\Models\RoslynProjectTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\RoslynAssignableTypesQueryPerformanceTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\RoslynAssignableTypesQueryTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\RoslynConfigEventWriterTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\RoslynConfigReaderTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\RoslynConfigurationItemReaderTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\RoslynContextQueryTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\RoslynDescriptionQueryTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\RoslynDocumentReaderTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\RoslynSolutionEventsTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\RoslynSolutionExtensionsTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\RoslynSymbolExtensionsTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\ViSymbolFinderTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ShortcutServiceTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\VersionCheckerTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roslyn\RoslynBuildInvocationQueryTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\BaseConfig\BaseConfigParserTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\BaseConfig\BaseConfigQueryTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Config\ConfigQueryTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Mapping\MappingReplacementServiceTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Mapping\WildcardPatternMatcherTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Services\NavigationServiceTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Services\DocumentContentCreationServiceTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Services\DocumentQueryTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Services\MappingServiceTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Services\ProjectQueryTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Services\TemplateServiceTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Templating\Node\ActNodeTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Templating\Node\ArgumentArrangeNodeTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Templating\Node\ArgumentUsingsNodeTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Templating\Node\ArrangeNodeTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Templating\Node\MethodSignatureNodeTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Templating\Node\SnippetNodeTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Templating\Node\WarningNodeTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Templating\SnippetNodeFactoryTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Templating\TemplateFileTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Templating\TemplateFileQueryTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Templating\TemplateCodeProviderTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Templating\TemplateVisitorTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Services\LocationServiceTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestCreation\Templating\VariableReplacerTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TzSymbolEqualityComparerTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)ExampleCode\Dependencies.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Roslyn\RoslynDocumentReaderExampleCode.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

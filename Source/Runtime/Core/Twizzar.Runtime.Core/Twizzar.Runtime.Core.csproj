@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Configurations>Debug;Release;Internal</Configurations>
+  </PropertyGroup>
+
+    <ItemGroup>
+    <ProjectReference Include="..\Twizzar.Runtime.CoreInterfaces\Twizzar.Runtime.CoreInterfaces.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.Core\Twizzar.SharedKernel.Core.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" PrivateAssets="All" />
+    <PackageReference Include="System.Collections.Immutable" Version="5.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Twizzar.Api" />
+        <InternalsVisibleTo Include="Twizzar.Runtime.Core.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Runtime.Test" />
+        <InternalsVisibleTo Include="Twizzar.Runtime.Infrastructure.Tests" />
+    </ItemGroup>
+
+</Project>

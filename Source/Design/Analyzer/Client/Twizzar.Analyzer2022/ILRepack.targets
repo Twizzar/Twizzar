@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Target Name="ILRepacker" AfterTargets="Build">
+        <ItemGroup>
+            <!--Do not merge Microsoft.CodeAnalysis dlls here! This will breake the Source Generator.-->
+
+            <InputAssemblies Include="$(TargetPath)" />
+
+            <InputAssemblies Include="$(OutputPath)ViCommon*.dll" />
+            <InputAssemblies Include="$(OutputPath)Twizzar.SharedKernel*.dll" />
+            <InputAssemblies Include="$(OutputPath)Twizzar.Design*.dll" />
+            <InputAssemblies Include="$(OutputPath)Twizzar.Analyzer2022.App.dll" />
+
+            <InputAssemblies Include="$(OutputPath)System.Composition.*.dll" />
+            <InputAssemblies Include="$(OutputPath)NLog.dll" />
+            <InputAssemblies Include="$(OutputPath)Autofac.dll" />
+            <InputAssemblies Include="$(OutputPath)Microsoft.Bcl.*.dll" />
+            <InputAssemblies Include="$(OutputPath)Microsoft.VisualStudio.*.dll" />
+            <InputAssemblies Include="$(OutputPath)Microsoft.ApplicationInsights*.dll" />
+        </ItemGroup>
+
+        <ItemGroup>
+            <DoNotInternalizeAssemblies Include="Twizzar.Analyzer" />
+        </ItemGroup>
+
+        <ILRepack
+            TargetKind="Dll"
+            Verbose="false"
+            Parallel="true"
+            Internalize="true"
+            OutputFile="$(OutputPath)$(AssemblyName).dll"
+            InternalizeExclude="@(DoNotInternalizeAssemblies)"
+            InputAssemblies="@(InputAssemblies)"
+            Wildcards="true"
+            RenameInternalized="true"
+            LibraryPath="$(OutputPath)" />
+    </Target>
+</Project>

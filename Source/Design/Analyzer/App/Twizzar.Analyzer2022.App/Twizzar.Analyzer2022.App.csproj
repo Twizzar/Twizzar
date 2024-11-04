@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+
+    <!-- Source Generator Package Dependencies -->
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" PrivateAssets="All" GeneratePathProperty="true" ExcludeAssets="runtime" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" PrivateAssets="All" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+    </ItemGroup>
+
+    <!-- Twizzar.Analyzer Package Dependencies -->
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.1" PrivateAssets="All" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.0.1" PrivateAssets="All" />
+
+        <PackageReference Include="Autofac" Version="5.0.0" PrivateAssets="All" />
+        <PackageReference Include="NLog" Version="4.6.8" PrivateAssets="All" />
+    </ItemGroup>
+
+    <!-- Twizzar.Analyzer Dependencies -->
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\..\..\SharedKernel\Core\Twizzar.SharedKernel.Core\Twizzar.SharedKernel.Core.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\..\..\SharedKernel\Factory\Twizzar.SharedKernel.Factories\Twizzar.SharedKernel.Factories.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\..\..\SharedKernel\Infrastructure\Twizzar.SharedKernel.Infrastructure\Twizzar.SharedKernel.Infrastructure.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\..\Shared\Core\Twizzar.Design.Shared.CoreInterfaces\Twizzar.Design.Shared.CoreInterfaces.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\..\Shared\Infrastructure\Twizzar.Design.Shared.Infrastructure.VisualStudio2022\Twizzar.Design.Shared.Infrastructure.VisualStudio2022.csproj" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Twizzar.Analyzer2022.App.Tests" />
+    </ItemGroup>
+
+    <Import Project="..\Twizzar.Analyzer.App\Twizzar.Analyzer.App.projitems" Label="Shared" />
+</Project>

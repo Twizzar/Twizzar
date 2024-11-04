@@ -1,0 +1,83 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:nodes="clr-namespace:Twizzar.Design.Ui.Interfaces.ViewModels.FixtureItem.Nodes;assembly=Twizzar.Design.Ui.Interfaces"
+    xmlns:valueObjects="clr-namespace:Twizzar.Design.Ui.Interfaces.ValueObjects;assembly=Twizzar.Design.Ui.Interfaces"
+    xmlns:view="clr-namespace:Twizzar.Design.Ui.View"
+    xmlns:vs="clr-namespace:Twizzar.Design.Infrastructure.VisualStudio.Ui.View;assembly=Twizzar.Design.Infrastructure.VisualStudio.Ui">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Brushes.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <HierarchicalDataTemplate
+        x:Key="HeaderDataTemplate"
+        DataType="nodes:IFixtureItemNodeViewModel"
+        ItemsSource="{Binding Children}">
+        <Grid HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <view:FixtureMemberImage
+                Grid.Column="0"
+                DataContext="{Binding Path=.}"
+                MemberKind="{Binding FixtureItemInformation.Kind}"
+                MemberModifier="{Binding FixtureItemInformation.Modifier}" />
+            <TextBlock
+                Grid.Column="1"
+                Margin="3,0,0,0"
+                HorizontalAlignment="Stretch"
+                Background="Transparent"
+                Foreground="{DynamicResource {x:Static vs:ViColors.TextBrush}}"
+                Text="{Binding FixtureItemInformation.DisplayName}" />
+        </Grid>
+    </HierarchicalDataTemplate>
+
+    <HierarchicalDataTemplate
+        x:Key="ValueDataTemplate"
+        DataType="nodes:IFixtureItemNodeViewModel"
+        ItemsSource="{Binding Children}">
+        <view:FixtureInputControl HorizontalAlignment="Stretch" />
+    </HierarchicalDataTemplate>
+
+    <HierarchicalDataTemplate
+        x:Key="TypeDataTemplate"
+        DataType="nodes:IFixtureItemNodeViewModel"
+        ItemsSource="{Binding Children}">
+        <TextBlock
+            VerticalAlignment="Center"
+            Foreground="{DynamicResource {x:Static vs:ViColors.InactiveTextBrush}}"
+            Text="{Binding FixtureItemInformation.FriendlyTypeName}"
+            ToolTip="{Binding FixtureItemInformation.FriendlyTypeFullName}" />
+    </HierarchicalDataTemplate>
+
+    <HierarchicalDataTemplate
+        x:Key="SplitterDataTemplate"
+        DataType="nodes:IFixtureItemNodeViewModel"
+        ItemsSource="{Binding Children}">
+        <TextBlock
+            Margin="3,0,4,0"
+            VerticalAlignment="Center"
+            Foreground="{DynamicResource {x:Static vs:ViColors.TextBrush}}"
+            Text=":" />
+    </HierarchicalDataTemplate>
+
+    <DataTemplate x:Key="AutoCompletionOptionDataTemplate" DataType="valueObjects:AutoCompleteEntry">
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding Format}" Value="None">
+                <Setter Property="TextBlock.Foreground" Value="{StaticResource UnknownForeground}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Format}" Value="Keyword">
+                <Setter Property="TextBlock.Foreground" Value="{StaticResource KeywordForeground}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Format}" Value="Type">
+                <Setter Property="TextBlock.Foreground" Value="{StaticResource TypeForeground}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Format}" Value="TypeAndId">
+                <Setter Property="TextBlock.Foreground" Value="{StaticResource LinkForeground}" />
+            </DataTrigger>
+        </DataTemplate.Triggers>
+        <TextBlock Text="{Binding Text, Mode=OneWay}" />
+    </DataTemplate>
+</ResourceDictionary>

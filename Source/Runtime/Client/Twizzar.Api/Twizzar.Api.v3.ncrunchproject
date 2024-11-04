@@ -1,0 +1,9 @@
+﻿<ProjectConfiguration>
+  <Settings>
+    <AdditionalFilesToIncludeForProject>
+      <Value>..\..\..\EULA_Twizzar-Library.md</Value>
+      <Value>..\..\..\TwizzarLogo128.png</Value>
+    </AdditionalFilesToIncludeForProject>
+    <HiddenComponentWarnings />
+  </Settings>
+</ProjectConfiguration>

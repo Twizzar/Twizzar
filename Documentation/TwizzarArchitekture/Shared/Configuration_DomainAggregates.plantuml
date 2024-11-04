@@ -1,0 +1,105 @@
+@startuml
+hide empty members
+
+title Configuration Domain Aggregates
+
+footer
+    As convention all public fields are readonly Properties
+endfooter
+
+' (v,Turquoise)
+' (E,violet)
+' (e,orange)
+
+package FixtureItem.Configuration
+{
+    package SharedKernel
+    {
+        class ConfigurationId<<ValueObject>>
+        {
+            +<b>Maybe<string> Name</b>
+            +<b>string Type</b>
+            +{static} ConfigurationId CreateNamed(string name, string type)
+            +{static} ConfigurationId CreateUnnamed(string type)
+        }
+
+        note left of ConfigurationId :  "Name Property is Maybe and will \r\n be None if config is system default"
+
+        enum ConfigurationKind<<ValueObject>>
+        {
+            ConcreteComponent,
+            BaseType,
+            Mock
+        }
+
+        interface IMemberConfiguration
+        {
+            string Name
+        }
+
+        interface IFixtureConfiguration
+        {
+        }
+
+        class ConfigurationItem<<Entity>>
+        {
+            +<b>ConfigurationId id</b>
+            +<b>ConfigurationKind ConfigKind</b>
+            +<b>ImmutableDictionary<string, IFixtureConfiguration> FixtureConfigurations</b>
+            +<b>ImmutableDictionary<string, IMemberConfiguration> MemberConfigurations</b>
+            +IImmutableDictionary<string, IMemberConfiguration> OnlyPropertyMemberConfiguration
+            +IImmutableDictionary<string, IMemberConfiguration> OnlyVariableMemberConfiguration
+            +ConfigurationItem Merge(ConfigurationItem otherItem)
+            +IConfigurationItem WithKind(ConfigurationKind kind)
+            +IConfigurationItem WithMemberConfigurations(ImmutableDictionary<string, IMemberConfiguration> memberConfigurations)
+        }
+
+        class SingletonConfiguration #SkyBlue implements IFixtureConfiguration
+
+        class RawValueMemberConfiguration<<ValueObject>> implements IMemberConfiguration
+        {
+            string Value
+        }
+
+        class RawValuesMemberConfiguration<<ValueObject>> implements IMemberConfiguration
+        {
+            string[] Values
+        }
+
+        class LinkMemberConfiguration<<ValueObject>> implements IMemberConfiguration
+        {
+            FixtureItemId configurationLink
+            string Type
+        }
+
+        class CtorMemberConfiguration <<ValueObject>> implements IMemberConfiguration
+        {
+            ImmutableArray<IMemberConfiguration> ConstructorParameters
+        }
+
+        class MethodConfiguration <<ValueObject>> implements IMemberConfiguration
+        {
+            IImmutableDictionary<string, MethodReturnConfiguration> ReturnConfiguration
+        }
+
+        class MethodReturnConfiguration <<ValueObject>>
+        {
+            IMemberConfiguration ReturnValue
+            string Type
+        }
+
+        class NotSpecifiedConfiguration<<ValueObject>> implements IMemberConfiguration
+
+        class UniqueBaseTypeMemberConfiguration<<ValueObject>> implements IMemberConfiguration
+
+        class NullValueMemberConfiguration<<ValueObject>> implements IMemberConfiguration
+
+        ConfigurationItem *-- ConfigurationId
+        ConfigurationItem *-- ConfigurationKind
+        ConfigurationItem *-- IMemberConfiguration
+        ConfigurationItem *-- IFixtureConfiguration
+        MethodConfiguration *-- MethodReturnConfiguration
+    }
+}
+
+@enduml

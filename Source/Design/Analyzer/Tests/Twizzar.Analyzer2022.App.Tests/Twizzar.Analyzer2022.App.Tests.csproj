@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <IsPackable>false</IsPackable>
+        <DisableMSBuildAssemblyCopyCheck>true</DisableMSBuildAssemblyCopyCheck>
+        <AssemblyName>Twizzar.Analyzer.App.Tests</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="IntegrationTestSourceCode.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="IntegrationTestSourceCode.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="JetBrains.DotMemoryUnit" Version="3.2.20220510" />
+        <PackageReference Include="Microsoft.Build" Version="16.5.0" />
+        <PackageReference Include="Microsoft.Build.Framework" Version="16.5.0" />
+        <PackageReference Include="Microsoft.Build.Tasks.Core" Version="16.5.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.0.1" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.1" />
+        <PackageReference Include="Microsoft.Build.Locator" Version="1.5.5" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.0.1" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.0.1" />
+        <PackageReference Include="System.Composition.AttributedModel" Version="6.0.0" PrivateAssets="All" />
+        <PackageReference Include="Autofac" Version="5.0.0" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\..\Runtime\Client\Twizzar.Api\Twizzar.Api.csproj" />
+        <ProjectReference Include="..\..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" />
+        <ProjectReference Include="..\..\..\..\SharedKernel\Tests\Twizzar.TestCommon\Twizzar.TestCommon.csproj" />
+        <ProjectReference Include="..\..\..\Shared\Core\Twizzar.Design.Shared.CoreInterfaces\Twizzar.Design.Shared.CoreInterfaces.csproj" />
+        <ProjectReference Include="..\..\..\Shared\Infrastructure\Twizzar.Design.Shared.Infrastructure.VisualStudio2022\Twizzar.Design.Shared.Infrastructure.VisualStudio2022.csproj" />
+        <ProjectReference Include="..\..\..\Tests\Twizzar.Design.TestCommon\Twizzar.Design.TestCommon.csproj" />
+        <ProjectReference Include="..\..\App\Twizzar.Analyzer2022.App\Twizzar.Analyzer2022.App.csproj" />
+    </ItemGroup>
+
+    <Import Project="..\Twizzar.Analyzer.App.Tests\Twizzar.Analyzer.App.Tests.projitems" Label="Shared" />
+
+</Project>

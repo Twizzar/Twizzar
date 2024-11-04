@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <Configurations>Debug;Release;Internal</Configurations>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" PrivateAssets="All" />
+        <PackageReference Include="System.Collections.Immutable" Version="5.0.0" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Twizzar.Api" />
+        <InternalsVisibleTo Include="Twizzar.Runtime.Core" />
+        <InternalsVisibleTo Include="Twizzar.Runtime.Core.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Runtime.Infrastructure" />
+        <InternalsVisibleTo Include="Twizzar.Runtime.Infrastructure.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Runtime.Test" />
+        <InternalsVisibleTo Include="Twizzar.Api.Tests" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="Resources\ErrorMessagesRuntime.Designer.cs">
+            <DependentUpon>ErrorMessagesRuntime.resx</DependentUpon>
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+        </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Update="Resources\ErrorMessagesRuntime.resx">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <SubType>Designer</SubType>
+            <LastGenOutput>ErrorMessagesRuntime.Designer.cs</LastGenOutput>
+            <Generator>PublicResXFileCodeGenerator</Generator>
+        </EmbeddedResource>
+    </ItemGroup>
+</Project>

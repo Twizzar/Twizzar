@@ -1,0 +1,62 @@
+@startuml
+hide empty members
+skinparam linetype ortho
+title Definition Domain Aggregates
+
+footer
+As convention all public fields are readonly Properties
+endfooter
+
+' (v,Turquoise)
+' (E,violet)
+' (e,orange)
+
+package SharedKernel{
+        class FixtureItemId<<ValueObjext>>{
+            + <b>string Type</b>
+            + <b>Maybe<string> Name</b>
+            + <b>string ProjectName</b>
+        }
+    }
+
+package FixtureItem.Definition {
+    package Design{
+        !include ../DesignBoundedContext/Definition_DomainAggregates.plantuml
+
+        DesingIFixtureItemDefinitionNode o-- FixtureItemId
+    }
+
+    package Runtime{
+        !include ../RuntimeBoundedContext/Definition_DomainAggregates.plantuml
+
+        RuntimeIFixtureItemDefinitionNode o-- FixtureItemId
+    }
+}
+
+package FixtureItem.Description.SharedKernel{
+    interface ITypeDescription {
+        +<b>string Fullname</b>
+        +string Namespace
+        +string TypeName
+        +Maybe<string> BaseType
+        +List<PropertyDescription> DeclaredProperties
+        +List<MethodDescription> DeclaredConstructors
+        +<font color="#AAAAAA"> List<string> ImplementedInterfaces </font>
+        +<font color="#AAAAAA"> List<MethodDescription> DeclaredMethods </font>
+        +<font color="#AAAAAA">AccessModifier AccessModifier </font>
+        +<font color="#AAAAAA">List<FieldDescription> DeclaredFields </font>
+        +bool IsClass
+        +bool IsEnum
+        +bool IsInterface
+        +bool IsAbstract
+        +bool IsGeneric
+        +Dictionary<int, string> GenericTypeArguments
+    }
+
+    RuntimeIFixtureItemDefinitionNode o-- ITypeDescription
+    DesingIFixtureItemDefinitionNode o-- ITypeDescription
+
+    ITypeDescription <|.. IRuntimeTypeDescription
+}
+
+@enduml

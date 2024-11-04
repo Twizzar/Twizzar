@@ -1,7 +1,0 @@
-@startuml
-enum PotionColor {
-    Blue,
-    Red,
-    Purple,
-}
-@enduml

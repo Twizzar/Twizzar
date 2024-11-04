@@ -1,0 +1,139 @@
+@startuml Vs AddIn Overview
+hide empty members
+
+class FixtureItemExpanderTaggerProvider implements IViewTaggerProvider{
+    - IIocOrchestrator _iocOrchestrator
+    - AdornmentLayerDefinition _editorAdornmentLayer
+    + ITagger<T> CreateTagger<T>(ITextView textView, ITextBuffer buffer)
+}
+
+class FixtureItemExpanderTagger {
+    - IWpfTextView _view
+    - IDocumentWorkspace _documentWorkspace
+    - string _projectName
+}
+note bottom of FixtureItemExpanderTagger: Needs to update the space reserved
+
+FixtureItemExpanderTaggerProvider -- FixtureItemExpanderTagger : creates >
+FixtureItemExpanderTagger *-- IDocumentWorkspace
+
+interface IDocumentWorkspace {
+    + IDocumentReader DocumentReader { get; }
+    + IDocumentWriter DocumentWriter { get; }
+    + IViAdromentCreator AdormentCreator { get; }
+    + ISnapshotHistory SnapshotHistory { get; }
+}
+
+IDocumentWorkspace *-- IDocumentReader
+IDocumentWorkspace *-- IDocumentWriter
+IDocumentWorkspace *-- IViAdromentCreator
+IDocumentWorkspace *-- ISnapshotHistory
+
+interface ISnapshotHistory{
+    + ITextSnapshot CurrentSnapshot { get; }
+    + Add(ITextSnapshot snapshot)
+    + Maybe<ITextSnapshot> Get(IViSpanVersion version)
+}
+
+ISnapshotHistory *-- ITextSnapshot: 1..n
+
+interface IViAdromentCreator {
+    + IViAdornment GetOrCreate(IAdornmentInformation adornmentInformation, IWpfTextView textView)
+}
+
+class ViAdormentCreator implements IViAdromentCreator {
+    __
+    ViAdornmentCreator(
+        \t IUiEventHub uiEventHub,
+        \t ISnapshotHistory snapshotHistory)
+}
+
+ViAdormentCreator -- IViAdorment : creates >
+
+class ViAdornmentCacheCreator implements IViAdromentCreator{
+    + ViAdornmentCacheCreator(IViAdornmentCreator adornmentCreator, ISnapshotHistory snapshotHistory)
+}
+
+interface IDocumentReader {
+    Task<IEnumerable<IAdornmentInformation>> GetAdornmentInformationAsync()
+}
+
+
+interface IViAdorment {
+    + AdornmentId Id { get; }
+    + IAdornmentInformation AdornmentInformation { get; }
+    + IAdornmentExpander AdornmentExpander { get; }
+    + IFixtureItemPanel FixtureItemPanel { get; }
+    + double Height { get; }
+    + void Update(IAdornmentInformation adornmentInformation)
+}
+
+IViAdorment *-- AdornmentId
+IViAdorment *-- IAdornmentInformation
+IViAdorment *-- IAdornmentExpander
+IViAdorment *-- IFixtureItemPanel
+
+interface IAdornmentExpander{
+    + UIElement UiElement { get; }
+    + bool IsExpanded { get; }
+}
+
+interface IFixtureItemPanel{
+    + IAdornmentInformation AdornmentInformation { get; set; }
+    + double PanelHeight { get; }
+    + UIElement UiElement { get; }
+    + void UpdatePosition(double left, double top);
+}
+
+IFixtureItemPanel *-- IAdornmentInformation
+
+class AdornmentId{
+    + Guid Value { get; }
+}
+
+interface IAdornmentInformation {
+    + IViSpan InvocationSpan { get; }
+    + IViSpan DefinitionIdSpan { get; }
+    + FixtureItemId FixtureItemId { get; }
+    + IAdornmentInformation UpdateVersion(IViSpanVersion viSpanVersion)
+}
+
+interface IViSpan {
+    + int Start { get; }
+    + int Length { get; }
+    + IViSpanVersion Version { get; }
+    + IViSpan WithVersion(IViSpanVersion version)
+}
+
+interface IViSpanVersion
+{
+    + int VersionNumber { get; }
+}
+
+IAdornmentInformation *-- IViSpan
+IViSpan *-- IViSpanVersion
+
+
+interface IDocumentWriter {
+    + void ReplaceText(IViSpan span, string newText)
+}
+
+class RoslynDocumentReader implements IDocumentReader {
+    __
+    + RoslynDocumentReader(
+        \t Workspace workspace,
+        \t string filePath,
+        \t TypeFullName receiverType,
+        \t IList<string> methodNames)
+}
+
+class DocumentWriter implements IDocumentWriter {
+    + DocumentWriter(ITextBuffer textBuffer)
+}
+
+class DocumentWorkspace implements IDocumentWorkspace{
+    DocumentWorkspace(ITextView textView)
+}
+
+
+@enduml

@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <Configurations>Debug;Release;Internal</Configurations>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Autofac" Version="5.0.0" PrivateAssets="All" />
+        <PackageReference Include="System.Collections.Immutable" Version="5.0.0" PrivateAssets="All" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\Core\Twizzar.SharedKernel.Core\Twizzar.SharedKernel.Core.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\Infrastructure\Twizzar.SharedKernel.Infrastructure\Twizzar.SharedKernel.Infrastructure.csproj" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Twizzar.Api" />
+
+        <InternalsVisibleTo Include="Twizzar.SharedKernel.Core.Tests" />
+        <InternalsVisibleTo Include="Twizzar.TestCommon" />
+
+        <InternalsVisibleTo Include="Twizzar.VsAddin2019" />
+        <InternalsVisibleTo Include="Twizzar.VsAddin2022" />
+        <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Runtime.Infrastructure.Tests" />
+
+        <InternalsVisibleTo Include="Twizzar.Analyzer2019" />
+        <InternalsVisibleTo Include="Twizzar.Analyzer2022" />
+        <InternalsVisibleTo Include="Twizzar.Analyzer2022.App" />
+        <InternalsVisibleTo Include="Twizzar.Analyzer2019.App" />
+    </ItemGroup>
+
+</Project>

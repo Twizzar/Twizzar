@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\SharedKernel\Infrastructure\Twizzar.SharedKernel.Infrastructure\Twizzar.SharedKernel.Infrastructure.csproj" />
+        <ProjectReference Include="..\..\..\SharedKernel\Tests\Twizzar.SharedKernel.CoreInterfaces.Tests\Twizzar.SharedKernel.CoreInterfaces.Tests.csproj" />
+        <ProjectReference Include="..\..\Core\Twizzar.Design.CoreInterfaces\Twizzar.Design.CoreInterfaces.csproj" />
+        <ProjectReference Include="..\..\Shared\Core\Twizzar.Design.Shared.CoreInterfaces\Twizzar.Design.Shared.CoreInterfaces.csproj" />
+        <ProjectReference Include="..\Twizzar.Design.TestCommon\Twizzar.Design.TestCommon.csproj" />
+        <ProjectReference Include="..\..\..\SharedKernel\Factory\Twizzar.SharedKernel.Factories\Twizzar.SharedKernel.Factories.csproj" />
+        <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" />
+        <ProjectReference Include="..\..\..\SharedKernel\Tests\Twizzar.TestCommon\Twizzar.TestCommon.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Autofac" Version="5.0.0" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="Services\ScopedServiceProviderTests.viTest.cs">
+          <DependentUpon>ScopedServiceProviderTests.cs</DependentUpon>
+        </Compile>
+    </ItemGroup>
+</Project>

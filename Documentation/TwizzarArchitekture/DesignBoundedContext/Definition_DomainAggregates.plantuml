@@ -1,0 +1,25 @@
+@startuml Design Definition Domain Aggregates
+hide empty members
+'skinparam linetype ortho
+title Design Definition Domain Aggregates
+
+footer
+As convention all public fields are readonly Properties
+endfooter
+
+' (v,Turquoise)
+' (E,violet)
+' (e,orange)
+
+interface "IFixtureItemDefinitionNode" as DesingIFixtureItemDefinitionNode <<AggregateRoot>> {
+    + <b>FixtureItemId FixtureItemId</b>
+    + <b>ITypeDescription TypeDescription</b>
+    + <b>IConfigurationItem ConfigurationItem</b>
+    + IResult<Unit, Failure> Replay(IFixtureItemEvent e)
+    + IResult<Unit, Failure> Replay(IEnumerable<IFixtureItemEvent> es)
+    + Task CreateNamedFixtureItem(ConfigurationKind kind)
+    + Task CreateNamedFixtureItem()
+    + Task ChangeMemberConfiguration(IMemberConfiguration memberConfiguration)
+}
+
+@enduml

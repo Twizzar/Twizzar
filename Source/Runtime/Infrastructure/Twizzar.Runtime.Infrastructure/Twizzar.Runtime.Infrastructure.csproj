@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Configurations>Debug;Release;Internal</Configurations>
+  </PropertyGroup>
+
+    <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.0.0" PrivateAssets="All" />
+    <PackageReference Include="Moq" Version="4.15.1" PrivateAssets="All" />
+    <PackageReference Include="System.Collections.Immutable" Version="5.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Twizzar.Api" />
+        <InternalsVisibleTo Include="Twizzar.Runtime.Infrastructure.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Runtime.Test" />
+    </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\..\..\SharedKernel\Infrastructure\Twizzar.SharedKernel.Infrastructure\Twizzar.SharedKernel.Infrastructure.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\..\Core\Twizzar.Runtime.CoreInterfaces\Twizzar.Runtime.CoreInterfaces.csproj" PrivateAssets="All" />
+  </ItemGroup>
+  
+</Project>

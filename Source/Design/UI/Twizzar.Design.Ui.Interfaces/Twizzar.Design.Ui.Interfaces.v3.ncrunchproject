@@ -1,0 +1,8 @@
+﻿<ProjectConfiguration>
+  <Settings>
+    <AdditionalFilesToIncludeForProject>
+      <Value>..\..\..\Directory.Build.props</Value>
+    </AdditionalFilesToIncludeForProject>
+    <HiddenComponentWarnings />
+  </Settings>
+</ProjectConfiguration>

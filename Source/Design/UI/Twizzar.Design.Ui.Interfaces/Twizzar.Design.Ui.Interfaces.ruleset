@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="SonarQube - viTest Visit way" ToolsVersion="16.0">
+  <Include Path="..\..\..\generalrules.ruleset" Action="Default" />
+</RuleSet>

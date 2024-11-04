@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <Configurations>Debug;Release;Internal</Configurations>
+        <NuspecFile>$(MSBuildThisFileDirectory)$(MSBuildProjectName).nuspec</NuspecFile>
+        <MoqMinVersion>4.15.1</MoqMinVersion>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.18.2" PrivateAssets="All" />
+
+        <ProjectReference Include="..\..\Core\Twizzar.Runtime.CoreInterfaces\Twizzar.Runtime.CoreInterfaces.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\Core\Twizzar.Runtime.Core\Twizzar.Runtime.Core.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\Infrastructure\Twizzar.Runtime.Infrastructure\Twizzar.Runtime.Infrastructure.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\..\SharedKernel\Factory\Twizzar.SharedKernel.Factories\Twizzar.SharedKernel.Factories.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\..\SharedKernel\Infrastructure\Twizzar.SharedKernel.Infrastructure\Twizzar.SharedKernel.Infrastructure.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.Core\Twizzar.SharedKernel.Core.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" PrivateAssets="All" />
+
+        <PackageReference Include="JetBrains.Annotations" Version="2020.3.0" PrivateAssets="All" />
+
+        <PackageReference Include="Autofac" Version="5.0.0" PrivateAssets="All" />
+        <PackageReference Include="Moq" Version="$(MoqMinVersion)" />
+        <PackageReference Include="NLog" Version="4.6.8" PrivateAssets="All" />
+        <PackageReference Include="System.Collections.Immutable" Version="5.0.0" PrivateAssets="All" />
+        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="5.0.0" PrivateAssets="All" />
+        <PackageReference Include="Microsoft.ApplicationInsights.WorkerService" Version="2.21.0" PrivateAssets="All" />
+        <PackageReference Include="System.Security.Principal.Windows" Version="5.0.0" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Twizzar.Runtime.Infrastructure.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Runtime.Core.Tests" />
+    </ItemGroup>
+
+    <!-- Some settings for cli dotnet pack: -->
+    <PropertyGroup>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <RootNamespace>Twizzar</RootNamespace>
+        <Authors>vi:sit - Vetter IT solutions GmbH</Authors>
+        <Company>vi:sit - Vetter IT solutions GmbH</Company>
+    </PropertyGroup>
+
+    <Target Name="SetNuspecProperties" BeforeTargets="GenerateNuspec">
+        <PropertyGroup>
+            <NuspecProperties>$(NuspecProperties);id=$(AssemblyName)</NuspecProperties>
+            <NuspecProperties>$(NuspecProperties);config=$(Configuration)</NuspecProperties>
+            <NuspecProperties>$(NuspecProperties);version=$(PackageVersion)</NuspecProperties>
+            <NuspecProperties>$(NuspecProperties);authors=$(Authors)</NuspecProperties>
+            <NuspecProperties>$(NuspecProperties);moqMinVersion=$(MoqMinVersion)</NuspecProperties>
+            <NuspecProperties>$(NuspecProperties);assemblyName=$(AssemblyName)</NuspecProperties>
+        </PropertyGroup>
+    </Target>
+</Project>

@@ -1,5 +1,0 @@
-@startuml
-interface IEffect {
-    Name : string <<get>>
-}
-@enduml

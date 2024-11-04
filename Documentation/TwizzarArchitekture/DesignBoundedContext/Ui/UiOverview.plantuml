@@ -1,0 +1,69 @@
+@startuml Overview Ui
+hide empty members
+
+interface IValidator {
+    IEnumerable<ItemValueSegment> ToItemValueSegments(IEnumerable<IResult<IViToken, ParseFailure>> tokens)
+    IViToken Validate(IEnumerable<IResult<IViToken, ParseFailure>> tokens)
+}
+
+class StringValidator implements IValidator
+class CharValidator implements IValidator
+class NumberValidator implements IValidator
+class LinkValidator implements IValidator
+
+interface IParser {
+    IEnumerable<IResult<IViToken, ParseFailure>> Parse(string text)
+}
+
+class StringParser implements IParser
+class CharParser implements IParser
+class NumberParser implements IParser
+class LinkParser implements IParser
+
+interface IViToken {
+    int Start
+    int Length
+    string ContainingText
+}
+
+interface IViKeywordToken implements IViToken
+interface IViUniqueKeywordToken implements IViKeywordToken
+interface IViNullKeywordToken implements IViKeywordToken
+
+interface IViLiteralToken implements IViToken
+
+interface IViCtorToken implements IViToken
+
+interface IViNumberToken implements IViLiteralToken {
+    double Number
+}
+
+interface IViStringToken implements IViLiteralToken {
+    string Text
+}
+
+interface ViCharToken implements IViLiteralToken {
+    Char Caracter
+}
+
+interface IViLinkToken implements IViToken {
+    IViTypeToken TypeToken
+    IViLinkNameToken LinkNameToken
+}
+
+IViLinkToken *-- IViTypeToken
+IViLinkToken *-- IViLinkNameToken
+
+interface IViTypeToken {
+    string TypeName
+}
+
+interface IViLinkNameToken {
+    string Name
+}
+
+class ParseFailure {
+    ParserSpan Span
+}
+
+@enduml

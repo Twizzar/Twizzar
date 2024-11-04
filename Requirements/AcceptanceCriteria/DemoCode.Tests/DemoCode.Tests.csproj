@@ -1,0 +1,63 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net472</TargetFramework>
+        <IsPackable>false</IsPackable>
+        <EnableNETAnalyzers>False</EnableNETAnalyzers>
+        <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+        <NoWarn>CS0414, CS0067, CS0649, CS0169, CS0628</NoWarn>
+        <LangVersion>8</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+        <PackageReference Include="Moq" Version="4.16.0" />
+        <PackageReference Include="coverlet.collector" Version="3.0.2" />
+        <PackageReference Include="FluentAssertions" Version="5.10.3" />
+        <PackageReference Include="NUnit" Version="3.13.1" />
+        <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\Source\Design\Analyzer\Client\Twizzar.Analyzer2022\Twizzar.Analyzer2022.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\DemoCode.Interfaces\DemoCode.Interfaces.csproj" />
+        <ProjectReference Include="..\DemoCode\DemoCode.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="Twizzar.Api">
+            <HintPath>..\..\..\Source\Runtime\Client\Twizzar.Api\bin\Debug\netstandard2.0\Twizzar.Api_merged.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+
+        <Compile Update="ApiTests.twizzar.cs">
+            <DependentUpon>ApiTests.cs</DependentUpon>
+        </Compile>
+
+        <Compile Update="BaseFeaturesTests.twizzar.cs">
+            <DependentUpon>BaseFeaturesTests.cs</DependentUpon>
+        </Compile>
+
+        <Compile Update="EmailMessageBufferTests.twizzar.cs">
+            <DependentUpon>EmailMessageBufferTests.cs</DependentUpon>
+        </Compile>
+
+        <Compile Update="ValidationServiceTests.twizzar.cs">
+            <DependentUpon>ValidationServiceTests.cs</DependentUpon>
+        </Compile>
+
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="DemoCode.Tests.fixture.yaml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+
+</Project>

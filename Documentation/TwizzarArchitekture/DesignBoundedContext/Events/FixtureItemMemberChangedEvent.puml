@@ -1,0 +1,8 @@
+@startuml
+class FixtureItemMemberChangedEvent implements IEvent{
+    + FixtureItemMemberChangedEvent(fixtureItemId:FixtureItemId, memberConfiguration:IMemberConfiguration)
+}
+
+FixtureItemMemberChangedEvent --> "FixtureItemId" FixtureItemId
+FixtureItemMemberChangedEvent --> "MemberConfiguration" IMemberConfiguration
+@enduml

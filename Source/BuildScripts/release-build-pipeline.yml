@@ -1,0 +1,43 @@
+trigger:
+  - master
+
+parameters:
+  - name: useSonarQube
+    type: boolean
+    default: true
+
+jobs:
+  - job: Release_Pipeline
+    displayName: Release Pipeline
+    pool:
+      vmImage: "windows-2022"
+    variables:
+      solutionFolder: "Source"
+      solution: "Source/Twizzar.sln"
+      versioningScript: "Source/BuildScripts/Ci/update-vsixmanifest-version.ps1"
+      buildPlatform: "Any CPU"
+      buildConfiguration: "Release"
+      ignoredWarnings: 'CS1702|CS1701|\bS[0-9]{3,}|GitVersionTask'
+      NUGET_PACKAGES: $(Pipeline.Workspace)/.nuget/packages
+      DeployExtensionVSIX19: "false"
+      DeployExtensionVSIX22: "true"
+
+    steps:
+      - checkout: self
+      - task: NuGetToolInstaller@1
+        inputs:
+          versionSpec: "6.1.0"
+
+      - template: Ci/git-version.yml
+      - template: Ci/nuget-restore.yml
+
+      - template: Ci/sonarqube.yml
+        parameters:
+          useSonarQube: ${{ parameters.useSonarQube }}
+          buildSteps:
+            # because this is executed in Ci/sonarqube.yml the wokring directory is Ci
+            - template: build.yml
+            - template: test.yml
+
+      - template: Ci/publish-artifact.yml
+      - template: Ci/nuget-publish.yml

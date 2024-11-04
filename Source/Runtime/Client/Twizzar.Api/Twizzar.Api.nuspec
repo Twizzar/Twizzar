@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>$id$</id>
+        <version>$version$</version>
+        <authors>$authors$</authors>
+        <description>
+            TWIZZAR is a toolkit for Visual Studio that helps C# developers to ease the development experience of writing highly maintainable tests.
+        </description>
+
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <repository type="git" url="https://github.com/Twizzar/Twizzar" branch="main" />
+        <license type="file">EULA_Twizzar-Library.md</license>
+        <copyright>© vi:sit - Vetter IT solutions GmbH. All rights reserved.</copyright>
+        <projectUrl>https://www.twizzar.com</projectUrl>
+        <icon>TwizzarLogo128.png</icon>
+        <readme>docs\README.md</readme>
+
+        <dependencies>
+            <group targetFramework=".NETStandard2.0">
+                <dependency id="NETStandard.Library" version="2.0" exclude="Build,Analyzers" />
+                <dependency id="Moq" version="$moqMinVersion$" exclude="Build,Analyzers" />
+                <dependency id="Twizzar.Analyzer2022" version="$version$" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\$config$\netstandard2.0\*_merged.dll" target="lib\netstandard2.0\" />
+        <file src="bin\$config$\netstandard2.0\$assemblyName$.xml" target="lib\netstandard2.0\$assemblyName$_merged.xml" />
+        <file src="..\..\..\EULA_Twizzar-Library.md" target=""/>
+        <file src="..\..\..\TwizzarLogo128.png" target=""/>
+        <file src="README.md" target="docs\"/>
+    </files>
+</package>

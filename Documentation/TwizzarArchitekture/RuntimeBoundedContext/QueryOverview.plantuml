@@ -1,0 +1,49 @@
+@startuml CQRS Overview
+
+title Query Overview
+
+() " " as FixtuerId
+[Container] as Container
+note left of Container: Facade
+[FixtureItemQuery] as FixtureContainer
+[Resolver]
+
+[MainActivator]
+[FixtureItemDefinitionQuery]
+[TypeDescriptionQuery]
+[ConfigurationItemQuery]
+[UserConfigurationQuery]
+[SystemDefaultService]
+[Creator]
+
+FixtuerId "Type, Name" -d-> Container #line:green
+Container -u-> "Instance" FixtuerId #line:blue
+
+Container "Type, Name" -d-> FixtureContainer #line:green
+FixtureContainer -u-> "Instance" Container #line:blue
+
+FixtureContainer "Type, Name" -d-> Resolver #line:green
+Resolver -u-> "Instance" FixtureContainer #line:blue
+
+Resolver "Type, Name" -d-> MainActivator #line:green
+MainActivator -u-> "Instance" Resolver #line:blue
+
+MainActivator "FixtureId" -d-> FixtureItemDefinitionQuery #line:green
+FixtureItemDefinitionQuery -u-> MainActivator #line:blue : "FixtureDefinition"
+
+FixtureItemDefinitionQuery "FixureId" -d-> TypeDescriptionQuery #line:green
+TypeDescriptionQuery -u-> "TypeDescription" FixtureItemDefinitionQuery #line:blue
+
+FixtureItemDefinitionQuery "FixtureId, TypeDescription" -l-> ConfigurationItemQuery #line:green
+ConfigurationItemQuery -r-> "ConfigurationItem" FixtureItemDefinitionQuery #line:blue
+
+ConfigurationItemQuery "FixtureId, TypeDescription" -d-> UserConfigurationQuery #line:green
+UserConfigurationQuery -u-> ConfigurationItemQuery #line:blue : "ConfigurationItem"
+
+ConfigurationItemQuery -d--> SystemDefaultService #line:green : "MemberDescription"
+SystemDefaultService -u-->  ConfigurationItemQuery #line:blue : "ConfigurationItem \n or MemberConfiguration"
+
+MainActivator -d-> Creator #line:green : "FixtureDefinition"
+Creator -u-> "Instance" MainActivator #line:blue
+
+@enduml

@@ -1,0 +1,11 @@
+﻿<SolutionConfiguration>
+  <Settings>
+    <AllowParallelTestExecution>True</AllowParallelTestExecution>
+    <MetricsExclusionList>
+      <Value>..\Twizzar.Design.Infrastructure.VisualStudio\TestCreation\Config\DummyConfigQuery.cs:Design\Infrastructure\Twizzar.Design.Infrastructure.VisualStudio2022\Twizzar.Design.Infrastructure.VisualStudio2022.csproj</Value>
+      <Value>Design\Client\Twizzar.VsAddin2022\Twizzar.VsAddin2022.csproj</Value>
+      <Value>SharedKernel\Factory\Twizzar.SharedKernel.Factories\Twizzar.SharedKernel.Factories.csproj</Value>
+    </MetricsExclusionList>
+    <SolutionConfigured>True</SolutionConfigured>
+  </Settings>
+</SolutionConfiguration>

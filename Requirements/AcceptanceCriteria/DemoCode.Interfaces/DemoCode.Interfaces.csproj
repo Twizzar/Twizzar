@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <SonarQubeExclude>True</SonarQubeExclude>
+    <EnableNETAnalyzers>False</EnableNETAnalyzers>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+    <NoWarn>CS0414, CS0067, CS0649, CS0169, CS0628</NoWarn>
+  </PropertyGroup>
+</Project>

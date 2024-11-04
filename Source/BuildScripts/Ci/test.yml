@@ -1,0 +1,12 @@
+# test the project and prepare and publish test coverage
+
+steps:
+  - task: DotNetCoreCLI@2
+    displayName: Run tests
+    inputs:
+      command: 'test'
+      projects: |
+        **/Source/**/*.Test/*.csproj
+        **/Source/**/*.Tests/*.csproj
+      arguments: '--configuration $(buildConfiguration) --collect "Code coverage" --no-build --no-restore --verbosity minimal'
+      workingDirectory: '$(solutionFolder)'

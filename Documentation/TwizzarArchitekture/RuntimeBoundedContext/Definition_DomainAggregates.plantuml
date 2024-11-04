@@ -1,0 +1,154 @@
+@startuml Runtime Definition Domain Aggregates
+hide empty members
+'skinparam linetype ortho
+title Runtime Definition Domain Aggregates
+
+footer
+As convention all public fields are readonly Properties
+endfooter
+
+interface "IFixtureItemDefinitionNode" as RuntimeIFixtureItemDefinitionNode{
+    + <b>IRuntimeTypeDescription</b> TypeDescription
+    + <b>FixtureItemId FixtureItemId</b>
+    + CreatorType GetCreatorType()
+}
+
+enum CreatorType<<ValueObject>>{
+    Moq,
+    ConcreteType,
+    BaseType
+}
+
+class MockNode<< AggregateRoot>> implements RuntimeIFixtureItemDefinitionNode{
+    + Type Type
+    + ImmutableArray<PropertyDefinition> Properties 
+    + ImmutableArray<MethodDefinition> Methods
+    __
+    + MockNode(
+        \t <b>IRuntimeTypeDescription</b> typeDescription, 
+        \t FixtureItemId fixtureItemId, 
+        \t Type type, 
+        \t ImmutableArray<IPropertyDefinition> properties, 
+        \t CreatorType creatorType)
+}
+
+class ClassNode<<AggregateRoot>> extends MockNode {
+    + ImmutableArray<ParameterDefinition> ConstructorParamters
+    + ImmutableArray<IFieldDefinition> Fields
+    __
+    + ClassNode(
+        \t <b>IRuntimeTypeDescription</b> typeDescription, 
+        \t FixtureItemId fixtureItemId, 
+        \t Type type, 
+        \t ImmutableArray<IPropertyDefinition> properties, 
+        \t ImmutableArray<IFieldDefinition> fields, 
+        \t ImmutableArray<IParameterDefinition> constructorParameters, 
+        \t CreatorType creatorType)
+}
+
+class BaseTypeNode <<AggregateRoot>> implements RuntimeIFixtureItemDefinitionNode{
+    + IValueDefinition ValueDefinition
+    + bool IsNullable
+    __
+    + BaseTypeNode(
+        \t <b>(IRuntimeTypeDescription</b> typeDescription, 
+        \t FixtureItemId fixtureItemId, 
+        \t IValueDefinition valueDefinition, 
+        \t bool isNullable)
+}
+
+package MemberDefinitions {
+    abstract MemberDefinition<<ValueObject>> {
+        + <b>IValueDefinition ValueDefinition</b>
+        + <b>IMemberDescription MemberDescription</b>
+    }
+
+    class PropertyDefinition<<ValueObject>> implements MemberDefinition {
+        + string Name
+        + IRuntimePropertyDescription PropertyDescription
+        __
+        + PropertyDefinition(
+            \t IMemberConfiguration configuration,
+            \t IRuntimePropertyDescription propertyDescription,
+            \t string projectName)
+    }
+
+    class ParameterDefinition<<ValueObject>> implements MemberDefinition {
+        + string Name
+        + IRuntimeParameterDescription ParameterDescription
+        __
+        + ParameterDefinition(
+        \t IMemberConfiguration memberConfiguration,
+        \t IRuntimeParameterDescription parameterDescription,
+        \t string projectName)
+    }
+
+    class MethodDefinition<<ValueObject>> implements MemberDefinition{
+        + string Name
+        + IRuntimeMethodDescription MethodDescription
+        __
+        + MethodDefinition(
+        \t MethodMemberOverloadConfiguration memberConfiguration,
+        \t IRuntimeMethodDescription methodDescription,
+        \t string projectName)
+    }
+
+    class FieldDefinition<<ValueObject>> implements MemberDefinition {
+        + string Name
+        + IRuntimeFieldDescription FieldDescription
+        __
+        + FieldDefinition(
+        \t IMemberConfiguration configuration,
+        \t IRuntimeFieldDescription fieldDescription,
+        \t string projectName)
+    }
+}
+
+package ValueDefinitions {
+    interface IValueDefinition
+
+    class LinkDefinition<<ValueObject>> implements IValueDefinition {
+        + FixtureItemId Link
+        + LinkDefinition(FixtureItemId link)
+    }
+
+    class RawValueDefinition<<ValueObject>> implements IValueDefinition {
+        + string Value
+        + RawValueDefinition(string type, string value)
+    }
+
+    class RawValuesDefinition<<ValueObject>> implements IValueDefinition {
+        + string[] Values
+        + RawValuesDefinition(string type, IEnumerable<string> values)
+    }
+
+    class UniqueDefinition<<ValueObject>> implements IValueDefinition  {
+        + UniqueDefinition(string type)
+    }
+
+    class NotSpecifiedDefinition<<ValueObject>> implements IValueDefinition {
+        
+    }
+
+    class NullValueDefinition<<ValueObject>> implements IValueDefinition
+}
+
+interface IRuntimeTypeDescription {
+    + Type Type
+}
+
+RuntimeIFixtureItemDefinitionNode *-- CreatorType
+
+MockNode *-- PropertyDefinition
+ClassNode *-- PropertyDefinition
+ClassNode *-- ParameterDefinition
+ClassNode *-- FieldDefinition
+PropertyDefinition *-- IValueDefinition
+ParameterDefinition *-- IValueDefinition
+FieldDefinition *-- IValueDefinition
+BaseTypeNode *-- IValueDefinition
+MethodDefinition *-- IValueDefinition
+
+RuntimeIFixtureItemDefinitionNode o-- IRuntimeTypeDescription
+
+@enduml

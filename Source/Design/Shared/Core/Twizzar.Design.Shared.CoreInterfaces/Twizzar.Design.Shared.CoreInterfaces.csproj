@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DebugType>full</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <DebugType>full</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Internal|AnyCPU'">
+        <DebugType>full</DebugType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference
+            Include="..\..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj"
+            PrivateAssets="All" />
+        <PackageReference Include="System.Collections.Immutable" Version="5.0.0" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Twizzar.Design.Shared.Infrastructure.VisualStudio2019" />
+        <InternalsVisibleTo Include="Twizzar.Design.Shared.Infrastructure.VisualStudio2022" />
+        <InternalsVisibleTo Include="Twizzar.Design.Ui.Interfaces" />
+        <InternalsVisibleTo Include="Twizzar.Design.Shared.CoreInterfaces.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Design.Core.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Design.TestCommon" />
+        <InternalsVisibleTo Include="Twizzar.Design.Core" />
+        <InternalsVisibleTo Include="Twizzar.Design.Ui" />
+        <InternalsVisibleTo Include="Twizzar.Design.Ui.DemoApplication" />
+        <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Design.Ui.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Design.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Design.Test" />
+        <InternalsVisibleTo Include="Twizzar.VsAddin2019" />
+        <InternalsVisibleTo Include="Twizzar.VsAddin2022" />
+        <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2019" />
+        <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2022" />
+        <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2022.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2019.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Analyzer2019" />
+        <InternalsVisibleTo Include="Twizzar.Analyzer2022" />
+        <InternalsVisibleTo Include="Twizzar.Analyzer2022.App" />
+        <InternalsVisibleTo Include="Twizzar.Analyzer2019.App" />
+        <InternalsVisibleTo Include="Twizzar.Analyzer2019.App.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Analyzer2022.App.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Design.Shared.Infrastructure.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Design.Shared.Infrastructure.VisualStudio2022" />
+        <InternalsVisibleTo Include="Twizzar.Design.Shared.Infrastructure.VisualStudio2019" />
+        <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio.Ui" />
+    </ItemGroup>
+
+</Project>

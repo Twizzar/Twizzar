@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net48</TargetFramework>
+        <IsPackable>false</IsPackable>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Remove="RoslynDocumentReaderExampleCode.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.0.1" />
+        <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.0.32112.339" />
+        <PackageReference Include="Microsoft.VisualStudio.Sdk.TestFramework" Version="17.2.7" />
+        <PackageReference Include="NCrunch.Framework" Version="4.7.0.4" />
+        <PackageReference Include="System.Threading.Tasks.Dataflow" Version="6.*" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\Runtime\Client\Twizzar.Api\Twizzar.Api.csproj" />
+        <ProjectReference Include="..\..\..\Runtime\Core\Twizzar.Runtime.CoreInterfaces\Twizzar.Runtime.CoreInterfaces.csproj" />
+        <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.Core\Twizzar.SharedKernel.Core.csproj" />
+        <ProjectReference Include="..\..\..\SharedKernel\Tests\Twizzar.TestCommon\Twizzar.TestCommon.csproj" />
+        <ProjectReference Include="..\..\Core\Twizzar.Design.CoreInterfaces\Twizzar.Design.CoreInterfaces.csproj" />
+        <ProjectReference Include="..\..\Infrastructure\Twizzar.Design.Infrastructure.VisualStudio2022\Twizzar.Design.Infrastructure.VisualStudio2022.csproj" />
+        <ProjectReference Include="..\..\Infrastructure\Twizzar.Design.Infrastructure\Twizzar.Design.Infrastructure.csproj" />
+        <ProjectReference Include="..\..\Shared\Infrastructure\Twizzar.Design.Shared.Infrastructure.VisualStudio2022\Twizzar.Design.Shared.Infrastructure.VisualStudio2022.csproj" />
+        <ProjectReference Include="..\..\UI\Twizzar.Design.Ui.Interfaces\Twizzar.Design.Ui.Interfaces.csproj" />
+        <ProjectReference Include="..\Twizzar.Design.TestCommon\Twizzar.Design.TestCommon.csproj" />
+    </ItemGroup>
+
+    <Import Project="..\Twizzar.Design.Infrastructure.VisualStudio.Tests.Shared\Twizzar.Design.Infrastructure.VisualStudio.Tests.Shared.projitems" Label="Shared" />
+
+</Project>

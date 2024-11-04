@@ -1,0 +1,89 @@
+@startuml Visual Studio Peek System
+
+interface IPeekBroker {
+    IPeekSession TriggerPeekSession(PeekSessionCreationOptions options)
+}
+note left of IPeekBroker : Imported by Mef
+
+IPeekBroker -[hidden]-> IPeekableItemSource
+IPeekBroker -[hidden]-> PeekSessionCreationOptions
+
+class PeekSessionCreationOptions{
+    ___
+    + PeekSessionCreationOptions(
+      \t ITextView textView,
+      \t string relationshipName,
+      \t ITrackingPoint triggerPoint = null,
+      \t double? defaultHeight = null,
+      \t bool allowUserResize = true,
+      \t IPeekResizeListener resizeListener = null,
+      \t bool shouldFocusOnLoad = true)
+}
+
+interface IPeekableItemSourceProvider{
+    + IPeekableItemSource TryCreatePeekableItemSource(ITextBuffer textBuffer)
+}
+
+interface IPeekableItemSource {
+    + void AugmentPeekSession(IPeekSession session, IList<IPeekableItem> peekableItems)
+}
+note right of IPeekableItemSource: Checks for relationship name
+
+IPeekableItemSourceProvider -->  IPeekableItemSource : creates
+
+interface IPeekableItem{
+    + string DisplayName { get; }
+    + IEnumerable<IPeekRelationship> Relationships { get; }
+    + IPeekResultSource GetOrCreateResultSource(string relationshipName);
+}
+
+IPeekableItemSource --> IPeekableItem : creats and adds to peekableItems
+
+interface IPeekResultSource {
+    ___
+    + void FindResults(
+      \t string relationshipName,
+      \t IPeekResultCollection resultCollection,
+      \t CancellationToken cancellationToken,
+      \t IFindPeekResultsCallback callback);
+}
+
+IPeekableItem --> IPeekResultSource : creates with GetOrCreateResultSource
+
+interface IPeekResult {
+    + IPeekResultDisplayInfo DisplayInfo { get; }
+    + bool CanNavigateTo { get; }
+    + Action<IPeekResult, object, object> PostNavigationCallback { get; }
+    + void NavigateTo(object data);
+    + event EventHandler Disposed;
+}
+
+IPeekResultSource --> IPeekResult : creates and adds to the resultCollection
+
+interface IPeekResultPresenter {
+    + IPeekResultPresentation TryCreatePeekResultPresentation(IPeekResult result)
+}
+note left of IPeekResultPresenter: Exported by Mef
+
+interface IPeekResultPresentation {
+    + bool TryOpen(IPeekResult otherResult);
+    + bool TryPrepareToClose();
+    + UIElement Create(IPeekSession session, IPeekResultScrollState scrollState);
+    + void ScrollIntoView(IPeekResultScrollState scrollState);
+    + IPeekResultScrollState CaptureScrollState();
+    + void Close();
+    + event EventHandler<RecreateContentEventArgs> RecreateContent;
+    + void SetKeyboardFocus();
+    + double ZoomLevel { get; set; }
+    + bool IsDirty { get; }
+    + event EventHandler IsDirtyChanged;
+    + bool IsReadOnly { get; }
+    + event EventHandler IsReadOnlyChanged;
+    + bool CanSave(out string defaultPath);
+    + bool TrySave(bool saveAs);
+}
+note left of IPeekResultPresentation : Create is used to create our UI
+
+IPeekResultPresenter --> IPeekResultPresentation : checks if correct type and creates
+
+@enduml

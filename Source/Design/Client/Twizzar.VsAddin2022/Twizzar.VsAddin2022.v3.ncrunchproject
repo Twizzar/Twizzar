@@ -1,0 +1,14 @@
+﻿<ProjectConfiguration>
+  <Settings>
+    <AdditionalFilesToIncludeForProject>
+      <Value>..\..\..\Directory.Build.props</Value>
+    </AdditionalFilesToIncludeForProject>
+    <CustomBuildProperties>
+      <Value>DeployExtension = false</Value>
+    </CustomBuildProperties>
+    <FrameworkUtilisationTypeForMSTest>UseDynamicAnalysis</FrameworkUtilisationTypeForMSTest>
+    <HiddenComponentWarnings />
+    <RunPostBuildEvents>False</RunPostBuildEvents>
+    <RunPreBuildEvents>False</RunPreBuildEvents>
+  </Settings>
+</ProjectConfiguration>

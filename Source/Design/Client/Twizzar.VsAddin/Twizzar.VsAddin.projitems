@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>d31fb8c9-8625-4ebf-b9b9-e1adb215a775</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Twizzar.VsAddin</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\ContextMenuCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\UnitTestNavigationCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\CreateUnitTestCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CompositionRoot\Autofac\AllCtorFinder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CompositionRoot\IocOrchestrator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CompositionRoot\Registrant\CommandHandlerRegistrant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CompositionRoot\Registrant\ConfigurationRegistrant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CompositionRoot\Registrant\EventSourcingRegistrant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CompositionRoot\Registrant\FixtureItemDefinitionRegistrant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CompositionRoot\Registrant\MefComponentsRegistrant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CompositionRoot\Registrant\ReadModelRegistrant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CompositionRoot\Registrant\TaggerRegistrant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CompositionRoot\Registrant\TestCreationRegistrant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CompositionRoot\Registrant\TypeDescriptionRegistrant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CompositionRoot\Registrant\UiElementsRegistrant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CompositionRoot\Registrant\UtilRegistrant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factory\AboutViewModelFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factory\AdornmentSessionFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factory\DocumentWorkspaceFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factory\FixtureDefinitionNodeFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factory\FixtureItemNodeFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factory\FixtureItemNodeStatusFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factory\FixtureItemValueViewModelFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factory\ItemBuilderFinderFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factory\CompilationTypeQueryFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factory\RoslynDescriptionFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factory\RoslynDocumentReaderFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factory\RoslynDocumentWriterFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factory\ScopeServiceProviderFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factory\UiElementsFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factory\ViDocumentTaggerFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Factory\VsProjectEventPublisherFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FixtureItem\Adornment\FixtureItemExpanderTaggerProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FixtureItem\Adornment\PeekableItemSourceProvider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FixtureItem\Adornment\PeekResultPresenter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\CompositionRoot\IIocComponentRegistrant.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\CompositionRoot\IIocOrchestrator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\AboutWindowCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\OpenOrCloseShortcutCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VsPackage.cs" />
+  </ItemGroup>
+</Project>

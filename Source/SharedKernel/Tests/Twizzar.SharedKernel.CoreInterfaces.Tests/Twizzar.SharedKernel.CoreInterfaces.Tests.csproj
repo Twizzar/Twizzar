@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" />
+    <ProjectReference Include="..\Twizzar.TestCommon\Twizzar.TestCommon.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2019.Tests" />
+    <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2022.Tests" />
+    <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.Tests" />
+    <InternalsVisibleTo Include="Twizzar.Runtime.Core.Tests" />
+  </ItemGroup>
+
+</Project>

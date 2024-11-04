@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+      <TargetFramework>net6</TargetFramework>
+    <IsPackable>false</IsPackable>
+      <NoWarn>CS0414, CS0067, CS0649, CS0169, CS0628</NoWarn>
+      <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+      <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
+      <!--<EnableNETAnalyzers>False</EnableNETAnalyzers>
+      <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+      <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+      <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>-->
+  </PropertyGroup>
+
+    <Target Name="CleanSourceGeneratedFiles" BeforeTargets="BeforeBuild" DependsOnTargets="$(BeforeBuildDependsOn)">
+        <RemoveDir Directories="Generated" />
+    </Target>
+
+    <ItemGroup>
+        <Compile Remove="Generated\**" />
+        <Content Include="Generated\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+    <PackageReference Include="Moq" Version="4.16.0" />
+    <PackageReference Include="NUnit" Version="3.13.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+    <PackageReference Include="coverlet.collector" Version="3.0.2" />
+    <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
+    <PackageReference Include="System.Security.Principal.Windows" Version="5.0.0" PrivateAssets="All" />
+    </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DemoCode.Interfaces\DemoCode.Interfaces.csproj" />
+    <ProjectReference Include="..\DemoCode\DemoCode.csproj" />
+  </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\Source\Design\Analyzer\Client\Twizzar.Analyzer2022\Twizzar.Analyzer2022.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Twizzar.Api">
+        <HintPath>..\..\..\Source\Runtime\Client\Twizzar.Api\bin\Debug\netstandard2.0\Twizzar.Api_merged.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Class1.twizzar.cs">
+        <DependentUpon>Class1.cs</DependentUpon>
+      </Compile>
+      <Compile Update="TestMethod.twizzar.cs">
+        <DependentUpon>TestMethod.cs</DependentUpon>
+      </Compile>
+      <Compile Update="UIPlayground.twizzar.cs">
+        <DependentUpon>UIPlayground.cs</DependentUpon>
+      </Compile>
+    </ItemGroup>
+</Project>

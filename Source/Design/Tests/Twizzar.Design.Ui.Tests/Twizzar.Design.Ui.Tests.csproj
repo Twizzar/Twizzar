@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net48</TargetFramework>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference
+            Include="..\..\..\Runtime\Core\Twizzar.Runtime.CoreInterfaces\Twizzar.Runtime.CoreInterfaces.csproj" />
+        <ProjectReference Include="..\Twizzar.Design.TestCommon\Twizzar.Design.TestCommon.csproj" />
+        <ProjectReference
+            Include="..\..\UI\Twizzar.Design.Ui.Interfaces\Twizzar.Design.Ui.Interfaces.csproj" />
+        <ProjectReference Include="..\..\UI\Twizzar.Design.Ui\Twizzar.Design.Ui.csproj" />
+        <ProjectReference
+            Include="..\..\..\SharedKernel\Tests\Twizzar.TestCommon\Twizzar.TestCommon.csproj" />
+        <PackageReference Include="Microsoft.VisualStudio.Validation" Version="17.0.*"
+            PrivateAssets="All" />
+
+        <PackageReference Include="Microsoft.VisualStudio.Sdk.TestFramework" Version="17.2.7" />
+        <PackageReference Include="NCrunch.Framework" Version="4.7.0.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="Validator\GenericTypeValidatorTests.twizzar.cs">
+            <DependentUpon>GenericTypeValidatorTests.cs</DependentUpon>
+        </Compile>
+        <Compile Update="ViewModels\FixtureItem\Nodes\MethodNodeSenderTests.twizzar.cs">
+            <DependentUpon>MethodNodeSenderTests.cs</DependentUpon>
+        </Compile>
+        <Compile Update="ViewModels\FixtureItem\Value\FixtureItemNodeValueViewModelTests.twizzar.cs">
+            <DependentUpon>FixtureItemNodeValueViewModelTests.cs</DependentUpon>
+        </Compile>
+    </ItemGroup>
+
+</Project>

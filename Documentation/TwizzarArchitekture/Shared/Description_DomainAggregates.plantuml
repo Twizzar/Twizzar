@@ -1,0 +1,192 @@
+@startuml
+hide empty members
+skinparam linetype ortho
+title Description Domain Aggregates
+
+footer
+As convention all public fields are readonly Properties
+endfooter
+
+' (v,Turquoise)
+' (E,violet)
+' (e,orange)
+
+package FixtureItem.Description{
+    namespace  SharedKernel{
+
+        interface ITypeDescription {
+            +<b>string Fullname</b>
+            +string Namespace
+            +string TypeName
+            +Maybe<string> BaseType
+            +<font color="#AAAAAA"> List<string> ImplementedInterfaces </font>
+            +<font color="#AAAAAA">AccessModifier AccessModifier </font>
+            +bool IsClass
+            +bool IsEnum
+            +bool IsInterface
+            +bool IsAbstract
+            +bool IsGeneric
+            +IImmutableDictionary<int, GenericParameterType> GenericTypeArguments
+
+            +ImmutableArray<IMethodDescription> GetDeclaredConstructors()
+            +ImmutableArray<IFieldDescription> GetDeclaredFields()
+            +ImmutableArray<IMethodDescription> GetDeclaredMethods()
+            +ImmutableArray<IPropertyDescription> GetDeclaredProperties()
+            +ITypeDescription GetGenericTypeArgumentDescription(int position)
+        }
+
+        class TypeDescription<<Entity>> implements ITypeDescription{
+            +FixtureKind FixtureKind
+        }
+
+        enum FixtureKind<<ValueObject>>{
+            Class,
+            Mock (Test Double),
+            BaseType
+        }
+
+        
+        enum MethodKind<<ValueObject>>{
+            Constructor,
+            Property,
+            Ordinary,
+            Other
+        }
+
+        interface IPropertyDescription implements IMemberDescription {
+            +string Type
+            +bool CanRead
+            +bool CanWrite
+            +bool IsStatic
+            +Maybe<IMethodDescription> SetMethod
+            +Maybe<IMethodDescription> GetMethod
+            +<font color="#AAAAAA"> OverrideKind OverrideKind </font>
+        }
+
+        interface IMemberDescription {
+            +string Name
+        }
+
+
+        interface IMethodDescription implements IMemberDescription {
+            +string Parameters
+            +string ParameterTypes
+            +ImmutableArray<IParameterDescription> DeclaredParameters
+            +MethodKind MethodKind
+            +bool IsConstructor
+            +bool IsAbstract
+            +bool IsStatic
+            +bool IsGeneric
+            +ImmutableDictionary<int, GenericParameterType> GenericTypeArguments
+            +OverrideKind OverrideKind
+        }
+
+        IMethodDescription *-- MethodKind
+        
+        interface IFieldDescription implements IMemberDescription {
+            +string Type
+            +bool IsStatic
+            +bool IsReadonly
+            +bool IsConstant
+        }
+
+        interface IParameterDescription {
+            +string Name
+            +Maybe<ParameterDefaultValue> DefaultValue
+            +bool IsIn
+            +bool IsOptional
+            +bool IsOut
+            +int Position
+        }
+
+        interface AccessModifier{
+            +bool IsPrivate
+            +bool IsPublic
+            +bool IsInternal
+            +bool IsProtected
+        }
+
+        interface OverrideKind{
+            +bool IsVirtual
+            +bool IsSealed
+        }
+
+        SharedKernel.TypeDescription *-- SharedKernel.MethodDescription
+        SharedKernel.TypeDescription *-- SharedKernel.IPropertyDescription
+        SharedKernel.TypeDescription *-- SharedKernel.AccessModifier
+        SharedKernel.TypeDescription *-- SharedKernel.IFieldDescription
+        SharedKernel.TypeDescription *-- SharedKernel.FixtureKind
+
+        SharedKernel.IPropertyDescription *-- SharedKernel.OverrideKind
+
+        SharedKernel.IMemberDescription *-- SharedKernel.AccessModifier
+        
+        SharedKernel.MethodDescription *-- SharedKernel.IParameterDescription
+        SharedKernel.MethodDescription *-- SharedKernel.OverrideKind
+
+    }
+
+    namespace Runtime{
+        interface IRuntimeTypeDescription implements SharedKernel.ITypeDescription{
+            Type Type
+        }
+
+        class ReflectionTypeDescription<<Entity>> extends SharedKernel.TypeDescription implements IRuntimeTypeDescription {
+                +Type Type
+        }
+
+        class ReflectionParameterDescription<<Entity>> implements SharedKernel.IParameterDescription{
+            +Type Type
+        }
+
+        class ReflectionFieldDescription<<Entity>> implements SharedKernel.IFieldDescription{
+            +Type Type
+        }
+
+        class ReflectionMethodDescription<<Entity>> implements SharedKernel.IMethodDescription{
+            +Type Type
+        }
+
+        class ReflectionPropertyDescription<<Entity>> implements SharedKernel.IPropertyDescription{
+            +Type Type
+        }
+    }
+
+    namespace Design {
+        class RoslynFieldDescription implements SharedKernel.IFieldDescription
+        class RoslynMethodDescription implements SharedKernel.IMethodDescription
+        class RoslynParameterDescription implements SharedKernel.IParameterDescription
+        class RoslynPropertyDescription implements SharedKernel.IPropertyDescription
+        class RoslynTypeDescription implements SharedKernel.ITypeDescription
+    }
+}
+
+namespace FixtureItem.SharedKernel {
+    class FixtureItemId<<ValueObject>>{
+        + <b>string Type</b>
+        + <b>Maybe<string> Name</b>
+        + <b>string ProjectName</b>
+       }
+}
+
+namespace FixtureItem.Definition.Runtime {
+    interface IFixtureItemDefinitionNode {
+            + ITypeDescription TypeDescription
+            + <b>FixtureItemId FixtureItemId</b>
+            + CreatorType GetCreatorType()
+    }
+    FixtureItem.Definition.Runtime.IFixtureItemDefinitionNode o-- FixtureItem.SharedKernel.FixtureItemId
+    FixtureItem.Definition.Runtime.IFixtureItemDefinitionNode o-- SharedKernel.ITypeDescription 
+}
+
+namespace FixtureItem.Definition.Design {
+    interface IFixtureItemDefinitionNode {
+            + ITypeDescription TypeDescription
+            + <b>FixtureItemId FixtureItemId</b>
+    }
+    FixtureItem.Definition.Design.IFixtureItemDefinitionNode o-- FixtureItem.SharedKernel.FixtureItemId
+    FixtureItem.Definition.Design.IFixtureItemDefinitionNode o-- SharedKernel.ITypeDescription  
+}
+
+
+@enduml

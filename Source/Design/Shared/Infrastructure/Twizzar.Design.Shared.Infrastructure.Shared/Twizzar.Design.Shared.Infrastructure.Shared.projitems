@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>d8537e99-206e-40c9-bd7f-8f9d34cb5686</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Twizzar.Design.Shared.Infrastructure.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ApiNames.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Description\IRoslynBaseDescription.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Description\RoslynFieldDescription.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Description\RoslynMethodDescription.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Description\RoslynParameterDescription.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Description\RoslynPropertyDescription.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Description\RoslynTypeDescription.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Discovery\Discoverer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Discovery\ItemBuilderCreationInformation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Discovery\PathProviderInformation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Discovery\PathSegment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extension\RoslynDescriptionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extension\RoslynSymbolExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extension\RoslynSyntaxExpansions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IDiscoverer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRoslynDescriptionFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRoslynTypeDescription.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Name\SymbolTypeFullNameToken.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PathTree\IPathNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PathTree\PathNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PathTree\PathTreeBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RoslynPipeline\IOperationFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RoslynPipeline\IValueOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RoslynPipeline\IValuesOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RoslynPipeline\OperationExtensionMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RoslynPipeline\SimpleOperations\BatchOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RoslynPipeline\SimpleOperations\CollectOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RoslynPipeline\SimpleOperations\CombineOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RoslynPipeline\SimpleOperations\InitOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RoslynPipeline\SimpleOperations\ISimpleValueOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RoslynPipeline\SimpleOperations\ISimpleValuesOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RoslynPipeline\SimpleOperations\SelectManyOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RoslynPipeline\SimpleOperations\SelectValueOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RoslynPipeline\SimpleOperations\SelectValuesOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RoslynPipeline\SimpleOperations\SimpleOperationExtensionMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RoslynPipeline\SimpleOperations\SimpleOperationFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RoslynPipeline\SimpleOperations\WhereOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RoslynPipeline\SimpleOperations\WrapValuesOperation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TzSymbolEqualityComparer.cs" />
+  </ItemGroup>
+</Project>

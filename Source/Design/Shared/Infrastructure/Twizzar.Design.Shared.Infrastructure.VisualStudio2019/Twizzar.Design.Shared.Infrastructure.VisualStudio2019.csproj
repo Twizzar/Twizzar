@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Cryptlex.LexActivator" Version="3.19.1" PrivateAssets="All"/>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.9.0" PrivateAssets="All" />
+        <PackageReference Include="System.Collections.Immutable" Version="5.0.0" PrivateAssets="All" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" PrivateAssets="All" />
+      <ProjectReference Include="..\..\Core\Twizzar.Design.Shared.CoreInterfaces\Twizzar.Design.Shared.CoreInterfaces.csproj" PrivateAssets="All" />
+    </ItemGroup>
+
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Twizzar.VsAddin" />
+    <InternalsVisibleTo Include="Twizzar.VsAddin2019" />
+    <InternalsVisibleTo Include="Twizzar.Analyzer2019.App" />
+
+    <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2019" />
+    <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2019.Tests" />
+
+    <InternalsVisibleTo Include="Twizzar.Analyzer2019" />
+    <InternalsVisibleTo Include="Twizzar.Analyzer2019.App.Tests" />
+  </ItemGroup>
+
+
+  <Import Project="..\Twizzar.Design.Shared.Infrastructure.Shared\Twizzar.Design.Shared.Infrastructure.Shared.projitems" Label="Shared" />
+
+</Project>

@@ -1,0 +1,24 @@
+@startuml Design Boundend Context Events
+hide empty members
+skinparam linetype ortho
+
+title Design Boundend Context Events
+
+package Events{
+    interface IEvent
+    {
+        FixtureItemId FixtureItemId
+    }
+
+    interface IEventFailed implements IEvent
+    {
+        string Reason
+    }
+
+    !include .\\Events\\FixtureItemCreatedEvent.puml
+    !include .\\Events\\FixtureItemCreatedFailedEvent.puml
+    !include .\\Events\\FixtureItemMemberChangedEvent.puml
+    !include .\\Events\\FixtureItemMemberChangedFailedEvent.puml
+}
+
+@enduml

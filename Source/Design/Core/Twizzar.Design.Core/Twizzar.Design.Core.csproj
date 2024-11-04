@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <Configurations>Debug;Release;Internal</Configurations>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="Command\obj\**" />
+      <EmbeddedResource Remove="Command\obj\**" />
+      <None Remove="Command\obj\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Shared\Core\Twizzar.Design.Shared.CoreInterfaces\Twizzar.Design.Shared.CoreInterfaces.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\Twizzar.Design.CoreInterfaces\Twizzar.Design.CoreInterfaces.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Twizzar.VsAddin2019" />
+        <InternalsVisibleTo Include="Twizzar.VsAddin2022" />
+
+        <InternalsVisibleTo Include="Twizzar.Design.Core" />
+        <InternalsVisibleTo Include="Twizzar.Design.CoreInterfaces" />
+        <InternalsVisibleTo Include="Twizzar.Design.Infrastructure" />
+        <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2019" />
+        <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2022" />
+
+        <InternalsVisibleTo Include="Twizzar.Design.Ui" />
+        <InternalsVisibleTo Include="Twizzar.Design.Ui.Interfaces" />
+        <InternalsVisibleTo Include="Twizzar.Design.Ui.DemoApplication" />
+
+        <InternalsVisibleTo Include="Twizzar.Design.Integration.Test" />
+        <InternalsVisibleTo Include="Twizzar.Design.Test" />
+        <InternalsVisibleTo Include="Twizzar.Design.Core.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.Tests" />
+        <InternalsVisibleTo Include="Twizzar.Design.TestCommon" />
+    </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Collections.Immutable" Version="5.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+    <PropertyGroup>
+        <TargetFramework>net48</TargetFramework>
+        <UseWPF>true</UseWPF>
+        <Configurations>Debug;Release;Internal</Configurations>
+        <NoWarn>MSB3884;VSTHRD100</NoWarn>
+        <CodeAnalysisRuleSet>Twizzar.Design.Ui.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.Core\Twizzar.SharedKernel.Core.csproj" />
+        <ProjectReference Include="..\..\Core\Twizzar.Design.CoreInterfaces\Twizzar.Design.CoreInterfaces.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\Infrastructure\Twizzar.Design.Infrastructure.VisualStudio.Ui\Twizzar.Design.Infrastructure.VisualStudio.Ui.csproj" />
+        <ProjectReference Include="..\Twizzar.Design.Ui.Interfaces\Twizzar.Design.Ui.Interfaces.csproj" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Twizzar.VsAddin2019" />
+        <InternalsVisibleTo Include="Twizzar.VsAddin2022" />
+
+        <InternalsVisibleTo Include="Twizzar.Design.Integration.Test" />
+        <InternalsVisibleTo Include="Twizzar.Design.Test" />
+        <InternalsVisibleTo Include="Twizzar.Design.Ui.DemoApplication" />
+        <InternalsVisibleTo Include="Twizzar.Design.Ui.Tests" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <PackageReference Include="JetBrains.Annotations" Version="2020.3.0" />
+      <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
+      <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Resource Include="View\Images\FieldInternal\FieldInternal_16x.png" />
+        <Resource Include="View\Images\FieldPrivate\FieldPrivate_16x.png" />
+        <Resource Include="View\Images\FieldProtected\FieldProtected_16x.png" />
+        <Resource Include="View\Images\Field\Field_16x.png" />
+        <Resource Include="View\Images\Field\Field_left_16x.png" />
+        <Resource Include="View\Images\MethodPrivate\MethodPrivate_16x.png" />
+        <Resource Include="View\Images\MethodProtect\MethodProtect_16x.png" />
+        <Resource Include="View\Images\Method\Cube_16x.png" />
+        <Resource Include="View\Images\Method\Method_16x.png" />
+        <Resource Include="View\Images\Method\Method_left_16x.png" />
+        <Resource Include="View\Images\PropertyPrivate\PropertyPrivate_16x.png" />
+        <Resource Include="View\Images\PropertyProtect\PropertyProtect_16x.png" />
+        <Resource Include="View\Images\Property\Property_16x.png" />
+        <Resource Include="View\Images\Property\Property_left_16x.png" />
+        <Resource Include="View\Images\Property\Property_overlay_8x_16x.png" />
+        <Resource Include="View\Images\StatusCriticalError\StatusCriticalError_16x.png" />
+        <Resource Include="View\Images\StatusInformation\StatusInformation_16x.png" />
+        <Resource Include="View\Images\StatusOK\StatusOK_16x.png" />
+        <Resource Include="View\Images\StatusWarning\StatusWarning_16x.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="View\FixtureMemberImage.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+    </ItemGroup>
+</Project>

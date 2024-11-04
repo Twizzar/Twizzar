@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--  Colors  -->
+    <SolidColorBrush x:Key="LinkForeground" Color="#FFD7BA7D" />
+    <SolidColorBrush x:Key="StringForeground" Color="#FFD69D85" />
+    <SolidColorBrush x:Key="BooleanForeground" Color="#FFB5CEA8" />
+    <SolidColorBrush x:Key="LiteralForeground" Color="#FFB5CEA8" />
+    <SolidColorBrush x:Key="TypeForeground" Color="#FF4EC9B0" />
+    <SolidColorBrush x:Key="KeywordForeground" Color="#FF569CD6" />
+    <SolidColorBrush x:Key="UnknownForeground" Color="Red" />
+    <SolidColorBrush x:Key="SelectedCtorForeground" Color="#FF2B91AF" />
+
+</ResourceDictionary>

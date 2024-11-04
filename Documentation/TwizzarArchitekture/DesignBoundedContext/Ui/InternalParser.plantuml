@@ -1,0 +1,73 @@
+@startuml Internal Parser
+hide empty members
+
+interface IParseSuccess<T> {
+    + ParserPoint OutputPoint { get; }
+    + ParserSpan ParserSpan { get; }
+    + T Value { get; }
+}
+
+IParseSuccess o-- ParserPoint
+IParseSuccess o-- ParsedSpan
+
+class ParseFailure {
+    + string Message { get; }
+    + ParserPoint OutputPoint { get; }
+    + ParserSpan Span { get; }
+}
+
+ParseFailure o-- ParserPoint
+ParseFailure o-- ParserSpan
+
+class ParserPoint {
+    string Content { get; }
+    int Position { get; }
+    char Current { get; }
+    bool HasNext {get; }
+    Input Next()
+    {static} string GetContent(ParserInput start, ParserInput end)
+    {static} ParserInput New(string content)
+}
+
+ParserSpan o-- ParserPoint
+
+class ParserSpan{
+    ParserInput Start { get; }
+    ParserInput End { get; }
+    int Length { get; }
+    string Content { get; }
+}
+
+class Consume{
+    + {static} Parser<char> WhiteSpace { get; }
+    + {static} Parser<IViToken> UniqueToken { get; }
+    + {static} Parser<IViToken> NullToken { get; }
+    + {static} Parser<char> Char(Predicate<char> predicate, string message)
+    + {static} Parser<char> Char(char c)
+    + {static} Parser<char> CharExcept(Predicate<char> predicate, string message)
+    + {static} Parser<char> CharExcept(char c)
+    + {static} Parser<string> String(string s)
+}
+
+class ParserExtensions{
+    __
+    + delegate IResult<IParseSuccess<T>, ParseFailure> Parser<out T>(ParserPoint input)
+    + {static} IResult<IParseSuccess<T>, ParseFailure> Parse<T>(this Parser<T> parser, string input)
+    + {static} Parser<IEnumerable<T>> Many<T>(this Parser<T> parser)
+    + {static} Parser<IEnumerable<T>> DelimitedBy<T>(
+            \t this Parser<IEnumerable<T>> parser,
+            \t Parser<T> delimiter)
+    + {static} Parser<IViToken> WithSurroundingWhitespaces(this Parser<IViToken> parser)
+    + {static} static Parser<IEnumerable<char>> WithSurroundingWhitespaces(
+            \t this Parser<IEnumerable<char>> parser)
+    + {static} Parser<T> Or<T>(this Parser<T> first, Parser<T> second)
+    + {static} Parser<TMap> Map<T, TMap>(this Parser<T> parser, Func<IParseSuccess<T>, TMap> mapFunc)
+    + {static} Parser<TMap> Map<T, TMap>(
+            \t this Parser<T> parser,
+            \t Func<IParseSuccess<T>, IParseSuccess<TMap>> mapFunc)
+    + {static} ParserPoint OutputPoint<T>(this IResult<IParseSuccess<T>, ParseFailure> result)
+    + {static} Parser<TNew> Then<T, TNew>(this Parser<T> first, Func<IParseSuccess<T>, Parser<TNew>> second)
+    + {static} string AsString(this IEnumerable<char> chars)
+
+}
+@enduml

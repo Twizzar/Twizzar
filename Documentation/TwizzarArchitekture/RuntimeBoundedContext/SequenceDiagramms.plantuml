@@ -1,0 +1,66 @@
+@startuml GetInstancesSequence
+
+title Runtime Bounded Contex Get Instance Sequence
+
+
+actor Stefan
+participant Container
+participant IFixtureItemContainer
+participant IResolver
+
+Stefan -> Container: GetInstance<T>(name)
+Container -> IFixtureItemContainer: GetInstance<T>(name)
+IFixtureItemContainer -> IResolver: ResolveNamed<t>(name)
+IResolver -> IFixtureItemContainer: return instance
+IFixtureItemContainer -> Container: return instance
+Container -> Stefan: return instance
+
+@enduml
+
+@startuml MainActivationRecursion
+
+title Runtime Bounded Contex MainActivator recursion
+
+participant MainActivatorFactory
+participant MainActivator
+participant FixtureItemDefinitionQuery
+participant TypeDescriptionQuery
+participant ConfigurationItemQuery
+participant UserConfigurationItemQuery
+participant SystemDefaultService
+participant DefinitionFactory
+
+MainActivatorFactory -> MainActivator: new(type, scope, ..)
+MainActivator -> FixtureItemDefinitionQuery: GetDefinition(fixtureId)
+FixtureItemDefinitionQuery -> TypeDescriptionQuery: GetTypeDescription(fixtureId.type)
+TypeDescriptionQuery -> FixtureItemDefinitionQuery: Return typeDescription
+FixtureItemDefinitionQuery -> ConfigurationItemQuery: GetConfigurationItem(FixtureId, typeDescription)
+ConfigurationItemQuery -> UserConfigurationItemQuery: GetNamedConfig(FixtureId)
+UserConfigurationItemQuery -> ConfigurationItemQuery: return userConfigurationItem or null
+ConfigurationItemQuery -> ConfigurationItemQuery: Inspect all members of the typeDescription
+activate ConfigurationItemQuery
+ConfigurationItemQuery -> ConfigurationItemQuery: Validate userConfigurationItem for member
+ConfigurationItemQuery -> UserConfigurationItemQuery: GetDefaultConfig(memberType, projectName)
+UserConfigurationItemQuery -> ConfigurationItemQuery: return defaultConfig or null
+ConfigurationItemQuery -> SystemDefaultService: GetDefault(memberKind) // Property, BaseType, Interface
+SystemDefaultService -> ConfigurationItemQuery: return default config
+note over ConfigurationItemQuery: The configurationItem is now fully \ndefined for all members of the type. \nConfigurationItemQueryBut only for his member (only 1 depth).
+ConfigurationItemQuery -> FixtureItemDefinitionQuery: return configurationItem
+
+
+FixtureItemDefinitionQuery -> DefinitionFactory: CreateDefinitionNode(fixtureId, typeDescription, configurationItem)
+DefinitionFactory -> FixtureItemDefinitionQuery: return definitionNode
+FixtureItemDefinitionQuery -> DefinitionNode: Setup(definitionMemberFactory, configurationItem)
+DefinitionNode -> FixtureItemDefinitionQuery
+FixtureItemDefinitionQuery -> MainActivator: return definition
+
+
+MainActivator -> CreatorFactory: GetCreator(definitionNode, resolveNamed, resolve)
+CreatorFactory -> MainActivator: returns a creator
+MainActivator -> ICreator: CreateInstance()
+ICreator -> MainActivator: return the instance
+
+deactivate ConfigurationItemQuery
+
+
+@enduml

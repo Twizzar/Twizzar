@@ -1,0 +1,31 @@
+name: Relase Build Pipeline
+
+on:
+    push:
+        branches: [development, main]
+    pull_request:
+        branches: [main, development]
+    workflow_dispatch:
+
+jobs:
+    build-and-test:
+        runs-on: windows-2022
+
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: "8.0.x"
+
+            - name: Restore dependencies
+              run: dotnet restore
+
+            - name: Build
+              run: dotnet build --configuration Release --no-restore /p:Version=${{ steps.gitversion.outputs.assemblySemVer }}
+
+            - name: Test
+              run: dotnet test --configuration Release --no-build --verbosity normals

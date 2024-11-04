@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <Configurations>Debug;Release;Internal</Configurations>
+    </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Twizzar.Design.CoreInterfaces\Twizzar.Design.CoreInterfaces.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\..\..\SharedKernel\Infrastructure\Twizzar.SharedKernel.Infrastructure\Twizzar.SharedKernel.Infrastructure.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+      <InternalsVisibleTo Include="Twizzar.VsAddin2019" />
+      <InternalsVisibleTo Include="Twizzar.VsAddin2022" />
+
+      <InternalsVisibleTo Include="Twizzar.Design.Integration.Test" />
+      <InternalsVisibleTo Include="Twizzar.Design.Test" />
+      <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.Tests" />
+      <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2019.Tests" />
+      <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2022.Tests" />
+      <InternalsVisibleTo Include="Twizzar.Design.TestCommon" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.0.0" />
+    <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
+  </ItemGroup>
+</Project>

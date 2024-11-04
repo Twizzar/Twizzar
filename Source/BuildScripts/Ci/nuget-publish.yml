@@ -1,0 +1,9 @@
+# packs and publishes the nuget package
+
+steps:
+  - task: NuGetCommand@2
+    displayName: NuGet push
+    inputs:
+      command: push
+      feedPublish: f9f2aaff-9a9b-4756-b92f-15871a1ea672/814fb2d5-97af-4354-adb6-37facc7a2ec0
+      allowPackageConflicts: true

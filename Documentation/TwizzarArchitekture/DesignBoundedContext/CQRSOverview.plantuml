@@ -1,0 +1,40 @@
+@startuml Design CQRS Overview
+title Design CQRS Overview
+
+skinparam linetype ortho
+
+package Command{
+    [CommandBus]
+    [CommandHandler]
+    [EventAggregate]
+    [EventBus]
+    [EventStore]
+}
+
+package Query{
+    [ConfigItemCachedQuery]
+    [ConfigItemQuery]
+    [FixtureItemDefinitinNodeQuery]
+    [FixtureItemReadModelQuery]
+    () " " as QueryEntryPoint
+}
+
+CommandBus "SendAsync(command)" -d-> CommandHandler #line:green
+CommandHandler "HandleAsync(command)" -d-> EventAggregate #line:green
+EventAggregate "Publish(new TEvent())" -d-> EventBus #line:green
+EventBus "PublishAsync(event)" -d-> EventStore #line:green
+EventStore "Synchronize(event)" -r-> ConfigItemCachedQuery #line:green
+
+ConfigItemCachedQuery -u-> ConfigItemQuery #line:blue
+ConfigItemQuery "GetCached(id)" -d-> ConfigItemCachedQuery #line:green
+
+FixtureItemDefinitinNodeQuery "GetConfigItem(id)" -d-> ConfigItemQuery #line:green
+ConfigItemQuery -u-> FixtureItemDefinitinNodeQuery #line:blue
+
+FixtureItemReadModelQuery "GetFixtureItemDefinitionNode(id)" -d-> FixtureItemDefinitinNodeQuery #line:green
+FixtureItemDefinitinNodeQuery -u-> FixtureItemReadModelQuery #line:blue
+
+QueryEntryPoint "GetReadModel(id)" -d-> FixtureItemReadModelQuery #line:green
+FixtureItemReadModelQuery -u-> QueryEntryPoint #line:blue
+
+@enduml

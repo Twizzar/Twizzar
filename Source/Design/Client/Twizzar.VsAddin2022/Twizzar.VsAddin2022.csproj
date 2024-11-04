@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>17.0</MinimumVisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <CodeAnalysisRuleSet>Twizzar.VsAddin2022.ruleset</CodeAnalysisRuleSet>
+    <TargetFrameworkProfile />
+    <UseCodebase>true</UseCodebase>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Internal|AnyCPU'">
+    <OutputPath>bin\Internal\</OutputPath>
+    <DefineConstants>TRACE;VS22</DefineConstants>
+    <DocumentationFile>bin\Debug\Twizzar.VsAddin2022.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>MSB3884</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>Twizzar.VsAddin2022.ruleset</CodeAnalysisRuleSet>
+    <DeployExtensionVSIX22 Condition="'$(DeployExtensionVSIX22)' == ''">true</DeployExtensionVSIX22>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{0D2E4947-8422-432B-BCA8-7CBF38C6858A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Twizzar.VsAddin2022</RootNamespace>
+    <AssemblyName>Twizzar.VsAddin2022</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <GeneratePkgDefFile>true</GeneratePkgDefFile>
+    <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
+    <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
+    <IncludeDebugSymbolsInLocalVSIXDeployment>true</IncludeDebugSymbolsInLocalVSIXDeployment>
+    <CopyBuildOutputToOutputDirectory>true</CopyBuildOutputToOutputDirectory>
+    <CopyOutputSymbolsToOutputDirectory>true</CopyOutputSymbolsToOutputDirectory>
+    <StartAction>Program</StartAction>
+    <StartProgram Condition="'$(DevEnvDir)' != ''">$(DevEnvDir)devenv.exe</StartProgram>
+    <StartArguments>"$(SolutionDir)\..\Requirements\AcceptanceCriteria\AcceptanceCriteria.sln" /NoSplash /rootsuffix Exp</StartArguments>
+    <CodeAnalysisRuleSet>Twizzar.VsAddin2022.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;VS22</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Twizzar.VsAddin2022.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Debug\Twizzar.VsAddin2022.xml</DocumentationFile>
+    <CreateVsixContainer>$(DeployExtensionVSIX22)</CreateVsixContainer>
+    <DeployExtension>$(DeployExtensionVSIX22)</DeployExtension>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;VS22</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Twizzar.VsAddin2022.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Debug\Twizzar.VsAddin2022.xml</DocumentationFile>
+    <CreateVsixContainer>$(DeployExtensionVSIX22)</CreateVsixContainer>
+    <DeployExtension>$(DeployExtensionVSIX22)</DeployExtension>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GitVersion.yml" />
+    <Content Include="ProjectTemplates\TwizzarProject.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <None Include="PackageReferences.target" />
+    <None Include="Twizzar.VsAddin2022.v3.ncrunchproject" />
+    <VSCTCompile Include="VsPackage.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
+    <None Include="source.extension.vsixmanifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Twizzar.VsAddin2022.ruleset" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SharedKernel\Infrastructure\Twizzar.SharedKernel.NLog\Twizzar.SharedKernel.NLog.csproj">
+      <Project>{37BFD8F6-16BD-417E-814E-82484D49559A}</Project>
+      <Name>Twizzar.SharedKernel.NLog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Twizzar.Design.CoreInterfaces\Twizzar.Design.CoreInterfaces.csproj">
+      <Project>{A3C16C6C-8AED-408D-80E3-B0A72130B768}</Project>
+      <Name>Twizzar.Design.CoreInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Twizzar.Design.Core\Twizzar.Design.Core.csproj">
+      <Project>{37970A5B-6BCC-4A69-ABCD-0A94CB7287D0}</Project>
+      <Name>Twizzar.Design.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Twizzar.Design.Infrastructure.VisualStudio.Ui\Twizzar.Design.Infrastructure.VisualStudio.Ui.csproj">
+      <Project>{769a9651-819f-46e2-ba86-8f4ce897717d}</Project>
+      <Name>Twizzar.Design.Infrastructure.VisualStudio.Ui</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Twizzar.Design.Infrastructure.VisualStudio2022\Twizzar.Design.Infrastructure.VisualStudio2022.csproj">
+      <Project>{c03cbd66-f4aa-48e2-a861-6ecdea27c1e8}</Project>
+      <Name>Twizzar.Design.Infrastructure.VisualStudio2022</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Twizzar.Design.Infrastructure\Twizzar.Design.Infrastructure.csproj">
+      <Project>{AAE4D774-FAA6-4AF5-8B17-4557C3BD0AAE}</Project>
+      <Name>Twizzar.Design.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\Core\Twizzar.Design.Shared.CoreInterfaces\Twizzar.Design.Shared.CoreInterfaces.csproj">
+      <Project>{c29587ab-2341-43bf-b27f-c5a5dced3c81}</Project>
+      <Name>Twizzar.Design.Shared.CoreInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\Infrastructure\Twizzar.Design.Shared.Infrastructure.VisualStudio2022\Twizzar.Design.Shared.Infrastructure.VisualStudio2022.csproj">
+      <Project>{11f65f65-a17b-484f-a888-e9759d3333d5}</Project>
+      <Name>Twizzar.Design.Shared.Infrastructure.VisualStudio2022</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UI\Twizzar.Design.Ui.Interfaces\Twizzar.Design.Ui.Interfaces.csproj">
+      <Project>{39F89DE8-368F-40F0-A37B-9F861E2079F3}</Project>
+      <Name>Twizzar.Design.Ui.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UI\Twizzar.Design.Ui\Twizzar.Design.Ui.csproj">
+      <Project>{F6D6664C-1E05-4DAC-8F4D-4CB8214D77C9}</Project>
+      <Name>Twizzar.Design.Ui</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SharedKernel\Factory\Twizzar.SharedKernel.Factories\Twizzar.SharedKernel.Factories.csproj">
+      <Project>{454F8ED0-84A1-4C67-8941-28B2BEE1B60E}</Project>
+      <Name>Twizzar.SharedKernel.Factories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SharedKernel\Infrastructure\Twizzar.SharedKernel.Infrastructure\Twizzar.SharedKernel.Infrastructure.csproj">
+      <Project>{16029F92-4664-4A20-AC23-42321ACC4F9D}</Project>
+      <Name>Twizzar.SharedKernel.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj">
+      <Project>{24F47342-916A-4B7C-8EFE-21E1A52B1760}</Project>
+      <Name>Twizzar.SharedKernel.CoreInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.Core\Twizzar.SharedKernel.Core.csproj">
+      <Project>{6B8057FA-F8C4-496A-A399-092E4A7A8ED9}</Project>
+      <Name>Twizzar.SharedKernel.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="VsPackage.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <ManifestResourceName>VSPackage</ManifestResourceName>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\Twizzar.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Resources\ViImage.ico">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Resources\ViImage.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="..\Twizzar.VsAddin\Twizzar.VsAddin.projitems" Label="Shared" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="PackageReferences.target" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

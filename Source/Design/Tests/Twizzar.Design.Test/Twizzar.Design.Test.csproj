@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net480</TargetFramework>
+        <IsPackable>false</IsPackable>
+        <Configurations>Debug;Release;Internal</Configurations>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\SharedKernel\Infrastructure\Twizzar.SharedKernel.Infrastructure\Twizzar.SharedKernel.Infrastructure.csproj" />
+        <ProjectReference Include="..\..\Infrastructure\Twizzar.Design.Infrastructure.VisualStudio2022\Twizzar.Design.Infrastructure.VisualStudio2022.csproj" />
+        <ProjectReference Include="..\Twizzar.Design.TestCommon\Twizzar.Design.TestCommon.csproj" />
+        <ProjectReference Include="..\..\Core\Twizzar.Design.Core\Twizzar.Design.Core.csproj" />
+        <ProjectReference Include="..\..\Infrastructure\Twizzar.Design.Infrastructure\Twizzar.Design.Infrastructure.csproj" />
+        <ProjectReference Include="..\..\UI\Twizzar.Design.Ui.Interfaces\Twizzar.Design.Ui.Interfaces.csproj" />
+        <ProjectReference Include="..\..\UI\Twizzar.Design.Ui\Twizzar.Design.Ui.csproj" />
+        <ProjectReference Include="..\..\..\SharedKernel\Tests\Twizzar.TestCommon\Twizzar.TestCommon.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Autofac" Version="5.0.0" />
+        <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="ExampleCode\Dependencies.cs" CopyToOutputDirectory="Always" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="UnitTest\AddinEntryPointTests.twizzar.cs">
+        <DependentUpon>AddinEntryPointTests.cs</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="Twizzar.Design.Test.internal.fixture.yaml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+</Project>

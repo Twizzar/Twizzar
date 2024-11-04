@@ -1,0 +1,90 @@
+﻿<UserControl
+    x:Class="Twizzar.Design.Ui.View.FixtureControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fixtureItem="clr-namespace:Twizzar.Design.Ui.ViewModels.FixtureItem"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vs="clr-namespace:Twizzar.Design.Infrastructure.VisualStudio.Ui.View;assembly=Twizzar.Design.Infrastructure.VisualStudio.Ui"
+    xmlns:converter="clr-namespace:Twizzar.Design.Ui.View.Converter"
+    MinHeight="80"
+    d:DataContext="{d:DesignInstance fixtureItem:FixtureItemViewModel}"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/FixtureControlStyles.xaml" />
+                <ResourceDictionary Source="Resources/FixtureControlDataTemplates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converter:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="{DynamicResource {x:Static vs:ViColors.BackgroundBrush}}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid>
+            <!--  Loading  -->
+            <TextBlock HorizontalAlignment="Center"
+                       TextAlignment="Center"
+                       FontSize="{DynamicResource {x:Static vs:ViFonts.FontSizeKey}}"
+                       Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}">
+                Loading ...
+            </TextBlock>
+        </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" MinWidth="100" />
+                <ColumnDefinition Width="3*" MinWidth="100" />
+                <ColumnDefinition Width="Auto" MinWidth="100" />
+            </Grid.ColumnDefinitions>
+
+            <!--  Headers  -->
+            <TreeView
+                Grid.Column="0"
+                Margin="0,0,15,0"
+                ItemContainerStyle="{StaticResource CustomTreeViewItemStyle}"
+                ItemTemplate="{StaticResource HeaderDataTemplate}"
+                ItemsSource="{Binding Children}"
+                Style="{StaticResource TreeViewStyle}"
+                VirtualizingStackPanel.VirtualizationMode="Recycling" />
+
+            <!--  :  -->
+            <TreeView
+                Grid.Column="0"
+                Margin="0,0,-3,0"
+                HorizontalAlignment="Right"
+                ItemContainerStyle="{StaticResource CustomTreeViewListItemStyle}"
+                ItemTemplate="{StaticResource SplitterDataTemplate}"
+                ItemsSource="{Binding Children}"
+                Style="{StaticResource TreeViewStyle}"
+                VirtualizingStackPanel.VirtualizationMode="Recycling" />
+
+            <GridSplitter Grid.Column="0" Style="{StaticResource GridSplitterStyle}"/>
+
+            <!--  Edit  -->
+            <TreeView
+                Grid.Column="1"
+                Margin="5,0,10,0"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                ItemContainerStyle="{StaticResource CustomTreeViewListItemStyle}"
+                ItemTemplate="{StaticResource ValueDataTemplate}"
+                ItemsSource="{Binding Children}"
+                KeyboardNavigation.TabNavigation="Contained"
+                Style="{StaticResource TreeViewStyle}"
+                VirtualizingStackPanel.VirtualizationMode="Recycling" />
+
+            <GridSplitter Grid.Column="1" Style="{StaticResource GridSplitterStyle}" />
+
+            <!--  Type  -->
+            <TreeView
+                Grid.Column="2"
+                ItemContainerStyle="{StaticResource CustomTreeViewListItemStyle}"
+                ItemTemplate="{StaticResource TypeDataTemplate}"
+                ItemsSource="{Binding Children}"
+                Style="{StaticResource TreeViewStyle}"
+                VirtualizingStackPanel.VirtualizationMode="Recycling" />
+        </Grid>
+    </Grid>
+</UserControl>

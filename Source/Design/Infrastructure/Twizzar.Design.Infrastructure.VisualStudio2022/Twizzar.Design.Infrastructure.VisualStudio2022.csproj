@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net48</TargetFramework>
+        <OutputType>Library</OutputType>
+        <Configurations>Debug;Release;Internal</Configurations>
+        <NoWarn>MSB3884; CVSTBLD002</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <DefineConstants>VS22</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+      <DefineConstants>VS22</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Internal|AnyCPU'">
+      <DefineConstants>VS22</DefineConstants>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Core\Twizzar.Design.CoreInterfaces\Twizzar.Design.CoreInterfaces.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\Shared\Core\Twizzar.Design.Shared.CoreInterfaces\Twizzar.Design.Shared.CoreInterfaces.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\Shared\Infrastructure\Twizzar.Design.Shared.Infrastructure.VisualStudio2022\Twizzar.Design.Shared.Infrastructure.VisualStudio2022.csproj" />
+        <ProjectReference Include="..\..\UI\Twizzar.Design.Ui.Interfaces\Twizzar.Design.Ui.Interfaces.csproj" PrivateAssets="All" />
+        <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Twizzar.VsAddin2022" />
+        <InternalsVisibleTo Include="Twizzar.Design.Ui" />
+        <InternalsVisibleTo Include="Twizzar.Design.Test" />
+        <InternalsVisibleTo Include="Twizzar.Design.Infrastructure.VisualStudio2022.Tests" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Community.VisualStudio.Toolkit.17" Version="17.0.394" />
+        <PackageReference Include="Community.VisualStudio.Toolkit.Analyzers" Version="1.0.394" />
+        <PackageReference Include="Microsoft.CodeAnalysis.EditorFeatures.Text" Version="4.0.1" />
+        <PackageReference Include="Microsoft.VisualStudio.LanguageServices" Version="4.0.1" />
+        <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.0.32112.339" />
+        <PackageReference Include="NLog" Version="5.3.4" />
+        <PackageReference Include="NuGet.VisualStudio" Version="17.5.1" />
+        <PackageReference Include="NuGet.VisualStudio.Contracts" Version="17.5.1" />
+        <PackageReference Include="System.Collections.Immutable" Version="6.0.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.0.1" />
+        <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+        <PackageReference Include="Microsoft.ApplicationInsights" Version="2.21.0" />
+        <PackageReference Include="Microsoft.Build" Version="17.2.2" />
+        <PackageReference Include="Nerdbank.Streams" Version="2.7.74" />
+        <PackageReference Include="Microsoft.VisualStudio.TemplateWizardInterface" Version="17.2.32505.113" />
+        <PackageReference Include="Microsoft.ServiceHub.Framework" Version="3.0.3078" />
+    </ItemGroup>
+
+    <Import Project="..\Twizzar.Design.Infrastructure.VisualStudio\Twizzar.Design.Infrastructure.VisualStudio.projitems" Label="Shared" />
+</Project>

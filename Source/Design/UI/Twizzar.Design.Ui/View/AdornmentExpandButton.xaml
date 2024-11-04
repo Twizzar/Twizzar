@@ -1,0 +1,29 @@
+﻿<UserControl
+    x:Class="Twizzar.Design.Ui.View.AdornmentExpandButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:view="clr-namespace:Twizzar.Design.Ui.View"
+    Height="15"
+    Cursor="Arrow"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/FixtureControlStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <DockPanel>
+        <view:FixtureItemNodeStatus
+            x:Name="FixtureItemNodeStatus"
+            Margin="0,2"
+            DockPanel.Dock="Right" />
+        <ToggleButton
+            x:Name="InternalToggleButton"
+            x:FieldModifier="private"
+            DockPanel.Dock="Left"
+            Style="{StaticResource AdornmentExpanderStyle}"
+            ToolTip="{Binding Path=OpenOrCloseShortCutTooltip}" />
+    </DockPanel>
+
+</UserControl>

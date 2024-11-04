@@ -1,0 +1,8 @@
+@startuml
+class FixtureItemMemberChangedFailedEvent implements IEvent {
+    + FixtureItemMemberChangedFailedEvent(fixtureItemId:FixtureItemId, memberConfiguration:IMemberConfiguration, reason:string)
+    + Reason : string <<get>>
+}
+FixtureItemMemberChangedEvent <|-- FixtureItemMemberChangedFailedEvent
+IEventFailed <|-- FixtureItemMemberChangedFailedEvent
+@enduml

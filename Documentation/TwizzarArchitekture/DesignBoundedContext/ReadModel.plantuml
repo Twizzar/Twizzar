@@ -1,0 +1,105 @@
+@startuml Design Fixture Item Read Model
+title Design Fixture Item Read Model
+hide empty members
+skinparam linetype ortho
+
+
+interface IFixtureItemModel {
+    + FixtureItemId Id
+    + ImmutableDictionary<string, IFixtureConfiguration> FixtureConfigurations
+    + ConfugurationKind Kind
+}
+
+class BaseTypeFixtureItemModel implements IFixtureItemModel {
+    + IMemberConfiguration Value
+}
+
+class ObjectFixtureItemModel implements IFixtureItemModel{
+    + Maybe<FixtureItemConstructor> UsedConstructor
+    + IImmutableDictionary<string, FixtureItemMemberModel> Properties
+    + IImmutableDictionary<string, FixtureItemMemberModel> fields
+    + ImmutableArray<IMethodDescription> DeclaredConstructors
+}
+
+class FixtureItemMemberModel {
+    + IMemberDescription MemberDescription
+    + IMemberConfiguration MemberConfiguration
+    + CtorMemberConfiguration Configuration
+}
+
+class FixtureItemConstructor{
+    + ImmutableArray<FixtureItemParameterModel> Parameters
+    + IMethodDescription MethodDescription
+}
+
+ObjectFixtureItemModel o-- FixtureItemMemberModel
+ObjectFixtureItemModel o-- FixtureItemConstructor
+FixtureItemConstructor o-- FixtureItemMemberModel
+
+package Configuration{
+    interface IMemberConfiguration{
+        string Name
+    }
+
+    class RawValueMemberConfiguration<<ValueObject>> implements IMemberConfiguration{
+        string Value
+    }
+
+    class RawValuesMemberConfiguration<<ValueObject>> implements IMemberConfiguration{
+        string[] Values
+    }
+
+    class LinkMemberConfiguration<<ValueObject>> implements IMemberConfiguration{
+        FixtureItemId configurationLink
+        string Type
+    }
+
+    class CtorMemberConfiguration <<ValueObject>> implements IMemberConfiguration{
+        ImmutableArray<IMemberConfiguration> ConstructorParameters
+    }
+
+    class NotSpecifiedConfiguration<<ValueObject>> implements IMemberConfiguration
+
+    class UniqueBaseTypeMemberConfiguration<<ValueObject>> implements IMemberConfiguration
+
+    enum ConfigurationKind<<ValueObject>> {
+        ConcreteComponent,
+        BaseType,
+        Mock
+    }
+}
+
+package Desciption{
+    class IMemberDescription {
+        +string Type
+        +<font color="#AAAAAA">string Modifier </font>
+        +AccessModifier AccessModifier
+    }
+
+    class IMethodDescription<<Entity>> implements IMemberDescription {
+        +string Type
+        +List<ParameterDescription> DeclaredParameters
+        +bool IsCtor
+        +<font color="#AAAAAA">OverrideKind OverrideKind </font>
+    }
+}
+
+IFixtureItemModel o-- ConfigurationKind
+FixtureItemMemberModel o-- IMemberConfiguration
+BaseTypeFixtureItemModel o-- IMemberConfiguration
+FixtureItemMemberModel o-- IMemberDescription
+ObjectFixtureItemModel o-- IMethodDescription
+
+@enduml
+
+@startuml Design Type Information Read Model
+title Design Fixture Item Read Model
+hide empty members
+skinparam linetype ortho
+
+class TypeInformationReadModelQuery{
+    - ITypeDescriptionQuery _typeDescriptionQuery
+    + Task<IEnumerable<TypeFullName>> GetAssignableSymbolsAsync(TypeFullName typeFullName)
+}
+
+@enduml

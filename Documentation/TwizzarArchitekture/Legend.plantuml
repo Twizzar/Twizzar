@@ -1,0 +1,13 @@
+@startuml Legend
+hide empty members
+
+Person *-- Hand : Composition
+
+Car o-- Engine : Aggregation
+
+Car <|-- Truck : Extension
+
+class ClassName<<ValueObject>>
+class ClassName<<Entity>>
+
+@enduml

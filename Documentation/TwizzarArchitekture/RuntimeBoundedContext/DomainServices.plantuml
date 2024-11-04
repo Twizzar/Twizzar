@@ -1,0 +1,161 @@
+@startuml
+hide empty members
+
+' Queries never modify the database. 
+' A query returns a DTO that does not encapsulate 
+' any domain knowledge.
+
+title Runtime Bounded Contex Services
+'
+
+
+
+left to right direction
+skinparam linetype ortho
+
+package FixtureItem{
+    interface IFixtureItemContainer{
+        + T GetInstance<T>(string definitionId)
+        + T GetInstance<T>()
+        + IEnumerable<T> GetInstances<T>(int count)
+        + IEnumerable<T> GetInstances<T>(int count, string definitionId)
+    }
+    
+    interface IResolver{
+        + T Resolve<T>()
+        + T ResolveNamed<T>(string typeName)
+    }
+
+    package Definition{
+        interface IFixtureItemDefinitionQuery implements IQuery{
+            + IFixtureItemDefinitionNode GetDefinition(FixtureItemId fixtureItemId)
+        }
+        class FixtureItemDefinitionQuery implements IFixtureItemDefinitionQuery{
+            - IConfigurationItemQuery _configurationItemQuery
+            - ITypeDescriptionQuery _typeDescriptionNodeQuery
+            - IFixtureDefinitionNodeFactory _fixtureDefinitionFactory
+        }
+
+    }
+
+    package Description{
+
+        interface IBaseTypeService{
+            + IList<Type> BaseTypes
+            + bool IsBaseType(string typeFullName)
+            + bool IsNullableBaseType(ITypeDescription typeDescription)
+        }
+
+        class BaseTypeService implements IBaseTypeService
+
+        interface ITypeDescriptionQuery implements IQuery {
+            + ITypeDescription GetTypeDescription(string fullName)
+        }
+
+        interface ITypeProvider {
+            + Type GetType(string fullname)
+        }
+    }
+
+    package Configuration{
+        interface IConfigurationItemQuery implements IQuery{
+            + IConfigurationItem GetConfigurationItem(FixtureId id, ITypeDescription typeDescription)
+        }
+        class ConfigurationItemQuery implements IConfigurationItemQuery{
+            - IUserConfigurationQuery _userConfigurationQuery;
+            - ISystemDefaultService _systemDefaultService;
+            }
+
+        interface ICtorSelector {
+            + Result<IMethodDescription, InvalidTypeDescriptionFailure> GetCtorDescription(\n\t ITypeDescription typeDescription,\n\t CtorSelectionBehavior ctorSelectionBehavior);
+        }
+
+        class CtorSelector implements ICtorSelector
+
+        interface IUserConfigurationQuery implements IQuery{
+            + Maybe<IConfigurationItem> GetNamedConfig(FixtureItemId id)
+            + Maybe<IConfigurationItem> GetDefaultConfig(string type, string projectName)
+        }
+
+        interface ISystemDefaultService implements IQuery{
+            + Result<IConfigurationItem, InvalidTypeDescriptionFailure> GetDefaultConfigurationItem(\n\t ITypeDescription typeDescription,\n\t string projectName)
+        }
+
+        class SystemDefaultService implements ISystemDefaultService{
+            - ICtorSelector _ctorSelector;
+            - IConfigurationItemFactory _configurationItemFactory;
+        }
+
+        SystemDefaultService o--[norank] ICtorSelector
+
+        class SystemDefaultQuery implements ISystemDefaultQuery{
+            - ICtorSelector _ctorSelector
+        }
+    }
+
+    package Creators{
+        interface ICreator{
+            + object CreateInstance(IFixtureItemDefinitionNode definition)
+        }
+
+        interface IBaseTypeCreator implements ICreator
+
+        interface IConcreteTypeCreator implements ICreator
+
+        interface IMoqCreator implements ICreator
+
+        interface IBaseTypeUniqueCreator{
+            + T GetNextValue<T>()
+            + object GetNextValue(Type type)
+        }
+
+        interface ICreatorProvider {
+            + ICreator GetCreator(IFixtureItemDefinitionNode fixtureItemDefinition)
+        }
+
+        package BaseTypeUniqueCreators{
+            interface IUniqueCreatorProvider {
+                IUniqueCreator<T> GetUniqueCreator<T>()
+            }
+
+            interface IUniqueCreator<T> {
+                + T GetNextValue()
+            }
+    
+            class BaseByteArrayUniqueCreator<T> implements IUniqueCreator
+            class BoolCreator implements IUniqueCreator
+            class DecimalUniqueCreator implements IUniqueCreator
+            class StringUniqueCreator implements IUniqueCreator
+
+            package BitSequenceBased{
+                class BitSequenceBasedUniqueCreator implements BaseByteArrayUniqueCreator
+                class ByteUniqueCreator implements BaseByteArrayUniqueCreator
+                class CharUniqueCreator implements BaseByteArrayUniqueCreator
+                class IntUniqueCreator implements BaseByteArrayUniqueCreator
+                class LongUniqueCreator implements BaseByteArrayUniqueCreator
+                class SbyteUniqueCreator implements BaseByteArrayUniqueCreator
+                class ShortUniqueCreator implements BaseByteArrayUniqueCreator
+                class UintUniqueCreator implements BaseByteArrayUniqueCreator
+                class UlongUniqueCreator implements BaseByteArrayUniqueCreator
+                class UshortUniqueCreator implements BaseByteArrayUniqueCreator
+            }
+
+            package FloatingPointNumbers{
+                class DoubleUniqueCreator implements FloatingPointUniqueCreator
+                class FloatingPointUniqueCreator<T>
+                class FloatUniqueCreator implements FloatingPointUniqueCreator
+            }
+
+            ' Implements crews up the complete diagramm I don't know why
+            FloatingPointUniqueCreator ..|> BaseByteArrayUniqueCreator
+        }
+    }
+}
+
+FixtureItemDefinitionQuery o--[norank] IConfigurationItemQuery
+FixtureItemDefinitionQuery o--[norank] ITypeDescriptionQuery
+SystemDefaultQuery o--[norank] ICtorSelector
+ConfigurationItemQuery o--[norank] IUserConfigurationQuery
+ConfigurationItemQuery o--[norank] ISystemDefaultService
+
+@enduml

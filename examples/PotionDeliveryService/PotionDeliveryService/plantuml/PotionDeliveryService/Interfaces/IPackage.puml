@@ -1,7 +1,0 @@
-@startuml
-interface "IPackage`1"<T> {
-    Add(item:T) : void
-    Wrap() : void
-    UnWrap() : IEnumerable<T>
-}
-@enduml

@@ -1,0 +1,162 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vs="clr-namespace:Twizzar.Design.Infrastructure.VisualStudio.Ui.View;assembly=Twizzar.Design.Infrastructure.VisualStudio.Ui">
+
+    <Style x:Key="GlyphRight16xRect" TargetType="Rectangle">
+        <Setter Property="Width" Value="16" />
+        <Setter Property="Height" Value="16" />
+        <Setter Property="Fill">
+            <Setter.Value>
+                <DrawingBrush>
+                    <DrawingBrush.Drawing>
+                        <DrawingGroup>
+                            <DrawingGroup.Children>
+                                <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                <GeometryDrawing Brush="{DynamicResource {x:Static vs:ViColors.GlyphBrushKey}}" Geometry="F1M5,1.5859L11.414,7.9999 5,14.4139z" />
+                                <GeometryDrawing Brush="{DynamicResource {x:Static vs:ViColors.BackgroundBrush}}" Geometry="F1M6,12L6,4 10,8z" />
+                            </DrawingGroup.Children>
+                        </DrawingGroup>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <DrawingBrush>
+                            <DrawingBrush.Drawing>
+                                <DrawingGroup>
+                                    <DrawingGroup.Children>
+                                        <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                        <GeometryDrawing Brush="{DynamicResource {x:Static vs:ViColors.GlyphMouseOverBrush}}" Geometry="F1M5,1.5859L11.414,7.9999 5,14.4139z" />
+                                        <GeometryDrawing Brush="{DynamicResource {x:Static vs:ViColors.BackgroundBrush}}" Geometry="F1M6,12L6,4 10,8z" />
+                                    </DrawingGroup.Children>
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="GlyphLeft16xRect" TargetType="Rectangle">
+        <Setter Property="Width" Value="16" />
+        <Setter Property="Height" Value="16" />
+        <Setter Property="Fill">
+            <Setter.Value>
+                <DrawingBrush>
+                    <DrawingBrush.Drawing>
+                        <DrawingGroup>
+                            <DrawingGroup.Children>
+                                <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                <GeometryDrawing Brush="{DynamicResource {x:Static vs:ViColors.GlyphBrushKey}}" Geometry="F1M4.5859,8L10.9999,1.586 10.9999,14.414z" />
+                                <GeometryDrawing Brush="{DynamicResource {x:Static vs:ViColors.BackgroundBrush}}" Geometry="F1M6,8L10,4 10,12z" />
+                            </DrawingGroup.Children>
+                        </DrawingGroup>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <DrawingBrush>
+                            <DrawingBrush.Drawing>
+                                <DrawingGroup>
+                                    <DrawingGroup.Children>
+                                        <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                        <GeometryDrawing Brush="{DynamicResource {x:Static vs:ViColors.GlyphMouseOverBrush}}" Geometry="F1M4.5859,8L10.9999,1.586 10.9999,14.414z" />
+                                        <GeometryDrawing Brush="{DynamicResource {x:Static vs:ViColors.BackgroundBrush}}" Geometry="F1M6,8L10,4 10,12z" />
+                                    </DrawingGroup.Children>
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="GlyphDown16xRect" TargetType="Rectangle">
+        <Setter Property="Width" Value="16" />
+        <Setter Property="Height" Value="16" />
+        <Setter Property="Fill">
+            <Setter.Value>
+                <DrawingBrush>
+                    <DrawingBrush.Drawing>
+                        <DrawingGroup>
+                            <DrawingGroup.Children>
+                                <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                <GeometryDrawing Brush="{DynamicResource {x:Static vs:ViColors.GlyphBrushKey}}" Geometry="F1M1.5859,5L14.4139,5 7.9999,11.414z" />
+                                <GeometryDrawing Brush="{DynamicResource {x:Static vs:ViColors.GlyphBrushKey}}" Geometry="F1M8,10L4,6 12,6z" />
+                            </DrawingGroup.Children>
+                        </DrawingGroup>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <DrawingBrush>
+                            <DrawingBrush.Drawing>
+                                <DrawingGroup>
+                                    <DrawingGroup.Children>
+                                        <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                        <GeometryDrawing Brush="{DynamicResource {x:Static vs:ViColors.GlyphMouseOverBrush}}" Geometry="F1M1.5859,5L14.4139,5 7.9999,11.414z" />
+                                        <GeometryDrawing Brush="{DynamicResource {x:Static vs:ViColors.GlyphMouseOverBrush}}" Geometry="F1M8,10L4,6 12,6z" />
+                                    </DrawingGroup.Children>
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ScrollbarArrowsDownRight16xRect" TargetType="Rectangle">
+        <Setter Property="Width" Value="16" />
+        <Setter Property="Height" Value="16" />
+        <Setter Property="Fill">
+            <Setter.Value>
+                <DrawingBrush>
+                    <DrawingBrush.Drawing>
+                        <DrawingGroup>
+                            <DrawingGroup.Children>
+                                <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                <GeometryDrawing Brush="{DynamicResource {x:Static vs:ViColors.GlyphBrushKey}}" Geometry="F1M2.9082,11L12.0002,2.021 12.0002,11z" />
+                                <GeometryDrawing Brush="{DynamicResource {x:Static vs:ViColors.GlyphBrushKey}}" Geometry="F1M11,10L5.344,10 11,4.414z" />
+                            </DrawingGroup.Children>
+                        </DrawingGroup>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Fill">
+                    <Setter.Value>
+                        <DrawingBrush>
+                            <DrawingBrush.Drawing>
+                                <DrawingGroup>
+                                    <DrawingGroup.Children>
+                                        <GeometryDrawing Brush="#00FFFFFF" Geometry="F1M16,16L0,16 0,0 16,0z" />
+                                        <GeometryDrawing Brush="{DynamicResource {x:Static vs:ViColors.GlyphMouseOverBrush}}" Geometry="F1M2.9082,11L12.0002,2.021 12.0002,11z" />
+                                        <GeometryDrawing Brush="{DynamicResource {x:Static vs:ViColors.GlyphMouseOverBrush}}" Geometry="F1M11,10L5.344,10 11,4.414z" />
+                                    </DrawingGroup.Children>
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>
