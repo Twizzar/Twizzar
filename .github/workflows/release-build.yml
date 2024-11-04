@@ -1,4 +1,4 @@
-name: Relase Build Pipeline
+name: Relase Build
 
 on:
     release:

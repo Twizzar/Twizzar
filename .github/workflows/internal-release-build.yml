@@ -1,4 +1,4 @@
-name: Relase Build Pipeline
+name: Internal Relase Build
 
 on:
     push:
