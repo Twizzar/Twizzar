@@ -20,14 +20,11 @@ jobs:
             - name: Setup MSBuild
               uses: microsoft/setup-msbuild@v1.1
 
-            - name: Setup NuGet
-              uses: NuGet/setup-nuget@v1.0.5
-
             - name: Setup VSTest
               uses: darenm/Setup-VSTest@v1
 
             - name: Restore NuGet packages
-              run: nuget restore Twizzar.sln
+              run: msbuild -t:Restore Twizzar.sln
 
             - name: Build solution
               run: msbuild Twizzar.sln /p:Configuration=Release
