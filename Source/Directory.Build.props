@@ -48,7 +48,7 @@
             </ItemGroup>
 
             <ItemGroup Condition="'$(Configuration)' != 'Internal'">
-                <PackageReference Include="TwizzarInternal.Api" Version="1.5.0-alpha0030" />
+                <PackageReference Include="TwizzarInternal.Api" Version="1.5.1" />
             </ItemGroup>
         </When>
     </Choose>
@@ -68,8 +68,10 @@
 
             <ItemGroup>
                 <!-- For StyleCop to work with c# version 8.0 v1.2.0-beta or higher is required-->
-                <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435" PrivateAssets="All" />
-                <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0" PrivateAssets="All" />
+                <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.435"
+                    PrivateAssets="All" />
+                <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0"
+                    PrivateAssets="All" />
             </ItemGroup>
         </When>
 
