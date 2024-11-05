@@ -17,16 +17,20 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
-            - name: Setup .NET
-              uses: actions/setup-dotnet@v4
-              with:
-                  dotnet-version: "8.0.x"
+            - name: Setup MSBuild
+              uses: microsoft/setup-msbuild@v1.1
 
-            - name: Restore dependencies
-              run: dotnet restore
+            - name: Setup NuGet
+              uses: NuGet/setup-nuget@v1.0.5
 
-            - name: Build
-              run: dotnet build --configuration Release --no-restore
+            - name: Setup VSTest
+              uses: darenm/Setup-VSTest@v1
+
+            - name: Restore NuGet packages
+              run: nuget restore YourSolution.sln
+
+            - name: Build solution
+              run: msbuild Twizzar.sln /p:Configuration=Release
 
             - name: Test
-              run: dotnet test --configuration Release --no-build --verbosity normals
+              run: vstest.console.exe **\bin\Release\*Test*.dll

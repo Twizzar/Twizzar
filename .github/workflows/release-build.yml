@@ -22,6 +22,15 @@ jobs:
               with:
                   dotnet-version: "8.0.x"
 
+            - name: Setup MSBuild
+              uses: microsoft/setup-msbuild@v1.1
+
+            - name: Setup NuGet
+              uses: NuGet/setup-nuget@v1.0.5
+
+            - name: Setup VSTest
+              uses: darenm/Setup-VSTest@v1
+
             - name: Install GitVersion
               uses: gittools/actions/gitversion/setup@v0.9.7
               with:
@@ -31,14 +40,17 @@ jobs:
               id: gitversion
               uses: gittools/actions/gitversion/execute@v0.10.2
 
-            - name: Restore dependencies
-              run: dotnet restore
+            - name: Add msbuild to PATH
+              uses: microsoft/setup-msbuild@v1.1
 
-            - name: Build
-              run: dotnet build --configuration Release --no-restore /p:Version=${{ steps.gitversion.outputs.assemblySemVer }}
+            - name: Restore NuGet packages
+              run: nuget restore YourSolution.sln
+
+            - name: Build solution
+              run: msbuild Twizzar.sln /p:Configuration=Release /p:Version=${{ steps.gitversion.outputs.assemblySemVer }}
 
             - name: Test
-              run: dotnet test --configuration Release --no-build --verbosity normals
+              run: vstest.console.exe **\bin\Release\*Test*.dll
 
             - name: Pack
               run: dotnet pack --configuration Release --no-build --output nupkgs /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }}

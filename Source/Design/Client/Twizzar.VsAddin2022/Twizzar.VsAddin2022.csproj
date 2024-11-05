@@ -2,7 +2,8 @@
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MinimumVisualStudioVersion>17.0</MinimumVisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">
+            $(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <CodeAnalysisRuleSet>Twizzar.VsAddin2022.ruleset</CodeAnalysisRuleSet>
     <TargetFrameworkProfile />
     <UseCodebase>true</UseCodebase>
@@ -25,7 +26,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>
+            {82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProjectGuid>{0D2E4947-8422-432B-BCA8-7CBF38C6858A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -40,7 +42,8 @@
     <CopyOutputSymbolsToOutputDirectory>true</CopyOutputSymbolsToOutputDirectory>
     <StartAction>Program</StartAction>
     <StartProgram Condition="'$(DevEnvDir)' != ''">$(DevEnvDir)devenv.exe</StartProgram>
-    <StartArguments>"$(SolutionDir)\..\Requirements\AcceptanceCriteria\AcceptanceCriteria.sln" /NoSplash /rootsuffix Exp</StartArguments>
+    <StartArguments>"$(SolutionDir)\..\Requirements\AcceptanceCriteria\AcceptanceCriteria.sln"
+            /NoSplash /rootsuffix Exp</StartArguments>
     <CodeAnalysisRuleSet>Twizzar.VsAddin2022.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -67,6 +70,7 @@
     <DocumentationFile>bin\Debug\Twizzar.VsAddin2022.xml</DocumentationFile>
     <CreateVsixContainer>$(DeployExtensionVSIX22)</CreateVsixContainer>
     <DeployExtension>$(DeployExtensionVSIX22)</DeployExtension>
+    <NoWarn>MSB3884, MSB3822</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -193,11 +197,4 @@
     <PreBuildEvent>
     </PreBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
