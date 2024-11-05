@@ -46,7 +46,7 @@ jobs:
               run: dotnet pack --configuration Internal --no-build --output nupkgs /p:PackageVersion=${{ steps.gitversion.outputs.assemblySemVer }}
 
             - name: Push TwizzarInternal.Api to NuGet
-              run: dotnet nuget push ./nupkgs/TwizzarInternal.Api.${{ steps.gitversion.outputs.nuGetVersionV2 }}.nupkg --source "https://api.nuget.org/v3/index.json" --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
+              run: dotnet nuget push ./nupkgs/TwizzarInternal.Api.${{ steps.gitversion.outputs.nuGetVersionV2 }}.nupkg --source "https://api.nuget.org/v3/index.json" --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
 
             - name: Push TwizzarInternal.Analyzer2022 to NuGet
-              run: dotnet nuget push ./nupkgs/TwizzarInternal.Analyzer2022.${{ steps.gitversion.outputs.nuGetVersionV2 }}.nupkg --source "https://api.nuget.org/v3/index.json" --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
+              run: dotnet nuget push ./nupkgs/TwizzarInternal.Analyzer2022.${{ steps.gitversion.outputs.nuGetVersionV2 }}.nupkg --source "https://api.nuget.org/v3/index.json" --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
