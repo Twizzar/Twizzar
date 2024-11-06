@@ -10,4 +10,5 @@ runs:
   steps:
     - name: Restore NuGet packages
       shell: pwsh
+      working-directory: ./Source
       run: msbuild -t:Restore Twizzar.sln /p:Configuration=${{ inputs.configuration}}

@@ -5,14 +5,17 @@ runs:
   steps:
     - name: Test
       shell: pwsh
+      working-directory: ./Source
       env:
         VSTEST_DISABLE_STANDARD_OUTPUT_FORWARDING: 1
       run: dotnet test --configuration Release --no-build --no-restore --verbosity minimal --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura
 
     - name: Install ReportGenerator
       shell: pwsh
+      working-directory: ./Source
       run: dotnet tool install -g dotnet-reportgenerator-globaltool
 
     - name: Generate coverage report
       shell: pwsh
+      working-directory: ./Source
       run: reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coveragereport -reporttypes:MarkdownSummaryGithub
