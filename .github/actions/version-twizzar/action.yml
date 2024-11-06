@@ -32,6 +32,7 @@ runs:
         ./BuildScripts/Ci/update-vsixmanifest-version.ps1 ${{ steps.gitversion.outputs.assemblySemVer }} -IsInternal False -VsVersion 2022
 
     - name: Set outputs
+      shell: bash
       run: |
         echo "assemblySemVer=${{ steps.gitversion.outputs.assemblySemVer }}" >> $GITHUB_OUTPUT
         echo "nuGetVersionV2=${{ steps.gitversion.outputs.nuGetVersionV2 }}" >> $GITHUB_OUTPUT
