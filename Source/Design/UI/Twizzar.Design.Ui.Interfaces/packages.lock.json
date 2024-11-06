@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "dependencies": {
+    ".NETFramework,Version=v4.8": {
+      "Microsoft.CodeAnalysis.NetAnalyzers": {
+        "type": "Direct",
+        "requested": "[6.0.0, )",
+        "resolved": "6.0.0",
+        "contentHash": "cjG06LMeOADNUeCUaklOfVgrnVkLy80H5PVll4QHDUXv+C+6G9rHczrNdWjfb3xKv3Ts9s4UsP6J2ZWe52Gz4Q=="
+      },
+      "StyleCop.Analyzers": {
+        "type": "Direct",
+        "requested": "[1.2.0-beta.435, )",
+        "resolved": "1.2.0-beta.435",
+        "contentHash": "TADk7vdGXtfTnYCV7GyleaaRTQjfoSfZXprQrVMm7cSJtJbFc1QIbWPyLvrgrfGdfHbGmUPvaN4ODKNxg2jgPQ==",
+        "dependencies": {
+          "StyleCop.Analyzers.Unstable": "1.2.0.435"
+        }
+      },
+      "ViCommon.EnsureHelper": {
+        "type": "Direct",
+        "requested": "[1.0.0, )",
+        "resolved": "1.0.0",
+        "contentHash": "rk3hYEvjuvgpn0WIKJpeoWLmFDjEMIxj+g64HYVH4JPQbLJ1kV2lTYbdJ/ZGPbHo8NcqJOulvdZKoCkN15Ml1w==",
+        "dependencies": {
+          "Microsoft.VisualStudio.Validation": "16.9.32"
+        }
+      },
+      "ViCommon.Functional": {
+        "type": "Direct",
+        "requested": "[1.0.3, )",
+        "resolved": "1.0.3",
+        "contentHash": "wjXScxe2HdpMXJv4N1lZgnluRN0eOL40kkrSOIZyYjhno4kmBlHFXlC9lLdj3h/hsRmifcy0YRhn3Mg5Hw48KA=="
+      },
+      "Microsoft.VisualStudio.Validation": {
+        "type": "Transitive",
+        "resolved": "16.9.32",
+        "contentHash": "4Ozqy5OjtU4k9aKT76or3y8tVq6ju8+ba4YZHIe5wTb28jeCg11zkK6bdI4kj8s+k5OSekyO+FkUyoOkvPkgVg=="
+      },
+      "NLog": {
+        "type": "Transitive",
+        "resolved": "4.6.8",
+        "contentHash": "LKB0uN5naOTxdNz++iapk6arNYv2asE8FPRBAmQZ1fe8y8C1Zm6sldh/w9TP/w5s7FGK8s0x6ny0og5ytFK1oQ=="
+      },
+      "StyleCop.Analyzers.Unstable": {
+        "type": "Transitive",
+        "resolved": "1.2.0.435",
+        "contentHash": "ouwPWZxbOV3SmCZxIRqHvljkSzkCyi1tDoMzQtDb/bRP8ctASV/iRJr+A2Gdj0QLaLmWnqTWDrH82/iP+X80Lg=="
+      },
+      "twizzar.design.coreinterfaces": {
+        "type": "Project",
+        "dependencies": {
+          "Twizzar.Design.Shared.CoreInterfaces": "[1.0.0, )"
+        }
+      },
+      "twizzar.design.shared.coreinterfaces": {
+        "type": "Project"
+      },
+      "twizzar.sharedkernel.coreinterfaces": {
+        "type": "Project",
+        "dependencies": {
+          "Twizzar.SharedKernel.NLog": "[1.0.0, )"
+        }
+      },
+      "twizzar.sharedkernel.nlog": {
+        "type": "Project",
+        "dependencies": {
+          "NLog": "[4.6.8, )"
+        }
+      }
+    }
+  }
+}

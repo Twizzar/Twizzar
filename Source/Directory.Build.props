@@ -18,6 +18,7 @@
         <NeutralLanguage>en</NeutralLanguage>
         <LangVersion>11.0</LangVersion>
         <ReportAnalyzer>true</ReportAnalyzer>
+        <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     </PropertyGroup>
 
     <ItemGroup>
