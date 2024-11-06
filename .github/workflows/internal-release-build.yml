@@ -35,7 +35,6 @@ jobs:
               id: version
               uses: ./.github/actions/version-twizzar
               with:
-                  version: 1.0.0
                   isInternal: $True
 
             - name: Build
@@ -45,20 +44,8 @@ jobs:
                   version: ${{ steps.version.outputs.assemblySemVer }}
                   solution: TwizzarInternal.sln
 
-            - name: Pack
-              run: dotnet pack --configuration Internal --no-build --output nupkgs /p:PackageVersion=${{ steps.version.outputs.assemblySemVer }}
-
-            - name: Push TwizzarInternal.Api to NuGet
-              run: dotnet nuget push ./nupkgs/TwizzarInternal.Api.${{ steps.version.outputs.nuGetVersionV2 }}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
-
-            - name: Push TwizzarInternal.Analyzer2022 to NuGet
-              run: dotnet nuget push ./nupkgs/TwizzarInternal.Analyzer2022.${{ steps.version.outputs.nuGetVersionV2 }}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
-
-            - name: Upload Vsix and NuPkg
-              uses: actions/upload-artifact@v3
+            - name: Publish
+              uses: ./.github/actions/publish-twizzar
               with:
-                  name: Twizzar ${{ steps.version.outputs.nuGetVersionV2 }}
-                  path: |
-                      **\bin\$(BuildConfiguration)\**\*.vsix
-                      **\bin\$(BuildConfiguration)\**\*.nupkg
-                  retention-days: 5
+                  version: ${{ steps.version.outputs.nuGetVersionV2 }}
+                  configuration: Internal

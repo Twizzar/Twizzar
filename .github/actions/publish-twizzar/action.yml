@@ -1,0 +1,38 @@
+name: "Publish Twizzar"
+description: "Pack, Push Twizzar NuGet packages and upload Vsix and NuPkg"
+inputs:
+  version:
+    description: "The version to pack"
+    required: false
+    default: "1.0.0"
+  configuration:
+    description: "The configuration to use for the build"
+    required: false
+    default: "Release"
+runs:
+  using: "composite"
+  steps:
+    - name: Pack Twizzar.Api
+      shell: pwsh
+      working-directory: ./Source
+      run: dotnet pack .\Runtime\Client\Twizzar.Api\Twizzar.Api.csproj --configuration ${{ inputs.configuration }} --no-build --output nupkgs /p:PackageVersion=${{ inputs.version }}
+
+    - name: Pack Twizzar.Analyzer2022
+      shell: pwsh
+      working-directory: ./Source
+      run: dotnet pack .\Design\Analyzer\Client\Twizzar.Analyzer2022\Twizzar.Analyzer2022.csproj --configuration ${{ inputs.configuration }} --no-build --output nupkgs /p:PackageVersion=${{ inputs.version }}
+
+    - name: Push to NuGet
+      shell: pwsh
+      working-directory: ./Source
+      run: dotnet nuget push ./**/nupkgs/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+
+    - name: Upload Vsix and NuPkg
+      uses: actions/upload-artifact@v3
+      working-directory: ./Source
+      with:
+        name: Twizzar ${{ inputs.version }}
+        path: |
+          **/bin/$(BuildConfiguration)/**/*.vsix
+          ./**/nupkgs/*.nupkg
+        retention-days: 5

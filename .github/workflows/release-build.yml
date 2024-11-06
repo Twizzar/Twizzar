@@ -40,17 +40,8 @@ jobs:
             - name: Test
               uses: ./.github/actions/test-twizzar
 
-            - name: Pack
-              run: dotnet pack --configuration Release --no-build --output nupkgs /p:PackageVersion=${{ steps.version.outputs.nuGetVersionV2 }}
-
-            - name: Push to NuGet
-              run: dotnet nuget push ./**/nupkgs/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
-
-            - name: Upload Vsix and NuPkg
-              uses: actions/upload-artifact@v3
+            - name: Publish
+              uses: ./.github/actions/publish-twizzar
               with:
-                  name: Twizzar ${{ steps.version.outputs.nuGetVersionV2 }}
-                  path: |
-                      **\bin\$(BuildConfiguration)\**\*.vsix
-                      **\bin\$(BuildConfiguration)\**\*.nupkg
-                  retention-days: 5
+                  version: ${{ steps.version.outputs.nuGetVersionV2 }}
+                  configuration: Release
