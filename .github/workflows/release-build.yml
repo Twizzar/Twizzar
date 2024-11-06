@@ -20,11 +20,6 @@ jobs:
             - name: Prepare
               uses: ./.github/actions/prepare-twizzar
 
-            - name: Rename Namespace and Assebly to TwizzarInternal
-              shell: pwsh
-              run: |
-                  ./BuildScripts/Ci/rename-namespace-for-internal.ps1
-
             - name: Restore
               uses: ./.github/actions/restore-twizzar
               with:
