@@ -13,4 +13,5 @@ runs:
   using: "composite"
   steps:
     - name: Build solution
+      shell: pwsh
       run: msbuild Twizzar.sln /p:Configuration=${{ inputs.configuration }} /p:Version=${{ inputs.version }}

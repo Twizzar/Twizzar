@@ -3,8 +3,10 @@ description: "Apply version to Twizzar project"
 outputs:
   assemblySemVer:
     description: "The assembly version"
+    value: "1.0.0"
   nuGetVersionV2:
     description: "The NuGet version"
+    value: "1.0.0"
 
 runs:
   using: "composite"
