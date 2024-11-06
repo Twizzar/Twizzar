@@ -6,6 +6,10 @@
 
 name: "Apply Version"
 description: "Apply version to Twizzar project"
+inputs:
+  isInternal:
+    description: "Is the version internal"
+    default: "$False"
 outputs:
   assemblySemVer:
     description: "The assembly version"
@@ -13,7 +17,6 @@ outputs:
   nuGetVersionV2:
     description: "The NuGet version"
     value: "1.0.0"
-
 runs:
   using: "composite"
   steps:
@@ -30,7 +33,7 @@ runs:
       shell: pwsh
       working-directory: ./Source
       run: |
-        ./BuildScripts/Ci/update-vsixmanifest-version.ps1 ${{ steps.gitversion.outputs.assemblySemVer }} -IsInternal False -VsVersion 2022
+        ./BuildScripts/Ci/update-vsixmanifest-version.ps1 ${{ steps.gitversion.outputs.assemblySemVer }} -IsInternal ${{ inputs.isInternal }} -VsVersion 2022
 
     - name: Set outputs
       shell: bash

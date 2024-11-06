@@ -36,6 +36,7 @@ jobs:
               uses: ./.github/actions/version-twizzar
               with:
                   version: 1.0.0
+                  isInternal: $True
 
             - name: Build
               uses: ./.github/actions/build-twizzar
