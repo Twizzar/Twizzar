@@ -33,9 +33,17 @@ jobs:
               with:
                   versionSpec: "5.x"
 
+            - name: Install ReportGenerator
+              run: dotnet tool install -g dotnet-reportgenerator-globaltool
+
             - name: Determine Version
               id: gitversion
               uses: gittools/actions/gitversion/execute@v0.10.2
+
+            - name: Adjust VSIX VS 22 Version
+              shell: pwsh
+              run: |
+                  ./BuildScripts/Ci/update-vsixmanifest-version.ps1 ${{ steps.gitversion.outputs.assemblySemVer }} -IsInternal False -VsVersion 2022
 
             - name: Add msbuild to PATH
               uses: microsoft/setup-msbuild@v1.1
@@ -47,7 +55,13 @@ jobs:
               run: msbuild Twizzar.sln /p:Configuration=Release /p:Version=${{ steps.gitversion.outputs.assemblySemVer }}
 
             - name: Test
-              run: dotnet test --configuration Release --no-build --verbosity normal
+              run: dotnet test --configuration Release --no-build --no-restore --verbosity minimal --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura
+
+            - name: Generate coverage report
+              run: reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coveragereport -reporttypes:MarkdownSummaryGithub
+
+            - name: Add coverage report to summary
+              run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
 
             - name: Pack
               run: dotnet pack --configuration Release --no-build --output nupkgs /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }}

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-      <TargetFramework>net6</TargetFramework>
+      <TargetFramework>net8</TargetFramework>
     <IsPackable>false</IsPackable>
       <NoWarn>CS0414, CS0067, CS0649, CS0169, CS0628</NoWarn>
       <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>

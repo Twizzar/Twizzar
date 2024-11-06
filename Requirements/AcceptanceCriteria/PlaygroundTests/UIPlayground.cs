@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+
 using DemoCode.ExampleCode;
 using DemoCode.Interfaces.ExampleCode;
 
 using NUnit.Framework;
+
 using Twizzar.Fixture;
 
 namespace PlaygroundTests
@@ -26,7 +28,8 @@ namespace PlaygroundTests
 
             new ItemBuilder<UIPlayground>();
 
-            var classA = new ItemBuilder<ClassA>().Build();
+            var classA = new ItemBuilder<ClassA>()
+                .Build();
 
             Assert.IsInstanceOf<Garage>(classA.Garage10);
 
@@ -48,7 +51,7 @@ namespace PlaygroundTests
             var classA2 = new ItemBuilder<ClassA>();
 
             var garage = new ItemBuilder<Garage>();
-            
+
             var memberTest = new ItemBuilder<MemberTest>();
 
             var genericsTest = new ItemBuilder<GenericsTest>();

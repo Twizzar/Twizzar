@@ -6,9 +6,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Remove="Command\obj\**" />
-      <EmbeddedResource Remove="Command\obj\**" />
-      <None Remove="Command\obj\**" />
+        <Compile Remove="Command\obj\**" />
+        <EmbeddedResource Remove="Command\obj\**" />
+        <None Remove="Command\obj\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -38,8 +38,9 @@
         <InternalsVisibleTo Include="Twizzar.Design.TestCommon" />
     </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="System.Collections.Immutable" Version="5.0.0" PrivateAssets="All" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="System.Collections.Immutable" Version="5.0.0" PrivateAssets="All" />
+        <PackageReference Include="NLog" Version="4.6.8" PrivateAssets="All" />
+    </ItemGroup>
 
 </Project>
