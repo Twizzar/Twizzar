@@ -47,7 +47,7 @@ jobs:
               uses: microsoft/setup-msbuild@v1.1
 
             - name: Restore NuGet packages
-              run: msbuild -t:Restore Twizzar.sln
+              run: msbuild -t:Restore Twizzar.sln /p:Configuration=Release
 
             - name: Build solution
               run: msbuild Twizzar.sln /p:Configuration=Release /p:Version=${{ steps.gitversion.outputs.assemblySemVer }}

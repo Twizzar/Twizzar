@@ -19,30 +19,19 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
-            - name: Setup .NET
-              uses: actions/setup-dotnet@v4
+            - name: Prepare
+              uses: ./.github/actions/prepare-twizzar
+
+            - name: Restore
+              uses: ./.github/actions/restore-twizzar
               with:
-                  dotnet-version: "8.0.x"
-                  cache: true
+                  configuration: Release
 
-            - name: Setup MSBuild
-              uses: microsoft/setup-msbuild@v1.1
-
-            - name: Setup VSTest
-              uses: darenm/Setup-VSTest@v1
-
-            - uses: actions/cache@v3
+            - name: Build
+              uses: ./.github/actions/build-twizzar
               with:
-                  path: ~/.nuget/packages
-                  key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-                  restore-keys: |
-                      ${{ runner.os }}-nuget-
-
-            - name: Restore NuGet packages
-              run: msbuild -t:Restore Twizzar.sln /p:RestoreUseStaticGraphEvaluation=true /p:RestoreLockedMode=true /p:RestorePackagesWithLockFile=true
-
-            - name: Build solution
-              run: msbuild Twizzar.sln /p:Configuration=Release
+                  configuration: Release
+                  version: 1.0.0
 
             - name: Test
               uses: ./.github/actions/test-twizzar

@@ -1,0 +1,16 @@
+name: "Build Twizzar"
+description: "Build Twizzar on Windows 2022"
+inputs:
+  configuration:
+    description: "The configuration to use for the build"
+    required: false
+    default: "Release"
+  version:
+    description: "The version to build"
+    required: false
+    default: "1.0.0"
+runs:
+  using: "composite"
+  steps:
+    - name: Build solution
+      run: msbuild Twizzar.sln /p:Configuration=${{ inputs.configuration }} /p:Version=${{ inputs.version }}
