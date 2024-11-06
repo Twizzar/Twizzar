@@ -10,6 +10,8 @@ on:
 jobs:
     build-and-test:
         runs-on: windows-2022
+        env:
+            NUGET_CERT_REVOCATION_MODE: offline
         defaults:
             run:
                 working-directory: ./Source
@@ -17,26 +19,30 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: "8.0.x"
+                  cache: true
+
             - name: Setup MSBuild
               uses: microsoft/setup-msbuild@v1.1
 
             - name: Setup VSTest
               uses: darenm/Setup-VSTest@v1
 
+            - uses: actions/cache@v3
+              with:
+                  path: ~/.nuget/packages
+                  key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-nuget-
+
             - name: Restore NuGet packages
-              run: msbuild -t:Restore Twizzar.sln
+              run: msbuild -t:Restore Twizzar.sln /p:RestoreUseStaticGraphEvaluation=true /p:RestoreLockedMode=true /p:RestorePackagesWithLockFile=true
 
             - name: Build solution
               run: msbuild Twizzar.sln /p:Configuration=Release
 
             - name: Test
-              run: dotnet test --configuration Release --no-build --no-restore --verbosity minimal --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura
-
-            - name: Install ReportGenerator
-              run: dotnet tool install -g dotnet-reportgenerator-globaltool
-
-            - name: Generate coverage report
-              run: reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coveragereport -reporttypes:MarkdownSummaryGithub
-
-            - name: Add coverage report to summary
-              run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
+              uses: ./.github/actions/test-twizzar

@@ -1,0 +1,29 @@
+name: "Apply Version"
+description: "Apply version to Twizzar project"
+outputs:
+  assemblySemVer:
+    description: "The assembly version"
+  nuGetVersionV2:
+    description: "The NuGet version"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.7
+      with:
+        versionSpec: "5.x"
+
+    - name: Determine Version
+      id: gitversion
+      uses: gittools/actions/gitversion/execute@v0.10.2
+
+    - name: Adjust VSIX VS 22 Version
+      shell: pwsh
+      run: |
+        ./BuildScripts/Ci/update-vsixmanifest-version.ps1 ${{ steps.gitversion.outputs.assemblySemVer }} -IsInternal False -VsVersion 2022
+
+    - name: Set outputs
+      run: |
+        echo "assemblySemVer=${{ steps.gitversion.outputs.assemblySemVer }}" >> $GITHUB_OUTPUT
+        echo "nuGetVersionV2=${{ steps.gitversion.outputs.nuGetVersionV2 }}" >> $GITHUB_OUTPUT

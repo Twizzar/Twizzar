@@ -21,6 +21,7 @@ jobs:
               uses: actions/setup-dotnet@v4
               with:
                   dotnet-version: "8.0.x"
+                  cache: true
 
             - name: Setup MSBuild
               uses: microsoft/setup-msbuild@v1.1
@@ -52,16 +53,7 @@ jobs:
               run: msbuild Twizzar.sln /p:Configuration=Release /p:Version=${{ steps.gitversion.outputs.assemblySemVer }}
 
             - name: Test
-              run: dotnet test --configuration Release --no-build --no-restore --verbosity minimal --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura
-
-            - name: Install ReportGenerator
-              run: dotnet tool install -g dotnet-reportgenerator-globaltool
-
-            - name: Generate coverage report
-              run: reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coveragereport -reporttypes:MarkdownSummaryGithub
-
-            - name: Add coverage report to summary
-              run: cat coveragereport/SummaryGithub.md >> $GITHUB_STEP_SUMMARY
+              uses: ./.github/actions/test-twizzar
 
             - name: Pack
               run: dotnet pack --configuration Release --no-build --output nupkgs /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }}
