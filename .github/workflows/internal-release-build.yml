@@ -49,3 +49,4 @@ jobs:
               with:
                   version: ${{ steps.version.outputs.nuGetVersionV2 }}
                   configuration: Internal
+                  projectPrefix: Internal
