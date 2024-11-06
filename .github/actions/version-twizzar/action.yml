@@ -13,10 +13,10 @@ inputs:
 outputs:
   assemblySemVer:
     description: "The assembly version"
-    value: "1.0.0"
+    value: ${{ steps.gitversion.outputs.assemblySemVer }}
   nuGetVersionV2:
     description: "The NuGet version"
-    value: "1.0.0"
+    value: ${{ steps.gitversion.outputs.nuGetVersionV2 }}
 runs:
   using: "composite"
   steps:
@@ -34,9 +34,3 @@ runs:
       working-directory: ./Source
       run: |
         ./BuildScripts/Ci/update-vsixmanifest-version.ps1 ${{ steps.gitversion.outputs.assemblySemVer }} -IsInternal ${{ inputs.isInternal }} -VsVersion 2022
-
-    - name: Set outputs
-      shell: bash
-      run: |
-        echo "assemblySemVer=${{ steps.gitversion.outputs.assemblySemVer }}" >> $GITHUB_OUTPUT
-        echo "nuGetVersionV2=${{ steps.gitversion.outputs.nuGetVersionV2 }}" >> $GITHUB_OUTPUT

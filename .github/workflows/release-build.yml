@@ -28,8 +28,6 @@ jobs:
             - name: Versioning
               id: version
               uses: ./.github/actions/version-twizzar
-              with:
-                  version: 1.0.0
 
             - name: Build
               uses: ./.github/actions/build-twizzar
