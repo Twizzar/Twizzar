@@ -9,10 +9,14 @@ inputs:
     description: "The version to build"
     required: false
     default: "1.0.0"
+  solution:
+    description: "The solution to restore"
+    required: false
+    default: "Twizzar.sln"
 runs:
   using: "composite"
   steps:
     - name: Build solution
       shell: pwsh
       working-directory: ./Source
-      run: msbuild Twizzar.sln /p:Configuration=${{ inputs.configuration }} /p:Version=${{ inputs.version }}
+      run: msbuild ${{ inputs.solution }} /p:Configuration=${{ inputs.configuration }} /p:Version=${{ inputs.version }}

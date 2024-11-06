@@ -29,6 +29,7 @@ jobs:
               uses: ./.github/actions/restore-twizzar
               with:
                   configuration: Internal
+                  solution: TwizzarInternal.sln
 
             - name: Versioning
               id: version
@@ -41,6 +42,7 @@ jobs:
               with:
                   configuration: Internal
                   version: ${{ steps.version.outputs.assemblySemVer }}
+                  solution: TwizzarInternal.sln
 
             - name: Pack
               run: dotnet pack --configuration Internal --no-build --output nupkgs /p:PackageVersion=${{ steps.version.outputs.assemblySemVer }}
