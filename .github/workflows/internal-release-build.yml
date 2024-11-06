@@ -50,3 +50,4 @@ jobs:
                   version: ${{ steps.version.outputs.nuGetVersionV2 }}
                   configuration: Internal
                   projectPrefix: Internal
+                  nugetApiKey: ${{ secrets.NUGET_API_KEY }}
