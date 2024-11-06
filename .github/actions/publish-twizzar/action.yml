@@ -32,7 +32,6 @@ runs:
 
     - name: Upload Vsix and NuPkg
       uses: actions/upload-artifact@v3
-      working-directory: ./Source
       with:
         name: Twizzar ${{ inputs.version }}
         path: |
