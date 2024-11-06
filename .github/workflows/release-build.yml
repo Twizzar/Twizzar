@@ -45,3 +45,4 @@ jobs:
               with:
                   version: ${{ steps.version.outputs.nuGetVersionV2 }}
                   configuration: Release
+                  nugetApiKey: ${{ secrets.NUGET_API_KEY }}

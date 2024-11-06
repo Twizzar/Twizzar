@@ -9,6 +9,9 @@ inputs:
     description: "The configuration to use for the build"
     required: false
     default: "Release"
+  nugetApiKey:
+    description: "The NuGet API key"
+    required: true
 runs:
   using: "composite"
   steps:
@@ -25,7 +28,7 @@ runs:
     - name: Push to NuGet
       shell: pwsh
       working-directory: ./Source
-      run: dotnet nuget push ./**/nupkgs/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+      run: dotnet nuget push ./**/nupkgs/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ inputs.nugetApiKey }} --skip-duplicate
 
     - name: Upload Vsix and NuPkg
       uses: actions/upload-artifact@v3
