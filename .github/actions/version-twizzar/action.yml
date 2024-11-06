@@ -28,6 +28,7 @@ runs:
 
     - name: Adjust VSIX VS 22 Version
       shell: pwsh
+      working-directory: ./Source
       run: |
         ./BuildScripts/Ci/update-vsixmanifest-version.ps1 ${{ steps.gitversion.outputs.assemblySemVer }} -IsInternal False -VsVersion 2022
 
