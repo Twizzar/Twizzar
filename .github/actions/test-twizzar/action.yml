@@ -1,14 +1,25 @@
 name: "Test Twizzar"
 description: "Test Twizzar on Windows 2022"
+inputs:
+  configuration:
+    description: "The configuration to use for the build"
+    required: false
+    default: "Release"
 runs:
   using: "composite"
   steps:
-    - name: Test
+    - name: Run Tests
       shell: pwsh
       working-directory: ./Source
       env:
         VSTEST_DISABLE_STANDARD_OUTPUT_FORWARDING: 1
-      run: dotnet test --configuration Release --no-build --no-restore --verbosity minimal --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura
+      run: dotnet test --configuration ${{ inputs.configuration}} --no-build --no-restore --verbosity minimal --logger trx
+
+    - name: Collect Code Coverage
+      shell: pwsh
+      working-directory: ./Source
+      continue-on-error: true
+      run: dotnet test --configuration ${{ inputs.configuration}} --no-build --no-restore --verbosity minimal --logger trx --collect:"XPlat Code Coverage" --DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura
 
     - name: Install ReportGenerator
       shell: pwsh

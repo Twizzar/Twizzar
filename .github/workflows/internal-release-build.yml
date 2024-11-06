@@ -17,44 +17,44 @@ jobs:
               with:
                   fetch-depth: 0
 
-            - name: Setup .NET
-              uses: actions/setup-dotnet@v4
-              with:
-                  dotnet-version: "8.0.x"
-
-            - name: Install GitVersion
-              uses: gittools/actions/gitversion/setup@v0.9.7
-              with:
-                  versionSpec: "5.x"
+            - name: Prepare
+              uses: ./.github/actions/prepare-twizzar
 
             - name: Rename Namespace and Assebly to TwizzarInternal
               shell: pwsh
               run: |
                   ./BuildScripts/Ci/rename-namespace-for-internal.ps1
 
-            - name: Determine Version
-              id: gitversion
-              uses: gittools/actions/gitversion/execute@v0.10.2
+            - name: Restore
+              uses: ./.github/actions/restore-twizzar
+              with:
+                  configuration: Internal
 
-            - name: Restore dependencies
-              run: dotnet restore -p:Configuration=Internal
+            - name: Versioning
+              id: version
+              uses: ./.github/actions/version-twizzar
+              with:
+                  version: 1.0.0
 
             - name: Build
-              run: dotnet build --configuration Internal --no-restore /p:Version=${{ steps.gitversion.outputs.assemblySemVer }}
+              uses: ./.github/actions/build-twizzar
+              with:
+                  configuration: Internal
+                  version: ${{ steps.version.outputs.assemblySemVer }}
 
             - name: Pack
-              run: dotnet pack --configuration Internal --no-build --output nupkgs /p:PackageVersion=${{ steps.gitversion.outputs.assemblySemVer }}
+              run: dotnet pack --configuration Internal --no-build --output nupkgs /p:PackageVersion=${{ steps.version.outputs.assemblySemVer }}
 
             - name: Push TwizzarInternal.Api to NuGet
-              run: dotnet nuget push ./nupkgs/TwizzarInternal.Api.${{ steps.gitversion.outputs.nuGetVersionV2 }}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+              run: dotnet nuget push ./nupkgs/TwizzarInternal.Api.${{ steps.version.outputs.nuGetVersionV2 }}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
 
             - name: Push TwizzarInternal.Analyzer2022 to NuGet
-              run: dotnet nuget push ./nupkgs/TwizzarInternal.Analyzer2022.${{ steps.gitversion.outputs.nuGetVersionV2 }}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+              run: dotnet nuget push ./nupkgs/TwizzarInternal.Analyzer2022.${{ steps.version.outputs.nuGetVersionV2 }}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
 
             - name: Upload Vsix and NuPkg
               uses: actions/upload-artifact@v3
               with:
-                  name: Twizzar ${{ steps.gitversion.outputs.nuGetVersionV2 }}
+                  name: Twizzar ${{ steps.version.outputs.nuGetVersionV2 }}
                   path: |
                       **\bin\$(BuildConfiguration)\**\*.vsix
                       **\bin\$(BuildConfiguration)\**\*.nupkg

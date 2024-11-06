@@ -17,46 +17,36 @@ jobs:
               with:
                   fetch-depth: 0
 
-            - name: Setup .NET
-              uses: actions/setup-dotnet@v4
-              with:
-                  dotnet-version: "8.0.x"
-                  cache: true
+            - name: Prepare
+              uses: ./.github/actions/prepare-twizzar
 
-            - name: Setup MSBuild
-              uses: microsoft/setup-msbuild@v1.1
-
-            - name: Setup VSTest
-              uses: darenm/Setup-VSTest@v1
-
-            - name: Install GitVersion
-              uses: gittools/actions/gitversion/setup@v0.9.7
-              with:
-                  versionSpec: "5.x"
-
-            - name: Determine Version
-              id: gitversion
-              uses: gittools/actions/gitversion/execute@v0.10.2
-
-            - name: Adjust VSIX VS 22 Version
+            - name: Rename Namespace and Assebly to TwizzarInternal
               shell: pwsh
               run: |
-                  ./BuildScripts/Ci/update-vsixmanifest-version.ps1 ${{ steps.gitversion.outputs.assemblySemVer }} -IsInternal False -VsVersion 2022
+                  ./BuildScripts/Ci/rename-namespace-for-internal.ps1
 
-            - name: Add msbuild to PATH
-              uses: microsoft/setup-msbuild@v1.1
+            - name: Restore
+              uses: ./.github/actions/restore-twizzar
+              with:
+                  configuration: Release
 
-            - name: Restore NuGet packages
-              run: msbuild -t:Restore Twizzar.sln /p:Configuration=Release
+            - name: Versioning
+              id: version
+              uses: ./.github/actions/version-twizzar
+              with:
+                  version: 1.0.0
 
-            - name: Build solution
-              run: msbuild Twizzar.sln /p:Configuration=Release /p:Version=${{ steps.gitversion.outputs.assemblySemVer }}
+            - name: Build
+              uses: ./.github/actions/build-twizzar
+              with:
+                  configuration: Release
+                  version: ${{ steps.version.outputs.assemblySemVer }}
 
             - name: Test
               uses: ./.github/actions/test-twizzar
 
             - name: Pack
-              run: dotnet pack --configuration Release --no-build --output nupkgs /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }}
+              run: dotnet pack --configuration Release --no-build --output nupkgs /p:PackageVersion=${{ steps.version.outputs.nuGetVersionV2 }}
 
             - name: Push to NuGet
               run: dotnet nuget push ./**/nupkgs/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
@@ -64,7 +54,7 @@ jobs:
             - name: Upload Vsix and NuPkg
               uses: actions/upload-artifact@v3
               with:
-                  name: Twizzar ${{ steps.gitversion.outputs.nuGetVersionV2 }}
+                  name: Twizzar ${{ steps.version.outputs.nuGetVersionV2 }}
                   path: |
                       **\bin\$(BuildConfiguration)\**\*.vsix
                       **\bin\$(BuildConfiguration)\**\*.nupkg

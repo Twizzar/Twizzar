@@ -1,3 +1,9 @@
+# Use fetch-depth: 0 for the checkout action to ensure that the entire history is available for GitVersion to calculate the version.
+# example:
+#  - uses: actions/checkout@v4
+#    with:
+#        fetch-depth: 0
+
 name: "Apply Version"
 description: "Apply version to Twizzar project"
 outputs:
