@@ -9,7 +9,7 @@ runs:
   using: "composite"
   steps:
     - name: Run Tests
-      shell: pwsh§
+      shell: pwsh
       working-directory: ./Source
       env:
         VSTEST_DISABLE_STANDARD_OUTPUT_FORWARDING: 1
