@@ -19,15 +19,15 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Pack Twizzar.Api
+    - name: Pack Twizzar${{ inputs.projectPrefix }}.Api
       shell: pwsh
       working-directory: ./Source
-      run: dotnet pack .\Runtime\Client\Twizzar.Api\Twizzar${{ inputs.projectPrefix }}.Api.csproj --configuration ${{ inputs.configuration }} --no-build --output nupkgs /p:PackageVersion=${{ inputs.version }}
+      run: dotnet pack .\Runtime\Client\Twizzar${{ inputs.projectPrefix }}.Api\Twizzar${{ inputs.projectPrefix }}.Api.csproj --configuration ${{ inputs.configuration }} --no-build --output nupkgs /p:PackageVersion=${{ inputs.version }}
 
-    - name: Pack Twizzar.Analyzer2022
+    - name: Pack Twizzar${{ inputs.projectPrefix }}.Analyzer2022
       shell: pwsh
       working-directory: ./Source
-      run: dotnet pack .\Design\Analyzer\Client\Twizzar.Analyzer2022\Twizzar${{ inputs.projectPrefix }}.Analyzer2022.csproj --configuration ${{ inputs.configuration }} --no-build --output nupkgs /p:PackageVersion=${{ inputs.version }}
+      run: dotnet pack .\Design\Analyzer\Client\Twizzar${{ inputs.projectPrefix }}.Analyzer2022\Twizzar${{ inputs.projectPrefix }}.Analyzer2022.csproj --configuration ${{ inputs.configuration }} --no-build --output nupkgs /p:PackageVersion=${{ inputs.version }}
 
     - name: Push to NuGet
       shell: pwsh
@@ -37,7 +37,7 @@ runs:
     - name: Upload Vsix and NuPkg
       uses: actions/upload-artifact@v3
       with:
-        name: Twizzar ${{ inputs.version }}
+        name: Twizzar${{ inputs.projectPrefix }} ${{ inputs.version }}
         path: |
           **/bin/$(BuildConfiguration)/**/*.vsix
           ./**/nupkgs/*.nupkg
