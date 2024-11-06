@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+
 using FluentAssertions;
+
 using NUnit.Framework;
+
 using Twizzar.Runtime.Core.FixtureItem.Description;
 using Twizzar.SharedKernel.CoreInterfaces.Extensions;
 using Twizzar.SharedKernel.CoreInterfaces.FixtureItem.Description;
 using Twizzar.SharedKernel.CoreInterfaces.FixtureItem.Description.Services;
+
 using TwizzarInternal.Fixture;
+
 using ViCommon.Functional.Monads.MaybeMonad;
 
 // ReSharper disable PublicConstructorInAbstractClass

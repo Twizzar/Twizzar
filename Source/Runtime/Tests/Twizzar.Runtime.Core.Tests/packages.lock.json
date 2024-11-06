@@ -197,11 +197,6 @@
           "System.Runtime.InteropServices": "4.3.0"
         }
       },
-      "MSTest.TestFramework": {
-        "type": "Transitive",
-        "resolved": "2.1.2",
-        "contentHash": "DXTDuBumPC4oo9KKZMt5zgOuLdfUjqcsLRLyqeubaIxfl7ZBfk8wfsKRWYd1m5aCL3ekifW5pwT3rwuB2mDdLw=="
-      },
       "NETStandard.Library": {
         "type": "Transitive",
         "resolved": "2.0.0",
@@ -897,9 +892,6 @@
         "type": "Project",
         "dependencies": {
           "FluentAssertions": "[5.10.3, )",
-          "MSTest.TestFramework": "[2.1.2, )",
-          "Microsoft.NET.Test.Sdk": "[16.8.0, )",
-          "Moq": "[4.18.1, )",
           "TwizzarInternal.Api": "[1.5.1, )"
         }
       }

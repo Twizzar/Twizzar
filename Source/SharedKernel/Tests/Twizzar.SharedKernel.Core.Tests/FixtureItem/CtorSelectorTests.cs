@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using FluentAssertions;
+
 using Moq;
+
 using NUnit.Framework;
+
 using Twizzar.SharedKernel.Core.FixtureItem.Configuration.Services;
 using Twizzar.SharedKernel.CoreInterfaces.Failures;
 using Twizzar.SharedKernel.CoreInterfaces.FixtureItem.Configuration;
 using Twizzar.SharedKernel.CoreInterfaces.FixtureItem.Description;
 using Twizzar.SharedKernel.CoreInterfaces.FixtureItem.Name;
 using Twizzar.TestCommon.TypeDescription.Builders;
+
 using static Twizzar.TestCommon.TestHelper;
-using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace Twizzar.SharedKernel.Core.Tests.FixtureItem
 {
@@ -62,7 +66,7 @@ namespace Twizzar.SharedKernel.Core.Tests.FixtureItem
         {
             // arrange
             Action act = () => this._sut.GetCtorDescription(null, CtorSelectionBehavior.Max);
-            
+
             // act
             act.Should().Throw<ArgumentNullException>();
         }

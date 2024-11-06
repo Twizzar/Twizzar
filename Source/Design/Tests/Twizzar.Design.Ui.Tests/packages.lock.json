@@ -512,11 +512,6 @@
           "System.Security.Principal.Windows": "5.0.0"
         }
       },
-      "MSTest.TestFramework": {
-        "type": "Transitive",
-        "resolved": "2.1.2",
-        "contentHash": "DXTDuBumPC4oo9KKZMt5zgOuLdfUjqcsLRLyqeubaIxfl7ZBfk8wfsKRWYd1m5aCL3ekifW5pwT3rwuB2mDdLw=="
-      },
       "MvvmLightLibs": {
         "type": "Transitive",
         "resolved": "5.4.1.1",
@@ -811,17 +806,12 @@
       "twizzar.design.testcommon": {
         "type": "Project",
         "dependencies": {
-          "FluentAssertions": "[5.10.3, )",
-          "MSTest.TestFramework": "[2.1.2, )",
-          "Microsoft.NET.Test.Sdk": "[16.8.0, )",
-          "Moq": "[4.18.1, )",
           "Twizzar.Design.CoreInterfaces": "[1.0.0, )",
           "Twizzar.Design.Infrastructure": "[1.0.0, )",
           "Twizzar.Design.Shared.CoreInterfaces": "[1.0.0, )",
           "Twizzar.SharedKernel.Core": "[1.0.0, )",
           "Twizzar.SharedKernel.CoreInterfaces": "[1.0.0, )",
-          "Twizzar.TestCommon": "[1.0.0, )",
-          "TwizzarInternal.Api": "[1.5.1, )"
+          "Twizzar.TestCommon": "[1.0.0, )"
         }
       },
       "twizzar.design.ui": {
@@ -864,9 +854,6 @@
         "type": "Project",
         "dependencies": {
           "FluentAssertions": "[5.10.3, )",
-          "MSTest.TestFramework": "[2.1.2, )",
-          "Microsoft.NET.Test.Sdk": "[16.8.0, )",
-          "Moq": "[4.18.1, )",
           "TwizzarInternal.Api": "[1.5.1, )"
         }
       }

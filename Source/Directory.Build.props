@@ -10,8 +10,9 @@
 
     <!-- Conditions for projects. -->
     <PropertyGroup>
-        <IsTestProject>$(MSBuildProjectName.Contains('.Test'))</IsTestProject>
+        <IsTestProject>$(MSBuildProjectName.EndsWith('.Test'))</IsTestProject>
         <IsNTestProject>$(MSBuildProjectName.Contains('.Tests'))</IsNTestProject>
+        <IsTestCommon>$(MSBuildProjectName.Contains('.TestCommon'))</IsTestCommon>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -30,7 +31,7 @@
 
     <!-- Settings for test projects.  -->
     <Choose>
-        <When Condition="('$(IsTestProject)' == 'true')">
+        <When Condition="('$(IsTestProject)' == 'true') Or ('$(IsNTestProject)' == 'true')">
             <ItemGroup>
                 <PackageReference Include="FluentAssertions" Version="5.10.3" />
                 <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0" />
@@ -56,7 +57,7 @@
 
     <!-- Settings for none test/sample projects.  -->
     <Choose>
-        <When Condition="('$(IsTestProject)' != 'true')">
+        <When Condition="('$(IsTestProject)' != 'true') And ('$(IsNTestProject)' != 'true') And ('$(IsTestCommon)' != 'true')">
             <PropertyGroup>
                 <Configurations>Debug;Release;Internal</Configurations>
                 <RunAnalyzers>true</RunAnalyzers>

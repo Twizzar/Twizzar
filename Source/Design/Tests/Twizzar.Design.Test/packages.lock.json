@@ -1614,17 +1614,12 @@
       "twizzar.design.testcommon": {
         "type": "Project",
         "dependencies": {
-          "FluentAssertions": "[5.10.3, )",
-          "MSTest.TestFramework": "[2.1.2, )",
-          "Microsoft.NET.Test.Sdk": "[16.8.0, )",
-          "Moq": "[4.18.1, )",
           "Twizzar.Design.CoreInterfaces": "[1.0.0, )",
           "Twizzar.Design.Infrastructure": "[1.0.0, )",
           "Twizzar.Design.Shared.CoreInterfaces": "[1.0.0, )",
           "Twizzar.SharedKernel.Core": "[1.0.0, )",
           "Twizzar.SharedKernel.CoreInterfaces": "[1.0.0, )",
-          "Twizzar.TestCommon": "[1.0.0, )",
-          "TwizzarInternal.Api": "[1.5.1, )"
+          "Twizzar.TestCommon": "[1.0.0, )"
         }
       },
       "twizzar.design.ui": {
@@ -1667,9 +1662,6 @@
         "type": "Project",
         "dependencies": {
           "FluentAssertions": "[5.10.3, )",
-          "MSTest.TestFramework": "[2.1.2, )",
-          "Microsoft.NET.Test.Sdk": "[16.8.0, )",
-          "Moq": "[4.18.1, )",
           "TwizzarInternal.Api": "[1.5.1, )"
         }
       }

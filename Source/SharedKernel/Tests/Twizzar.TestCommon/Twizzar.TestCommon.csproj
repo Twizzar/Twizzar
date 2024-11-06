@@ -4,6 +4,11 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <IsPackable>false</IsPackable>
         <Configurations>Debug;Release;Internal</Configurations>
+        <IsTestProject>false</IsTestProject>
+        <EnableNETAnalyzers>false</EnableNETAnalyzers>
+        <AnalysisLevel>None</AnalysisLevel>
+        <RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
+        <RunAnalyzersDuringLiveAnalysis>False</RunAnalyzersDuringLiveAnalysis>
     </PropertyGroup>
 
     <ItemGroup>
@@ -41,10 +46,17 @@
         <InternalsVisibleTo Include="Twizzar.Analyzer2022.App.Tests" />
     </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Remove="MSTest.TestAdapter" />
-    <PackageReference Include="System.Collections.Immutable" Version="5.0.0" PrivateAssets="All" />
-    <PackageReference Include="Autofac" Version="5.0.0" PrivateAssets="All" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Remove="MSTest.TestAdapter" />
+        <PackageReference Remove="StyleCop.Analyzers" />
+        <PackageReference Remove="Microsoft.CodeAnalysis.NetAnalyzers" />
+        <PackageReference Include="System.Collections.Immutable" Version="5.0.0" PrivateAssets="All" />
+        <PackageReference Include="Autofac" Version="5.0.0" PrivateAssets="All" />
+        <PackageReference Include="FluentAssertions" Version="5.10.3" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(Configuration)' != 'Internal'">
+        <PackageReference Include="TwizzarInternal.Api" Version="1.5.1" />
+    </ItemGroup>
 
 </Project>

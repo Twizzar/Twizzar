@@ -9,17 +9,11 @@ runs:
   using: "composite"
   steps:
     - name: Run Tests
-      shell: pwsh
+      shell: pwsh§
       working-directory: ./Source
       env:
         VSTEST_DISABLE_STANDARD_OUTPUT_FORWARDING: 1
-      run: dotnet test --configuration ${{ inputs.configuration}} --no-build --no-restore --verbosity minimal --logger trx
-
-    - name: Collect Code Coverage
-      shell: pwsh
-      working-directory: ./Source
-      continue-on-error: true
-      run: dotnet test --configuration ${{ inputs.configuration}} --no-build --no-restore --verbosity minimal --logger trx --collect:"XPlat Code Coverage" --DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura
+      run: dotnet test --configuration ${{ inputs.configuration}} --no-build --no-restore --verbosity minimal --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura
 
     - name: Install ReportGenerator
       shell: pwsh
