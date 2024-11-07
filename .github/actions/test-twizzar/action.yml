@@ -1,0 +1,33 @@
+name: "Test Twizzar"
+description: "Test Twizzar on Windows 2022"
+inputs:
+  configuration:
+    description: "The configuration to use for the build"
+    required: false
+    default: "Release"
+runs:
+  using: "composite"
+  steps:
+    - name: Run Tests
+      shell: pwsh
+      working-directory: ./Source
+      env:
+        VSTEST_DISABLE_STANDARD_OUTPUT_FORWARDING: 1
+      run: dotnet test --configuration ${{ inputs.configuration}} --no-build --no-restore --verbosity minimal --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura
+
+    - name: Install ReportGenerator
+      shell: pwsh
+      working-directory: ./Source
+      run: dotnet tool install -g dotnet-reportgenerator-globaltool
+
+    - name: Generate coverage report
+      shell: pwsh
+      working-directory: ./Source
+      run: reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coveragereport -reporttypes:MarkdownSummaryGithub
+
+    - name: Read coverage report
+      shell: pwsh
+      working-directory: ./Source
+      run: |
+        $report = Get-Content -Path coveragereport/SummaryGithub.md -Raw
+        $report | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Encoding utf8 -Append

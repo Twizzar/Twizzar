@@ -5,12 +5,21 @@
         <OutputType>Library</OutputType>
         <Configurations>Debug;Release;Internal</Configurations>
         <NoWarn>MSB3884; CVSTBLD002</NoWarn>
+        <UseWPF>true</UseWPF>
+        <DefineConstants>VS22</DefineConstants>
+        <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Core\Twizzar.Design.CoreInterfaces\Twizzar.Design.CoreInterfaces.csproj" PrivateAssets="All" />
-        <ProjectReference Include="..\..\UI\Twizzar.Design.Ui.Interfaces\Twizzar.Design.Ui.Interfaces.csproj" PrivateAssets="All" />
-        <ProjectReference Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj" PrivateAssets="All" />
+        <ProjectReference
+            Include="..\..\Core\Twizzar.Design.CoreInterfaces\Twizzar.Design.CoreInterfaces.csproj"
+            PrivateAssets="All" />
+        <ProjectReference
+            Include="..\..\UI\Twizzar.Design.Ui.Interfaces\Twizzar.Design.Ui.Interfaces.csproj"
+            PrivateAssets="All" />
+        <ProjectReference
+            Include="..\..\..\SharedKernel\Core\Twizzar.SharedKernel.CoreInterfaces\Twizzar.SharedKernel.CoreInterfaces.csproj"
+            PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>
@@ -29,9 +38,9 @@
         <PackageReference Include="Nerdbank.Streams" Version="2.7.74" />
     </ItemGroup>
 
-    <ItemGroup>
+    <!-- <ItemGroup>
         <Page Include="View\About\AboutWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
         </Page>
-    </ItemGroup>
+    </ItemGroup> -->
 </Project>

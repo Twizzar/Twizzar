@@ -1,0 +1,36 @@
+# Use fetch-depth: 0 for the checkout action to ensure that the entire history is available for GitVersion to calculate the version.
+# example:
+#  - uses: actions/checkout@v4
+#    with:
+#        fetch-depth: 0
+
+name: "Apply Version"
+description: "Apply version to Twizzar project"
+inputs:
+  isInternal:
+    description: "Is the version internal"
+    default: "$False"
+outputs:
+  assemblySemVer:
+    description: "The assembly version"
+    value: ${{ steps.gitversion.outputs.assemblySemVer }}
+  nuGetVersionV2:
+    description: "The NuGet version"
+    value: ${{ steps.gitversion.outputs.nuGetVersionV2 }}
+runs:
+  using: "composite"
+  steps:
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.7
+      with:
+        versionSpec: "5.x"
+
+    - name: Determine Version
+      id: gitversion
+      uses: gittools/actions/gitversion/execute@v0.10.2
+
+    - name: Adjust VSIX VS 22 Version
+      shell: pwsh
+      working-directory: ./Source
+      run: |
+        ./BuildScripts/Ci/update-vsixmanifest-version.ps1 ${{ steps.gitversion.outputs.assemblySemVer }} -IsInternal ${{ inputs.isInternal }} -VsVersion 2022

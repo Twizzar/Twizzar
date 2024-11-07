@@ -1,0 +1,18 @@
+name: "Restore Twizzar"
+description: "Restore Twizzar NuGet packages"
+inputs:
+  configuration:
+    description: "The configuration to use for the build"
+    required: false
+    default: "Release"
+  solution:
+    description: "The solution to restore"
+    required: false
+    default: "Twizzar.sln"
+runs:
+  using: "composite"
+  steps:
+    - name: Restore NuGet packages
+      shell: pwsh
+      working-directory: ./Source
+      run: msbuild -t:Restore ${{ inputs.solution }} /p:Configuration=${{ inputs.configuration}}

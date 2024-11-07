@@ -20,7 +20,7 @@ namespace Twizzar.SharedKernel.NLog.Tests
             // assert
             context.CallerMemberName.Should().Be(nameof(this.CallerContext_create_captures_current_context_correctly));
             context.FilePath.Should().Be(GetFileName());
-            context.Line.Should().Be(15);
+            context.Line.Should().Be(18);
         }
 
         [Test]

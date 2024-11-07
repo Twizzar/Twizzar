@@ -10,6 +10,8 @@ on:
 jobs:
     build-and-test:
         runs-on: windows-2022
+        env:
+            NUGET_CERT_REVOCATION_MODE: offline
         defaults:
             run:
                 working-directory: ./Source
@@ -17,16 +19,19 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
-            - name: Setup .NET
-              uses: actions/setup-dotnet@v4
-              with:
-                  dotnet-version: "8.0.x"
+            - name: Prepare
+              uses: ./.github/actions/prepare-twizzar
 
-            - name: Restore dependencies
-              run: dotnet restore
+            - name: Restore
+              uses: ./.github/actions/restore-twizzar
+              with:
+                  configuration: Release
 
             - name: Build
-              run: dotnet build --configuration Release --no-restore
+              uses: ./.github/actions/build-twizzar
+              with:
+                  configuration: Release
+                  version: 1.0.0
 
             - name: Test
-              run: dotnet test --configuration Release --no-build --verbosity normals
+              uses: ./.github/actions/test-twizzar

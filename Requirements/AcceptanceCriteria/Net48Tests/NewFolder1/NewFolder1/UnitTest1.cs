@@ -1,6 +1,9 @@
 ﻿using System;
+
 using DemoCode.ExampleCode;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using Twizzar.Fixture;
 
 namespace Net48Tests
