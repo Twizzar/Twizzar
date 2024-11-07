@@ -69,12 +69,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFi
 		Directory.Build.props = Directory.Build.props
 		EULA_Twizzar-Library.md = EULA_Twizzar-Library.md
 		GeneralRules.ruleset = GeneralRules.ruleset
-		BuildScripts\internal-release-build-pipeline.yml = BuildScripts\internal-release-build-pipeline.yml
 		nuget.config = nuget.config
-		BuildScripts\release-build-pipeline-only-code-quality.yml = BuildScripts\release-build-pipeline-only-code-quality.yml
-		BuildScripts\release-build-pipeline.yml = BuildScripts\release-build-pipeline.yml
 		Twizzar.sln.DotSettings = Twizzar.sln.DotSettings
-		Vs2019Dependencies.targets = Vs2019Dependencies.targets
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twizzar.Runtime.Core.Tests", "Runtime\Tests\Twizzar.Runtime.Core.Tests\Twizzar.Runtime.Core.Tests.csproj", "{F98EAA1B-9D7C-400B-AF2C-7D93C928EB92}"
@@ -106,20 +102,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Old", "Old", "{939CB2C1-8C32-4918-ACB0-342EBB6665F2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Old", "Old", "{4B7C8852-255F-4C6E-8D66-A1969F96930B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ci", "Ci", "{943363FE-A377-4756-B004-E7EA508F2C8A}"
-	ProjectSection(SolutionItems) = preProject
-		BuildScripts\Ci\build.yml = BuildScripts\Ci\build.yml
-		BuildScripts\Ci\git-version.yml = BuildScripts\Ci\git-version.yml
-		BuildScripts\Ci\nuget-publish.yml = BuildScripts\Ci\nuget-publish.yml
-		BuildScripts\Ci\nuget-restore.yml = BuildScripts\Ci\nuget-restore.yml
-		BuildScripts\Ci\publish-artifact.yml = BuildScripts\Ci\publish-artifact.yml
-		BuildScripts\Ci\publish-symbol.yml = BuildScripts\Ci\publish-symbol.yml
-		BuildScripts\Ci\rename-namespace-for-internal.ps1 = BuildScripts\Ci\rename-namespace-for-internal.ps1
-		BuildScripts\Ci\sonarqube.yml = BuildScripts\Ci\sonarqube.yml
-		BuildScripts\Ci\test.yml = BuildScripts\Ci\test.yml
-		BuildScripts\Ci\update-vsixmanifest-version.ps1 = BuildScripts\Ci\update-vsixmanifest-version.ps1
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Twizzar.Design.Core.Tests", "Design\Tests\Twizzar.Design.Core.Tests\Twizzar.Design.Core.Tests.csproj", "{C63BCA5C-5798-43B8-A1C6-6228003B5DC2}"
 EndProject
@@ -942,7 +924,6 @@ Global
 		{8D909615-C92E-4A12-93D0-D6A3D251005C} = {8CA0A722-291E-4E72-A2A2-712BC837522A}
 		{939CB2C1-8C32-4918-ACB0-342EBB6665F2} = {D430ABFE-E96B-4FC4-9B07-DB09A1BA0D6A}
 		{4B7C8852-255F-4C6E-8D66-A1969F96930B} = {78A68032-96A3-492A-AA45-9C8C566FB830}
-		{943363FE-A377-4756-B004-E7EA508F2C8A} = {314EB7FC-C73A-4186-A806-228E89B2F73C}
 		{C63BCA5C-5798-43B8-A1C6-6228003B5DC2} = {78A68032-96A3-492A-AA45-9C8C566FB830}
 		{E8BF5DB8-64AB-4135-986A-F30E959710A1} = {78A68032-96A3-492A-AA45-9C8C566FB830}
 		{CD0D0860-1BCF-4299-BC61-8D496DB87AE7} = {78A68032-96A3-492A-AA45-9C8C566FB830}
