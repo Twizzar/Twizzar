@@ -39,6 +39,6 @@ runs:
       with:
         name: Twizzar${{ inputs.projectPrefix }} ${{ inputs.version }}
         path: |
-          **/bin/$(BuildConfiguration)/**/*.vsix
+          **/bin/${{ inputs.configuration }}/*.vsix
           ./**/nupkgs/*.nupkg
         retention-days: 5
